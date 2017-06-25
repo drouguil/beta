@@ -1,17 +1,33 @@
 <!doctype html>
 <html lang="fr">
+
 <head>
   <meta charset="utf-8">
   <title>Sweet.ovh</title>
 </head>
+
 <body ng-app="mainApp">
-  <header>Header</header>
+  <header ng-controller="headerController" ng-include="'./app/views/header.html'"></header>
   <main ng-view>
 
   </main>
-  <footer>Footer</footer>
+  <footer ng-controller="footerController" ng-include="'./app/views/footer.html'"></footer>
+
+  <!-- Modules -->
+
   <script src="./node_modules/angular/angular.js"></script>
   <script src="./node_modules/angular-route/angular-route.js"></script>
+  <script src="./node_modules/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+
+  <!-- Controllers -->
+
+  <script src="./app/angularjs/controllers/homeController.js"></script>
+  <script src="./app/angularjs/controllers/headerController.js"></script>
+  <script src="./app/angularjs/controllers/footerController.js"></script>
+
+  <!-- App -->
+
   <script src="./app/angularjs/app.js"></script>
 </body>
+
 </html>

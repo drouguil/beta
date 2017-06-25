@@ -1,14 +1,45 @@
-var app = angular.module('mainApp', ['ngRoute']);
+var mainApp = angular.module('mainApp',
+    [
+        'ngRoute',
+        'tmh.dynamicLocale',
+        'headerApp',
+        'footerApp',
+        'homeApp'
+    ]);
 
-app.config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.
-            when('/', {
-                templateUrl: './app/views/home.html'
-            }).
-            when('/404', {
-                templateUrl: './app/views/404.html'
-            }).
-            otherwise({
-                redirectTo: '/404'
-            });
+mainApp.config(['$routeProvider', 'tmhDynamicLocaleProvider', function ($routeProvider, tmhDynamicLocaleProvider) {
+    
+    tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
+    tmhDynamicLocaleProvider.defaultLocale('fr');
+
+    /**
+     * Routes
+     */
+    
+    $routeProvider.
+
+        /**
+         * Page Home
+         */
+
+        when('/', {
+            templateUrl: './app/views/home.html',
+            controller: 'homeController'
+        }).
+
+        /**
+         * Page 404
+         */
+
+        when('/404', {
+            templateUrl: './app/views/404.html'
+        }).
+
+        /**
+         * Redirection vers la page 404 pour toutes les autres urls
+         */
+
+        otherwise({
+            redirectTo: '/404'
+        });
     }]);
