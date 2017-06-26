@@ -1,0 +1,34 @@
+/* Footer CSS */
+
+footer {
+    display: flex;
+    position: absolute;
+    opacity: 0.8;
+    height: 15rem;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: #ffffff;
+    background-color:#343436;
+    z-index: 2;
+    text-align: center;
+    border-top: 1px solid #F89406;
+}
+
+footer #footer-content {
+    margin: auto;
+    width: 60%;
+    display: flex;
+}
+
+footer #footer-content > div {
+    margin: auto;
+}
+
+footer #footer-content > div > h1 {
+    font-size: 1.8rem;
+    font-style: italic;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: 2rem;
+}

@@ -1,3 +1,8 @@
-{{ test }} {{ 12.56 | currency }}
-<select ng-options="language as language.name for language in languages" ng-model="languageSelected" ng-change="updateLanguage(languageSelected)">
-</select>
+<nav id="nav">
+    {{ test }} {{ 12.56 | currency }}
+    <select ng-options="language as language.name for language in languages" ng-model="languageSelected" ng-change="updateLanguage(languageSelected)">
+    </select>
+</nav>
+<nav id="nav-menu" class="navbar navbar-inverse bg-inverse">
+    <a class="navbar-brand" href="#" id="logo-link"><img id="logo" src="./app/assets/img/LogoSite.png"></img></a>
+</nav>

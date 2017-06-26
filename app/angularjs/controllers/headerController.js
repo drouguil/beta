@@ -12,8 +12,6 @@ headerApp.controller('headerController', ['$scope', '$locale', 'tmhDynamicLocale
             'id':'en'
         }];
 
-    tmhDynamicLocale.set('fr');
-
     $scope.languageSelected = $scope.languages[0];
 
     $scope.updateLanguage = function(languageSelected){
