@@ -4,7 +4,7 @@ header {
     position: fixed;
     width: 100%;
     opacity: 0.8;
-    background-color: #428bca;
+    background-color: #2ecc71;
     z-index: 2;
 }
 
@@ -19,7 +19,7 @@ header #nav-menu {
     margin: 0;
     display: flex;
     border-radius: 0;
-    border-bottom: 1px solid #428bca;
+    border-bottom: 1px solid #2ecc71;
 }
 
 header #nav-menu #logo-link {
