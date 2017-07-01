@@ -1,20 +1,26 @@
+'use strict';
 var headerApp = angular.module('headerApp', []);
 
-headerApp.controller('headerController', ['$scope', '$locale', 'tmhDynamicLocale', function($scope, $locale, tmhDynamicLocale){
-    $scope.test = 'HEADER';
-    $scope.languages = [
-        {
-            'name':'Français',
-            'id':'fr'
-        },
-        {
-            'name':'English',
-            'id':'en'
-        }];
+headerApp.controller('headerController', [
+    '$scope',
+    '$locale',
+    'tmhDynamicLocale',
+    'languageManager',
+    function ($scope, $locale, tmhDynamicLocale, languageManager) {
 
-    $scope.languageSelected = $scope.languages[0];
+        $scope.languages = [
+            {
+                'name': 'Français',
+                'id': 'fr'
+            },
+            {
+                'name': 'English',
+                'id': 'en'
+            }];
 
-    $scope.updateLanguage = function(languageSelected){
-        tmhDynamicLocale.set(languageSelected.id);
-    }
-}]);
+        $scope.languageSelected = $scope.languages[0];
+
+        $scope.updateLanguage = function (languageSelected) {
+            languageManager.changeLanguage(languageSelected.id);
+        }
+    }]);

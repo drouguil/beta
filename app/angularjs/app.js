@@ -1,13 +1,21 @@
+'use strict';
 var mainApp = angular.module('mainApp',
     [
         'ngRoute',
         'tmh.dynamicLocale',
+        'pascalprecht.translate',
         'headerApp',
         'footerApp',
-        'homeApp'
+        'homeApp',
+        'languageService'
     ]);
 
-mainApp.config(['$routeProvider', 'tmhDynamicLocaleProvider', function ($routeProvider, tmhDynamicLocaleProvider) {
+mainApp.config([
+    '$routeProvider', 
+    'tmhDynamicLocaleProvider',
+    function (
+        $routeProvider, 
+        tmhDynamicLocaleProvider) {
     
     tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
     tmhDynamicLocaleProvider.defaultLocale('fr');
