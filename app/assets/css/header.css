@@ -14,9 +14,62 @@ header {
         height: 5rem;
     }
 
-    header #nav #languageSelect {
+    header #nav #right-div {
         margin-left: auto;
-    } 
+        height: 100%;
+    }
+
+    header #nav #right-div #language-list {
+        background-color: #f9f9f9;
+        min-width: 14rem;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 2;
+        position: relative;
+    }
+
+    header #nav #right-div #language-list ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    header #nav #right-div #language-list ul li {
+        display: flex;
+        margin: 0;
+        padding: 1rem 0;
+    }
+
+    header #nav #right-div #language-list ul li:hover {
+        background-color: #66b406;
+    }
+
+    header #nav #right-div #language-list ul li span {
+        margin: auto;
+        height: auto;
+    }
+
+    header #nav #right-div #language-list ul li img{
+        height: 3rem;
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+
+    header #nav #right-div #language-current {
+        display: flex;
+        height: 100%;
+        cursor: pointer;
+        width: 5rem;
+        margin-left: auto;
+    }
+
+    header #nav #right-div #language-current:hover {
+        background-color: #66b406;
+    }
+
+    header #nav #right-div #language-current img {
+        margin: auto;
+        height: 3rem;
+    }
 
     header #nav-menu {
         background-color: transparent;
@@ -30,7 +83,7 @@ header {
 
         header #nav-menu #logo-link {
             position: absolute;
-            right: 44%;
+            right: calc(50% - 8.5rem);
             top: -88%;
             height: 20rem;
             padding: 1rem;

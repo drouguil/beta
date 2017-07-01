@@ -2,6 +2,7 @@
 var mainApp = angular.module('mainApp',
     [
         'ngRoute',
+        'ngSanitize',
         'tmh.dynamicLocale',
         'pascalprecht.translate',
         'headerApp',

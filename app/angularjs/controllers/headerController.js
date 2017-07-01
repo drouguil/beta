@@ -8,6 +8,12 @@ headerApp.controller('headerController', [
     'languageManager',
     function ($scope, $locale, tmhDynamicLocale, languageManager) {
 
+        $scope.isLanguagesList = false;
+
+        $scope.displayLanguageList = function(value) {
+            $scope.isLanguagesList = value;
+        }
+
         $scope.languages = [
             {
                 'name': 'Français',
@@ -18,9 +24,10 @@ headerApp.controller('headerController', [
                 'id': 'en'
             }];
 
-        $scope.languageSelected = $scope.languages[0];
+        $scope.currentLanguage = $scope.languages[0];
 
         $scope.updateLanguage = function (languageSelected) {
+            $scope.currentLanguage = languageSelected;
             languageManager.changeLanguage(languageSelected.id);
         }
     }]);

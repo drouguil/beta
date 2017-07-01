@@ -1,8 +1,16 @@
 <nav id="nav">
-    <select id="languageSelect" ng-options="language as language.name for language in languages" ng-model="languageSelected"
-        ng-change="updateLanguage(languageSelected)">
-    </select>
+    <div clas="navbar-right" id="right-div" ng-mouseleave="displayLanguageList(false)">
+    <a id="language-current" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)"><img ng-src="./app/assets/svg/country/{{currentLanguage.id}}.svg"></a>
+    <div ng-if="isLanguagesList" id="language-list">
+        <ul>
+            <li ng-repeat="language in languages" ng-click="updateLanguage(language)"><span>{{language.name}}</span> <img height="10rem" ng-src="./app/assets/svg/country/{{language.id}}.svg"></li>
+        </ul>
+    </div>
+    </div>
+    
 </nav>
-<nav id="nav-menu" class="navbar navbar-inverse bg-inverse">
-    <a class="navbar-brand" href="#" id="logo-link"><img id="logo" src="./app/assets/img/Logo.png"></img></a>
+<nav id="nav-menu" class="navbar">
+    <a href="#" id="logo-link">
+        <img id="logo" src="./app/assets/img/Logo.png">
+    </a>
 </nav>
