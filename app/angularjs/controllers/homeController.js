@@ -1,7 +1,9 @@
 'use strict';
 var homeApp = angular.module('homeApp', []);
 
-homeApp.config(['$translateProvider', function($translateProvider) {
+homeApp.config([
+    '$translateProvider', 
+    function($translateProvider) {
     
     /**
      * Dictionnaire Français
@@ -16,10 +18,8 @@ homeApp.config(['$translateProvider', function($translateProvider) {
      */
 
     $translateProvider.translations('en', {
-        BTN_DIMENSIONS: 'Management of portals'
+        BTN_DIMENSIONS: 'Portals\' Management'
     });
-
-    $translateProvider.preferredLanguage('fr');
 }]);
 
 homeApp.controller('homeController', ['$scope', function($scope){

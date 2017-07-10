@@ -6,28 +6,47 @@ headerApp.controller('headerController', [
     '$locale',
     'tmhDynamicLocale',
     'languageManager',
-    function ($scope, $locale, tmhDynamicLocale, languageManager) {
+    function (
+        $scope, 
+        $locale, 
+        tmhDynamicLocale, 
+        languageManager) {
+
+        /**
+         * Activité du menu des langages
+         */
 
         $scope.isLanguagesList = false;
+
+        /**
+         * Retourne si le menu des langages est actif 
+         */
 
         $scope.displayLanguageList = function(value) {
             $scope.isLanguagesList = value;
         }
 
-        $scope.languages = [
-            {
-                'name': 'Français',
-                'id': 'fr'
-            },
-            {
-                'name': 'English',
-                'id': 'en'
-            }];
+        /**
+         * Retourne la liste des langages
+         */
 
-        $scope.currentLanguage = $scope.languages[0];
+        $scope.languages = function() {
+            return languageManager.getLanguages();
+        };
+
+        /**
+         * Retourne l'identifiant du langage actuel
+         */
+
+        $scope.currentLanguageId = function() {
+            return languageManager.getCurrentLanguageId();
+        };
+
+        /**
+         * Mise à jour du langage
+         */
 
         $scope.updateLanguage = function (languageSelected) {
-            $scope.currentLanguage = languageSelected;
-            languageManager.changeLanguage(languageSelected.id);
+            languageManager.setCurrentLanguageId(languageSelected.id);
         }
     }]);

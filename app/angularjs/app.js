@@ -12,14 +12,14 @@ var mainApp = angular.module('mainApp',
     ]);
 
 mainApp.config([
-    '$routeProvider', 
+    '$routeProvider',
     'tmhDynamicLocaleProvider',
     function (
-        $routeProvider, 
+        $routeProvider,
         tmhDynamicLocaleProvider) {
-    
-    tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
+
     tmhDynamicLocaleProvider.defaultLocale('fr');
+    tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
 
     /**
      * Routes
@@ -51,4 +51,16 @@ mainApp.config([
         otherwise({
             redirectTo: '/404'
         });
+    }]);
+
+    mainApp.run([ 
+        'languageManager',
+        function(languageManager) {
+
+        /**
+         * Initialise le langage actuel
+         */
+
+        languageManager.initCurrentLanguage();
+
     }]);

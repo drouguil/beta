@@ -1,7 +1,9 @@
 'use strict';
 var footerApp = angular.module('footerApp', []);
 
-footerApp.config(['$translateProvider', function($translateProvider) {
+footerApp.config([
+    '$translateProvider', 
+    function($translateProvider) {
     
     /**
      * Dictionnaire Français
@@ -26,8 +28,6 @@ footerApp.config(['$translateProvider', function($translateProvider) {
         PURPOSE_PICTURE: 'Purpose a drawing/logo/picture',
         CONTACT_US: 'Contact us',
     });
-    
-    $translateProvider.preferredLanguage('fr');
 }]);
 
 footerApp.controller('footerController', ['$scope', '$translate', function ($scope, $translate) {

@@ -1,9 +1,9 @@
 <nav id="nav">
     <div clas="navbar-right" id="right-div" ng-mouseleave="displayLanguageList(false)">
-    <a id="language-current" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)"><img ng-src="./app/assets/svg/country/{{currentLanguage.id}}.svg"></a>
+    <a id="language-current" ng-class="{'active' : isLanguagesList}" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)"><img ng-src="./app/assets/svg/country/{{currentLanguageId()}}.svg"></a>
     <div ng-if="isLanguagesList" id="language-list">
         <ul>
-            <li ng-repeat="language in languages" ng-click="updateLanguage(language)"><span>{{language.name}}</span> <img height="10rem" ng-src="./app/assets/svg/country/{{language.id}}.svg"></li>
+            <li ng-repeat="language in languages()" ng-click="updateLanguage(language)"><span>{{language.name}}</span> <img height="10rem" ng-src="./app/assets/svg/country/{{language.id}}.svg"></li>
         </ul>
     </div>
     </div>

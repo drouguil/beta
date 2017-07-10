@@ -9,7 +9,7 @@ header {
 
     header #nav {
         margin: auto;
-        max-width: 100rem;
+        max-width: 117rem;
         display: flex;
         height: 5rem;
     }
@@ -37,6 +37,7 @@ header {
         display: flex;
         margin: 0;
         padding: 1rem 0;
+        cursor: pointer;
     }
 
     header #nav #right-div #language-list ul li:hover {
@@ -62,7 +63,7 @@ header {
         margin-left: auto;
     }
 
-    header #nav #right-div #language-current:hover {
+    header #nav #right-div #language-current.active {
         background-color: #66b406;
     }
 
