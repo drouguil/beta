@@ -1,16 +1,41 @@
 'use strict';
 var headerApp = angular.module('headerApp', []);
 
+headerApp.config([
+    '$translateProvider', 
+    function($translateProvider) {
+    
+    /**
+     * Dictionnaire Français
+     */
+
+    $translateProvider.translations('fr', {
+        LANGUAGE_CHANGED: 'Langue changée'
+    });
+
+    /**
+     * Dictionnaire Anglais
+     */
+
+    $translateProvider.translations('en', {
+        LANGUAGE_CHANGED: 'Language changed'
+    });
+}]);
+
 headerApp.controller('headerController', [
     '$scope',
     '$locale',
+    '$filter',
     'tmhDynamicLocale',
     'languageManager',
+    'toastManager',
     function (
         $scope, 
-        $locale, 
+        $locale,
+        $filter,
         tmhDynamicLocale, 
-        languageManager) {
+        languageManager,
+        toastManager) {
 
         /**
          * Activité du menu des langages
@@ -19,10 +44,14 @@ headerApp.controller('headerController', [
         $scope.isLanguagesList = false;
 
         /**
-         * Retourne si le menu des langages est actif 
+         * Affiche ou cache le menu des langages
          */
 
         $scope.displayLanguageList = function(value) {
+            if(value)
+            {
+                toastManager.hideToast();
+            }
             $scope.isLanguagesList = value;
         }
 
@@ -47,6 +76,7 @@ headerApp.controller('headerController', [
          */
 
         $scope.updateLanguage = function (languageSelected) {
+            toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name, 'top right');
             languageManager.setCurrentLanguageId(languageSelected.id);
         }
     }]);

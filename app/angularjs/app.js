@@ -3,12 +3,16 @@ var mainApp = angular.module('mainApp',
     [
         'ngRoute',
         'ngSanitize',
+        'ngAria',
+        'ngAnimate',
+        'ngMaterial',
         'tmh.dynamicLocale',
         'pascalprecht.translate',
         'headerApp',
         'footerApp',
         'homeApp',
-        'languageService'
+        'languageService',
+        'toastService'
     ]);
 
 mainApp.config([

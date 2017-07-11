@@ -1,7 +1,18 @@
 'use strict';
 var languageService = angular.module('languageService', []);
 
-languageService.service('languageManager', ['tmhDynamicLocale', '$translate', '$window', function (tmhDynamicLocale, $translate, $window) {
+languageService.service('languageManager', [
+    'tmhDynamicLocale', 
+    '$translate', 
+    '$window', 
+    function (
+        tmhDynamicLocale, 
+        $translate, 
+        $window) {
+
+    /**
+     * Liste des langages
+     */
 
     this.languages = [
         {

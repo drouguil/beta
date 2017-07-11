@@ -23,3 +23,13 @@ main {
     font-family: "Btn Font", "Verdana", "Geneva", "Tahoma", "sans-serif";
     text-transform: uppercase;
 }
+
+md-toast {
+    margin-top: 5.5rem;
+    padding-top: 0;
+}
+
+body md-toast.md-default-theme .md-toast-content {
+    background-color: #27ae60;
+    border-radius: 0 0 2px 2px; 
+}
