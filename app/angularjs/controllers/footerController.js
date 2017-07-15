@@ -1,9 +1,23 @@
+/**
+ * Force un "bon" codage
+ */
+
 'use strict';
+
+/**
+ * Déclaration du module du footer
+ */
+
 var footerApp = angular.module('footerApp', []);
+
+/**
+ * Configuration du module du footer
+ */
 
 footerApp.config([
     '$translateProvider', 
-    function($translateProvider) {
+    function(
+        $translateProvider) {
     
     /**
      * Dictionnaire Français
@@ -30,6 +44,15 @@ footerApp.config([
     });
 }]);
 
-footerApp.controller('footerController', ['$scope', '$translate', function ($scope, $translate) {
+/**
+ * Contrôleur du module du header
+ */
+
+footerApp.controller('footerController', [
+    '$scope', 
+    '$translate', 
+    function (
+        $scope,
+        $translate) {
     
 }]);

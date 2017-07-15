@@ -1,86 +1,105 @@
+/**
+ * Force un "bon" codage
+ */
+
 'use strict';
+
+/**
+ * Déclaration du module du service de gestion des langues
+ */
+
 var languageService = angular.module('languageService', []);
 
+/**
+ * Service de gestion des langues
+ */
+
 languageService.service('languageManager', [
-    'tmhDynamicLocale', 
-    '$translate', 
-    '$window', 
+    'tmhDynamicLocale',
+    '$translate',
+    '$window',
     function (
-        tmhDynamicLocale, 
-        $translate, 
+        tmhDynamicLocale,
+        $translate,
         $window) {
 
-    /**
-     * Liste des langages
-     */
+        /**
+         * Liste des langues
+         * @private
+         */
 
-    this.languages = [
-        {
-            'name': 'Français',
-            'id': 'fr'
-        },
-        {
-            'name': 'English',
-            'id': 'en'
-        }];
-
-    /**
-     * Retourne l'identifiant du langage actuel
-     */
-
-    this.getCurrentLanguageId = function() {
-        if(!$window.localStorage.getItem('languageId'))
-        {
-            this.setCurrentLanguageId('fr');
-        }
-        else
-        {
-            return $window.localStorage.getItem('languageId');
-        }
-    }
-
-    /**
-     * Retourne la liste des langages
-     */
-
-    this.getLanguages = function() {
-        return this.languages;
-    }
-
-    /**
-     * Initialise le langage actuel par rapport à celui stocké dans le localStorage
-     */
-
-    this.initCurrentLanguage = function() {
-        if(!$window.localStorage.getItem('languageId'))
-        {
-            this.setCurrentLanguageId('fr');
-        }
-        else
-        {
-            this.setCurrentLanguageId($window.localStorage.getItem('languageId'));
-        }
-    }
-
-    /**
-     * Modifie le langage actuel
-     */
-
-    this.setCurrentLanguageId = function (id) {
-        var isFound = false;
-        this.languages.forEach(function (language) {
-            if(language.id == id)
+        var languages = [
             {
-                isFound = true;
-            }
-        });
-        if(!isFound)
-        {
-            id = 'fr';
-        }
-        $translate.use(id);
-        tmhDynamicLocale.set(id);
-        $window.localStorage.setItem('languageId',id);
-    };
+                'name': 'Français',
+                'id': 'fr'
+            },
+            {
+                'name': 'English',
+                'id': 'en'
+            }];
 
-}]);
+        /**
+         * Récupère l'identifiant de la langue actuelle
+         * @function getCurrentLanguageId
+         * @public
+         * @return {Caractères} Identifiant de la langue actuelle sous le format : 'fr'
+         */
+
+        this.getCurrentLanguageId = function () {
+            if (!$window.localStorage.getItem('languageId')) {
+                this.setCurrentLanguageId('fr');
+            }
+            else {
+                return $window.localStorage.getItem('languageId');
+            }
+        }
+
+        /**
+         * Récupère la liste des langues
+         * @function getLanguages
+         * @public
+         * @return Liste des langues
+         */
+
+        this.getLanguages = function () {
+            return languages;
+        }
+
+        /**
+         * Initialise la langue actuelle par rapport à celle stockée dans le localStorage
+         * @function initCurrentLanguage
+         * @public
+         */
+
+        this.initCurrentLanguage = function () {
+            if (!$window.localStorage.getItem('languageId')) {
+                this.setCurrentLanguageId('fr');
+            }
+            else {
+                this.setCurrentLanguageId($window.localStorage.getItem('languageId'));
+            }
+        }
+
+        /**
+         * Modifie la langue actuelle
+         * @function setCurrentLanguageId
+         * @public 
+         * @param {Caractères} id Identifiant de la nouvelle langue sous le format : 'fr'
+         */
+
+        this.setCurrentLanguageId = function (id) {
+            var isFound = false;
+            languages.forEach(function (language) {
+                if (language.id == id) {
+                    isFound = true;
+                }
+            });
+            if (!isFound) {
+                id = 'fr';
+            }
+            $translate.use(id);
+            tmhDynamicLocale.set(id);
+            $window.localStorage.setItem('languageId', id);
+        };
+
+    }]);

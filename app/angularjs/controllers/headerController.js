@@ -1,9 +1,23 @@
+/**
+ * Force un "bon" codage
+ */
+
 'use strict';
+
+/**
+ * Déclaration du module du header
+ */
+
 var headerApp = angular.module('headerApp', []);
+
+/**
+ * Configuration du module du header
+ */
 
 headerApp.config([
     '$translateProvider', 
-    function($translateProvider) {
+    function(
+        $translateProvider) {
     
     /**
      * Dictionnaire Français
@@ -22,6 +36,10 @@ headerApp.config([
     });
 }]);
 
+/**
+ * Contrôleur du module du header
+ */
+
 headerApp.controller('headerController', [
     '$scope',
     '$locale',
@@ -38,25 +56,32 @@ headerApp.controller('headerController', [
         toastManager) {
 
         /**
-         * Activité du menu des langages
+         * Activité du menu des langues
+         * @public
          */
 
         $scope.isLanguagesList = false;
 
         /**
-         * Affiche ou cache le menu des langages
+         * Affiche ou cache le menu des langues
+         * @function displayLanguageList
+         * @public
+         * @param {Booléen} newVal Affichage ou non du menu des langues
          */
 
-        $scope.displayLanguageList = function(value) {
-            if(value)
+        $scope.displayLanguageList = function(newVal) {
+            if(newVal)
             {
-                toastManager.hideToast();
+                toastManager.hideToasts();
             }
-            $scope.isLanguagesList = value;
-        }
+            $scope.isLanguagesList = newVal;
+        };
 
         /**
-         * Retourne la liste des langages
+         * Récupère la liste des langues
+         * @function languages
+         * @public
+         * @return Liste des langues
          */
 
         $scope.languages = function() {
@@ -64,7 +89,10 @@ headerApp.controller('headerController', [
         };
 
         /**
-         * Retourne l'identifiant du langage actuel
+         * Récupère l'identifiant de la langue actuelle
+         * @function currentLanguageId
+         * @public
+         * @return Identifiant de la langue actuelle
          */
 
         $scope.currentLanguageId = function() {
@@ -72,11 +100,14 @@ headerApp.controller('headerController', [
         };
 
         /**
-         * Mise à jour du langage
+         * Met à jour la langue actuelle
+         * @function updateLanguage
+         * @public
+         * @param {Objet} languageSelected Langue à mettre à jour
          */
 
         $scope.updateLanguage = function (languageSelected) {
             toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name, 'top right');
             languageManager.setCurrentLanguageId(languageSelected.id);
-        }
+        };
     }]);

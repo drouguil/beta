@@ -1,4 +1,13 @@
+/**
+ * Force un "bon" codage
+ */
+
 'use strict';
+
+/**
+ * Déclaration du module principal de l'application
+ */
+
 var mainApp = angular.module('mainApp',
     [
         'ngRoute',
@@ -15,6 +24,10 @@ var mainApp = angular.module('mainApp',
         'toastService'
     ]);
 
+/**
+ * Configuration du module principal de l'application
+ */
+
 mainApp.config([
     '$routeProvider',
     'tmhDynamicLocaleProvider',
@@ -22,47 +35,51 @@ mainApp.config([
         $routeProvider,
         tmhDynamicLocaleProvider) {
 
-    tmhDynamicLocaleProvider.defaultLocale('fr');
-    tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
-
-    /**
-     * Routes
-     */
-    
-    $routeProvider.
+        tmhDynamicLocaleProvider.defaultLocale('fr');
+        tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
 
         /**
-         * Page Home
+         * Routes
          */
 
-        when('/', {
-            templateUrl: './app/views/home.html',
-            controller: 'homeController'
-        }).
+        $routeProvider.
 
-        /**
-         * Page 404
-         */
+            /**
+             * Page Home
+             */
 
-        when('/404', {
-            templateUrl: './app/views/404.html'
-        }).
+            when('/', {
+                templateUrl: './app/views/home.html',
+                controller: 'homeController'
+            }).
 
-        /**
-         * Redirection vers la page 404 pour toutes les autres urls
-         */
+            /**
+             * Page 404
+             */
 
-        otherwise({
-            redirectTo: '/404'
-        });
+            when('/404', {
+                templateUrl: './app/views/404.html'
+            }).
+
+            /**
+             * Redirection vers la page 404 pour toutes les autres urls
+             */
+
+            otherwise({
+                redirectTo: '/404'
+            });
     }]);
 
-    mainApp.run([ 
-        'languageManager',
-        function(languageManager) {
+/**
+ * Initialisation du module principal de l'application
+ */
+
+mainApp.run([
+    'languageManager',
+    function (languageManager) {
 
         /**
-         * Initialise le langage actuel
+         * Initialise la langue actuelle
          */
 
         languageManager.initCurrentLanguage();
