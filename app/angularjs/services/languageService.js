@@ -18,10 +18,12 @@ languageService.service('languageManager', [
     'tmhDynamicLocale',
     '$translate',
     '$window',
+    'localStorageManager', 
     function (
         tmhDynamicLocale,
         $translate,
-        $window) {
+        $window,
+        localStorageManager) {
 
         /**
          * Liste des langues

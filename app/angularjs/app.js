@@ -21,7 +21,9 @@ var mainApp = angular.module('mainApp',
         'footerApp',
         'homeApp',
         'languageService',
-        'toastService'
+        'toastService',
+        'dialogService',
+        'localStorageService'
     ]);
 
 /**

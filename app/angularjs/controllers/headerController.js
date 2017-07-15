@@ -72,7 +72,7 @@ headerApp.controller('headerController', [
         $scope.displayLanguageList = function(newVal) {
             if(newVal)
             {
-                toastManager.hideToasts();
+                toastManager.closeToasts();
             }
             $scope.isLanguagesList = newVal;
         };
@@ -107,7 +107,10 @@ headerApp.controller('headerController', [
          */
 
         $scope.updateLanguage = function (languageSelected) {
-            toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name, 'top right');
-            languageManager.setCurrentLanguageId(languageSelected.id);
+            if(languageManager.getCurrentLanguageId() != languageSelected.id)
+            {
+                toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name, 'top right');
+                languageManager.setCurrentLanguageId(languageSelected.id);
+            }
         };
     }]);

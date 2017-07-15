@@ -41,7 +41,7 @@ homeApp.config([
  */
 
 homeApp.controller('homeController', [
-    '$scope', 
+    '$scope',
     function (
         $scope) {
-}]);
+    }]);

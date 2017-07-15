@@ -16,7 +16,8 @@ var toastService = angular.module('toastService', []);
 
 toastService.service('toastManager', [
     '$mdToast',
-    function ($mdToast) {
+    function (
+        $mdToast) {
 
         /**
          * Affiche une notification classique
@@ -44,11 +45,11 @@ toastService.service('toastManager', [
 
         /**
          * Cache toutes les notifications en cours
-         * @function hideToasts
+         * @function closeToasts
          * @public
          */
 
-        this.hideToasts = function () {
+        this.closeToasts = function () {
             $mdToast.hide();
         };
 

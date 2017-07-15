@@ -17,11 +17,19 @@
 </head>
 
 <body ng-app="mainApp">
+
+  <!-- Header -->
+
   <header ng-controller="headerController" ng-include="'./app/views/header.html'"></header>
   
+  <!-- Vue actuelle -->
+
   <main ng-view>
 
   </main>
+
+  <!-- Footer -->
+
   <footer ng-controller="footerController" ng-include="'./app/views/footer.html'"></footer>
 
   <!-- Modules -->
@@ -45,10 +53,14 @@
 
   <script src="./app/angularjs/services/languageService.js"></script>
   <script src="./app/angularjs/services/toastService.js"></script>
+  <script src="./app/angularjs/services/dialogService.js"></script>
+  <script src="./app/angularjs/services/localStorageService.js"></script>
+  <script src="./app/angularjs/services/sessionStorageService.js"></script>
 
   <!-- App -->
 
   <script src="./app/angularjs/app.js"></script>
+
 </body>
 
 </html>
