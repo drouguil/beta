@@ -23,24 +23,30 @@ toastService.service('toastManager', [
          * Affiche une notification classique
          * @function showSimpleToast
          * @public
-         * @param {Caractères} text Texte de la notification
+         * @param {Caractères} textContent Texte du contenu de la notification
          * @param {Caractères} position Optionnel valeur par défault : 'top right' ; Position de la notification ('top left', 'top right', 'bottom left', 'bottom right')
          * @param {Nombre} delay Optionnel valeur par défault : 3000 ; Durée d'affichage de la notification en millisecondes
          */
 
-        this.showSimpleToast = function (text, position, delay) {
+        this.showSimpleToast = function (textContent, position, delay) {
             if (!delay) {
                 delay = 3000;
             }
             if (!position) {
                 position = 'top right';
             }
-            $mdToast.show(
-                $mdToast.simple()
-                    .textContent(text)
-                    .position(position)
-                    .hideDelay(delay)
-            );
+            if (textContent) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(textContent)
+                        .position(position)
+                        .hideDelay(delay)
+                );
+            }
+            else {
+                console.error('Le texte n\'est pas définie')
+            }
+
         };
 
         /**

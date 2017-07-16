@@ -18,10 +18,48 @@
 
 <body ng-app="mainApp">
 
+  <style>
+    body #app-loader {
+      background-color: rgb(60, 60, 60);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 500000;
+      display: flex;
+    }
+
+    @keyframes loader {
+      0% {
+        width: 10%;
+        opacity: 1;
+      }
+      50% {
+        width: 8%;
+        opacity: 0.2;
+      }
+      100% {
+        width: 10%;
+        opacity: 1;
+      }
+    }
+
+    body #app-loader img {
+      margin: auto;
+      width: 8%;
+      animation-name: loader;
+      animation-duration: 1.5s;
+      animation-iteration-count: infinite;
+    }
+  </style>
+  
+  <div id="app-loader" ng-if="!headerIsLoaded && !viewIsLoaded && !footerIsLoaded">
+    <img src="./app/assets/img/Dofus.png">
+  </div>
+
   <!-- Header -->
 
   <header ng-controller="headerController" ng-include="'./app/views/header.html'"></header>
-  
+
   <!-- Vue actuelle -->
 
   <main ng-view>
@@ -48,6 +86,7 @@
   <script src="./app/angularjs/controllers/homeController.js"></script>
   <script src="./app/angularjs/controllers/headerController.js"></script>
   <script src="./app/angularjs/controllers/footerController.js"></script>
+  <script src="./app/angularjs/controllers/notFoundController.js"></script>
 
   <!-- Services -->
 

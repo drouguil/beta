@@ -23,26 +23,64 @@
 
 #home-content > div {
     height: 100%;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
 }
 
 #home-content > div > a {
     text-decoration: none;
     cursor: pointer;
-    height: 10rem;
+    display: block;
 }
 
-#home-content #dimensions-btn h2 {
+#home-content .home-btn h2 {
     color: white;
     text-shadow: 0 2px 2px rgba(0,0,0,.35);
-    background-color: #428bca;
     width: 100%;
-    margin: 0;
+    margin: auto;
     font-size: 2rem;
     padding: 2rem 0;
     line-height: 3.6rem;
 }
 
-#home-content #dimensions-btn img {
+#home-content #dimensions-btn h2 {
+    background-color: #428bca;
+}
+
+#home-content #changelog-btn h2 {
+    background-color: #ab1520;
+}
+
+#home-content .home-btn img, #home-content .partner-link img {
     width: 100%;
+}
+
+#home-content .partner-link {
+    margin-top: 2rem;
+}
+
+#home-content #partner-dofusExchange {
+    padding: 0.5rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    border: 1px solid black;
+}
+
+#home-content #partners-icon {
+    width: 5rem;
+    margin-right: 2rem;
+}
+
+#home-content #partners-title {
+    text-transform: uppercase;
+    color: white;
+    font-family: "Btn Font", "Verdana", "Geneva", "Tahoma", "sans-serif";
+    background-color: #f66d09;
+    text-shadow: 0 2px 2px rgba(0,0,0,.35);
+    width: 100%;
+    margin: auto;
+    font-size: 2rem;
+    padding: 2rem 0;
+    line-height: 3.6rem;
+
+
 }

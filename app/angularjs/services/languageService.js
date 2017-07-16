@@ -17,12 +17,10 @@ var languageService = angular.module('languageService', []);
 languageService.service('languageManager', [
     'tmhDynamicLocale',
     '$translate',
-    '$window',
-    'localStorageManager', 
+    'localStorageManager',
     function (
         tmhDynamicLocale,
         $translate,
-        $window,
         localStorageManager) {
 
         /**
@@ -42,18 +40,16 @@ languageService.service('languageManager', [
 
         /**
          * Récupère l'identifiant de la langue actuelle
-         * @function getCurrentLanguageId
+         * @function getCurrentLanguage
          * @public
-         * @return {Caractères} Identifiant de la langue actuelle sous le format : 'fr'
+         * @return {Objet} Langue actuelle sous le format
          */
 
-        this.getCurrentLanguageId = function () {
-            if (!$window.localStorage.getItem('languageId')) {
-                this.setCurrentLanguageId('fr');
+        this.getCurrentLanguage = function () {
+            if (!localStorageManager.getObj('language')) {
+                this.setCurrentLanguage(languages[0]);
             }
-            else {
-                return $window.localStorage.getItem('languageId');
-            }
+            return localStorageManager.getObj('language');
         }
 
         /**
@@ -74,34 +70,39 @@ languageService.service('languageManager', [
          */
 
         this.initCurrentLanguage = function () {
-            if (!$window.localStorage.getItem('languageId')) {
-                this.setCurrentLanguageId('fr');
+            if (!localStorageManager.getObj('language')) {
+                this.setCurrentLanguage(languages[0]);
             }
             else {
-                this.setCurrentLanguageId($window.localStorage.getItem('languageId'));
+                this.setCurrentLanguage(localStorageManager.getObj('language'));
             }
         }
 
         /**
          * Modifie la langue actuelle
-         * @function setCurrentLanguageId
+         * @function setCurrentLanguage
          * @public 
-         * @param {Caractères} id Identifiant de la nouvelle langue sous le format : 'fr'
+         * @param {Objet} language Nouvelle langue
          */
 
-        this.setCurrentLanguageId = function (id) {
-            var isFound = false;
-            languages.forEach(function (language) {
-                if (language.id == id) {
-                    isFound = true;
+        this.setCurrentLanguage = function (language) {
+            if (language) {
+                var isFound = false;
+                languages.forEach(function (tempLanguage) {
+                    if (tempLanguage.id == language.id) {
+                        isFound = true;
+                    }
+                });
+                if (!isFound) {
+                    language = languages[0];
                 }
-            });
-            if (!isFound) {
-                id = 'fr';
+                $translate.use(language.id);
+                tmhDynamicLocale.set(language.id);
+                localStorageManager.setObj('language', language);
             }
-            $translate.use(id);
-            tmhDynamicLocale.set(id);
-            $window.localStorage.setItem('languageId', id);
+            else {
+                console.error('La langue n\'est pas définie');
+            }
         };
 
     }]);

@@ -6,7 +6,7 @@
             <div class="header-right-actions">
                 <a id="register-link" ng-click=""><img ng-src="./app/assets/svg/register.svg"></a>
                 <a id="login-link" ng-click=""><img ng-src="./app/assets/svg/login.svg"></a>
-                <a id="language-current" ng-class="{'active' : isLanguagesList}" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)"><img ng-src="./app/assets/svg/country/{{currentLanguageId()}}.svg"></a>
+                <a id="language-current" ng-class="{'active' : isLanguagesList}" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)"><img ng-src="./app/assets/svg/country/{{currentLanguage.id}}.svg"></a>
             </div>
         </div>
         <div ng-if="isLanguagesList" id="language-list">

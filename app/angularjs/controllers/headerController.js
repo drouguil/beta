@@ -44,6 +44,7 @@ headerApp.controller('headerController', [
     '$scope',
     '$locale',
     '$filter',
+    '$rootScope',
     'tmhDynamicLocale',
     'languageManager',
     'toastManager',
@@ -51,6 +52,7 @@ headerApp.controller('headerController', [
         $scope, 
         $locale,
         $filter,
+        $rootScope,
         tmhDynamicLocale, 
         languageManager,
         toastManager) {
@@ -89,15 +91,13 @@ headerApp.controller('headerController', [
         };
 
         /**
-         * Récupère l'identifiant de la langue actuelle
-         * @function currentLanguageId
+         * Récupère la langue actuelle
+         * @function currentLanguage
          * @public
-         * @return Identifiant de la langue actuelle
+         * @return Langue actuelle
          */
 
-        $scope.currentLanguageId = function() {
-            return languageManager.getCurrentLanguageId();
-        };
+        $scope.currentLanguage = languageManager.getCurrentLanguage();
 
         /**
          * Met à jour la langue actuelle
@@ -107,10 +107,17 @@ headerApp.controller('headerController', [
          */
 
         $scope.updateLanguage = function (languageSelected) {
-            if(languageManager.getCurrentLanguageId() != languageSelected.id)
+            if(languageManager.getCurrentLanguage().id != languageSelected.id)
             {
                 toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name, 'top right');
-                languageManager.setCurrentLanguageId(languageSelected.id);
+                $scope.currentLanguage = languageSelected;
+                languageManager.setCurrentLanguage(languageSelected);
+                $scope.isLanguagesList = false;
             }
         };
+
+        $scope.$on('$viewContentLoaded', function () {
+            $rootScope.headerIsLoaded = true;
+        });
+
     }]);

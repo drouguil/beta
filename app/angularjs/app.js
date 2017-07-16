@@ -20,10 +20,12 @@ var mainApp = angular.module('mainApp',
         'headerApp',
         'footerApp',
         'homeApp',
+        'notFoundApp',
         'languageService',
         'toastService',
         'dialogService',
-        'localStorageService'
+        'localStorageService',
+        'sessionStorageService'
     ]);
 
 /**
@@ -60,7 +62,8 @@ mainApp.config([
              */
 
             when('/404', {
-                templateUrl: './app/views/404.html'
+                templateUrl: './app/views/404.html',
+                controller: 'notFoundController'
             }).
 
             /**
@@ -78,7 +81,10 @@ mainApp.config([
 
 mainApp.run([
     'languageManager',
-    function (languageManager) {
+    '$rootScope',
+    function (
+        languageManager,
+        $rootScope) {
 
         /**
          * Initialise la langue actuelle
@@ -86,4 +92,7 @@ mainApp.run([
 
         languageManager.initCurrentLanguage();
 
+        $rootScope.$on('$routeChangeStart', function (next, current) {
+            $rootScope.viewIsLoaded = false;
+        });
     }]);

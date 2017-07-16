@@ -5,16 +5,16 @@
 'use strict';
 
 /**
- * Déclaration du module de la page d'accueil
+ * Déclaration du module de la page 404
  */
 
-var homeApp = angular.module('homeApp', []);
+var notFoundApp = angular.module('notFoundApp', []);
 
 /**
- * Configuration du module de la page d'accueil
+ * Configuration du module de la page 404
  */
 
-homeApp.config([
+notFoundApp.config([
     '$translateProvider',
     function (
         $translateProvider) {
@@ -24,9 +24,6 @@ homeApp.config([
          */
 
         $translateProvider.translations('fr', {
-            BTN_DIMENSIONS: 'Gestion des portails',
-            BTN_CHANGELOG: 'Changements du site',
-            PARTNERS: 'Partenaires'
         });
 
         /**
@@ -34,9 +31,6 @@ homeApp.config([
          */
 
         $translateProvider.translations('en', {
-            BTN_DIMENSIONS: 'Portals\' Management',
-            BTN_CHANGELOG: 'Website\'s update',
-            PARTNERS: 'Partners'
         });
     }]);
 
@@ -44,7 +38,7 @@ homeApp.config([
  * Contrôleur du module de la page d'accueil
  */
 
-homeApp.controller('homeController', [
+notFoundApp.controller('notFoundController', [
     '$scope',
     '$rootScope',
     function (
