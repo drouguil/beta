@@ -16,18 +16,32 @@ footer {
 
 footer #footer-content {
     margin: auto;
-    width: 60%;
     display: flex;
+    width: 100%;
 }
 
-footer #footer-content > div {
+footer #footer-content > div{
     margin: auto;
 }
 
-footer #footer-content > div > h1 {
+footer #footer-content > div h1 {
     font-size: 1.8rem;
     font-style: italic;
     padding-bottom: 2rem;
     border-bottom: 1px solid #ffffff;
     margin-bottom: 2rem;
+}
+
+footer #footer-content > div h2 {
+    font-size: 1.8rem;
+    font-style: italic;
+    margin-bottom: 2rem;
+}
+
+footer #footer-content .copyright {
+    margin-bottom: 1rem;
+}
+
+footer #footer-content .social-network > img {
+    width: 3rem;
 }

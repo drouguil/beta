@@ -1,0 +1,21 @@
+/* 404 CSS */
+
+#notFound-view {
+    width: 100%;
+    min-height: 100%;
+    background-image: url('../img/background/404_background.png');
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
+    z-index: 1;
+    display: flex;
+}
+
+#notFound-content {
+    margin: 13rem auto;
+    width: 100%;
+    max-width: 117rem;
+    text-align: center;
+    display: flex;
+    min-height: calc(100vh - 26rem);
+}

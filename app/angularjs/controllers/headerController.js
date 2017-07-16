@@ -24,7 +24,9 @@ headerApp.config([
      */
 
     $translateProvider.translations('fr', {
-        LANGUAGE_CHANGED: 'Langue changée'
+        LANGUAGE_CHANGED: 'Langue changée',
+        REGISTER_TOOLTIP: 'Inscription',
+        LOGIN_TOOLTIP: 'Connexion'
     });
 
     /**
@@ -32,7 +34,9 @@ headerApp.config([
      */
 
     $translateProvider.translations('en', {
-        LANGUAGE_CHANGED: 'Language changed'
+        LANGUAGE_CHANGED: 'Language changed',
+        REGISTER_TOOLTIP: 'Register',
+        LOGIN_TOOLTIP: 'Login'
     });
 }]);
 

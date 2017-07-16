@@ -65,7 +65,7 @@
     border: 1px solid black;
 }
 
-#home-content #partners-icon {
+#home-content #partners-icon, #home-content #changelog-icon, #home-content #dimensions-icon {
     width: 5rem;
     margin-right: 2rem;
 }
