@@ -44,7 +44,7 @@ toastService.service('toastManager', [
                 );
             }
             else {
-                console.error('Le texte n\'est pas définie')
+                console.error('Le texte n\'est pas défini')
             }
 
         };

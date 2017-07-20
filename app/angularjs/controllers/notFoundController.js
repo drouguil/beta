@@ -45,6 +45,10 @@ notFoundApp.controller('notFoundController', [
         $scope,
         $rootScope) {
 
+        /**
+         * Prévient l'application que la vue est chargée
+         */
+
         $scope.$on('$viewContentLoaded', function () {
             $rootScope.viewIsLoaded = true;
         });

@@ -55,7 +55,7 @@ header {
         margin-right: 1rem;
     }
 
-    header #nav #header-right-div #language-current, header #nav #header-right-div #register-link, header #nav #header-right-div #login-link {
+    header #nav #header-right-div #language-current, header #nav #header-right-div #help-link, header #nav #header-right-div #register-link, header #nav #header-right-div #login-link {
         display: flex;
         height: 100%;
         margin-left: auto;
@@ -66,7 +66,7 @@ header {
         background-color: #66b406;
     }
 
-    header #nav #header-right-div #language-current img, header #nav #header-right-div #register-link img, header #nav #header-right-div #login-link img {
+    header #nav #header-right-div #language-current img, header #nav #header-right-div #help-link img, header #nav #header-right-div #register-link img, header #nav #header-right-div #login-link img {
         margin: auto;
         height: 3rem;
     }

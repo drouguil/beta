@@ -36,12 +36,14 @@ footer #footer-content > div h2 {
     font-size: 1.8rem;
     font-style: italic;
     margin-bottom: 2rem;
+    margin-top: 0;
 }
 
-footer #footer-content .copyright {
+footer #footer-content #copyrights > div:first-child {
     margin-bottom: 1rem;
 }
 
 footer #footer-content .social-network > img {
     width: 3rem;
+    margin: 0 1rem;
 }

@@ -25,6 +25,7 @@ headerApp.config([
 
     $translateProvider.translations('fr', {
         LANGUAGE_CHANGED: 'Langue changée',
+        HELP_TOOLTIP: 'Aide',
         REGISTER_TOOLTIP: 'Inscription',
         LOGIN_TOOLTIP: 'Connexion'
     });
@@ -35,6 +36,7 @@ headerApp.config([
 
     $translateProvider.translations('en', {
         LANGUAGE_CHANGED: 'Language changed',
+        HELP_TOOLTIP: 'Help',
         REGISTER_TOOLTIP: 'Register',
         LOGIN_TOOLTIP: 'Login'
     });
@@ -119,6 +121,10 @@ headerApp.controller('headerController', [
                 $scope.isLanguagesList = false;
             }
         };
+
+        /**
+         * Prévient l'application que le header est chargé
+         */
 
         $scope.$on('$viewContentLoaded', function () {
             $rootScope.headerIsLoaded = true;

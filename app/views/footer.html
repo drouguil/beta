@@ -1,10 +1,16 @@
 <div id="footer-content">
     <div class="col-xs-3">
-        <h2>Suivez-nous sur les réseaux sociaux</h2>
+        <h2>{{ 'FOLLOW_US' | translate }}</h2>
         <a class="social-network" href="" target="_blank">
+            <md-tooltip>
+                Facebook
+            </md-tooltip>
             <img src="./app/assets/svg/social-networks/facebook.svg">
         </a>
         <a class="social-network" href="" target="_blank">
+            <md-tooltip>
+                Twitter
+            </md-tooltip>
             <img src="./app/assets/svg/social-networks/twitter.svg">
         </a>
     </div>
@@ -17,18 +23,17 @@
             <li>{{ 'CONTACT_US' | translate }}</li>
         </ul>
     </div>
-    <div class="col-xs-3">
-        <div class="copyright">
+    <div id="copyrights" class="col-xs-3">
+        <div>
             Icons made by
             <a href="http://www.freepik.com" target="_blank">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">
                 www.flaticon.com
-            </a>
-            is licensed by
+            </a> is licensed by
             <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">
                 CC 3.0 BY
             </a>
         </div>
-        <div class="copyright">
+        <div>
             Artwork © Ankama Games
         </div>
     </div>

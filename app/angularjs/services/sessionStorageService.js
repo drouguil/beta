@@ -60,6 +60,8 @@ sessionStorageService.service('sessionStorageManager', [
 
         /**
          * Vide le sessionStorage
+         * @function clear
+         * @public
          */
 
         this.clear = function () {

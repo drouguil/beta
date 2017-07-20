@@ -24,6 +24,7 @@ footerApp.config([
          */
 
         $translateProvider.translations('fr', {
+            FOLLOW_US: 'Nous suivre',
             PURPOSE_HELP: 'Apporter son aide au site',
             REPORT_BUG: 'Reporter un bug',
             PURPOSE_UPGRADE: 'Proposer une amélioration',
@@ -36,6 +37,7 @@ footerApp.config([
          */
 
         $translateProvider.translations('en', {
+            FOLLOW_US: 'Follow us',
             PURPOSE_HELP: 'Purpose help to website',
             REPORT_BUG: 'Report a bug',
             PURPOSE_UPGRADE: 'Purpose an upgrade',
@@ -56,6 +58,10 @@ footerApp.controller('footerController', [
         $scope,
         $translate,
         $rootScope) {
+
+        /**
+         * Prévient l'application que le footer est chargé
+         */
 
         $scope.$on('$viewContentLoaded', function () {
             $rootScope.headerIsLoaded = true;

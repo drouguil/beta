@@ -60,6 +60,8 @@ localStorageService.service('localStorageManager', [
 
         /**
          * Vide le localStorage
+         * @function clear
+         * @public
          */
 
         this.clear = function () {

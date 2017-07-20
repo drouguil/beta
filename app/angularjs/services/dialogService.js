@@ -28,9 +28,11 @@ dialogService.service('dialogManager', [
          * @param {Caractères} textOk Texte de confirmation
          * @param {Caractères} textCancel Texte d'annulation
          * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @return
          */
 
         this.showConfirmDialog = function (title, textContent, textOk, textCancel, ev) {
+            var confirmDialog = null;
             if (title) {
                 if (textContent) {
                     if (textOk) {
@@ -68,7 +70,43 @@ dialogService.service('dialogManager', [
             else {
                 console.error('Le titre n\'est pas défini');
             }
+
+            return 'Erreur lors de l\'ouverture de la popin de confirmation';
         };
+
+        /**
+         * Affiche la popin des changelogs
+         * @function showChangelogDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         */
+
+        this.showChangelogDialog = function(ev, clickOutside) {
+            if(clickOutside == undefined)
+            {
+                clickOutside = true;
+            }
+            if(ev)
+            {
+                $mdDialog.show({
+                    controller: 'changelogController',
+                    templateUrl: './app/views/changelog.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: clickOutside
+                    });
+            }
+            else
+            {
+                $mdDialog.show({
+                    controller: 'changelogController',
+                    templateUrl: './app/views/changelog.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: clickOutside
+                    });
+            }
+        }
 
         /**
          * Ferme toutes les popins en cours

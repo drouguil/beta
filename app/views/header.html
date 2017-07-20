@@ -4,6 +4,12 @@
     <div clas="navbar-right" id="header-right-div" ng-mouseleave="displayLanguageList(false)">
         <div class="header-right-actions">
             <div class="header-right-actions">
+                <a id="help-link" ng-click="">
+                    <md-tooltip>
+                        {{ 'HELP_TOOLTIP' | translate}}
+                    </md-tooltip>
+                    <img ng-src="./app/assets/svg/help.svg">
+                </a>
                 <a id="register-link" ng-click="">
                     <md-tooltip>
                         {{ 'REGISTER_TOOLTIP' | translate}}

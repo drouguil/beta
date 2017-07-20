@@ -47,11 +47,29 @@ homeApp.config([
 homeApp.controller('homeController', [
     '$scope',
     '$rootScope',
+    'dialogManager',
     function (
         $scope,
-        $rootScope) {
+        $rootScope,
+        dialogManager) {
+
+        /**
+         * Affiche la popin des changelogs
+         * @function
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showChangelogDialog = function (ev) {
+            dialogManager.showChangelogDialog(ev);
+        }
+
+        /**
+         * Prévient l'application que la page est chargée
+         */
 
         $scope.$on('$viewContentLoaded', function () {
             $rootScope.viewIsLoaded = true;
         });
+
     }]);

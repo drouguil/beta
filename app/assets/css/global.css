@@ -22,6 +22,20 @@ main {
 .btn-title {
     font-family: "Btn Font", "Verdana", "Geneva", "Tahoma", "sans-serif";
     text-transform: uppercase;
+    display: flex;
+}
+
+.btn-small {
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    text-transform: uppercase;
+    margin: auto;
+    padding: 1.5rem;
+    color: #FFFFFF;
+    font-size: 2rem;
+}
+
+.btn-small:hover {
+    color: #FFFFFF;
 }
 
 md-toast {
