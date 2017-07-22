@@ -8,13 +8,13 @@
  * Déclaration du module du footer
  */
 
-var footerApp = angular.module('footerApp', []);
+var footerCtrl = angular.module('footerCtrl', []);
 
 /**
  * Configuration du module du footer
  */
 
-footerApp.config([
+footerCtrl.config([
     '$translateProvider',
     function (
         $translateProvider) {
@@ -50,17 +50,34 @@ footerApp.config([
  * Contrôleur du module du header
  */
 
-footerApp.controller('footerController', [
+footerCtrl.controller('footerController', [
     '$scope',
     '$translate',
     '$rootScope',
+    'appConfig',
     function (
         $scope,
         $translate,
-        $rootScope) {
+        $rootScope,
+        appConfig) {
+
+        /**
+         * Chemin de l'icône de Twitter
+         * @public
+         */
+
+        $scope.twitterIconPath = appConfig.paths.svgSocialNetworks + 'twitter.svg';
+
+        /**
+         * Chemin de l'icône de Facebook
+         * @public
+         */
+
+        $scope.facebookIconPath = appConfig.paths.svgSocialNetworks + 'facebook.svg';
 
         /**
          * Prévient l'application que le footer est chargé
+         * @public
          */
 
         $scope.$on('$viewContentLoaded', function () {

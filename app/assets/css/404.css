@@ -3,7 +3,7 @@
 #notFound-view {
     width: 100%;
     min-height: 100%;
-    background-image: url('../img/background/404_background.png');
+    background-image: url('../img/backgrounds/404_background.png');
     background-attachment: fixed;
     background-position: center; 
     background-size: cover;

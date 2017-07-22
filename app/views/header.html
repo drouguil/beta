@@ -8,28 +8,28 @@
                     <md-tooltip>
                         {{ 'HELP_TOOLTIP' | translate}}
                     </md-tooltip>
-                    <img ng-src="./app/assets/svg/help.svg">
+                    <img ng-src="{{ helpIconPath }}">
                 </a>
                 <a id="register-link" ng-click="">
                     <md-tooltip>
                         {{ 'REGISTER_TOOLTIP' | translate}}
                     </md-tooltip>
-                    <img ng-src="./app/assets/svg/register.svg">
+                    <img ng-src="{{ registerIconPath }}">
                 </a>
                 <a id="login-link" ng-click="">
                     <md-tooltip>
                         {{ 'LOGIN_TOOLTIP' | translate}}
                     </md-tooltip>
-                    <img ng-src="./app/assets/svg/login.svg">
+                    <img ng-src="{{ loginIconPath }}">
                 </a>
                 <a id="language-current" ng-class="{'active' : isLanguagesList}" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)">
-                    <img ng-src="./app/assets/svg/country/{{currentLanguage.id}}.svg">
+                    <img ng-src="{{ languageIconPath(currentLanguage) }}">
                 </a>
             </div>
         </div>
         <div ng-if="isLanguagesList" id="language-list">
             <ul>
-                <li ng-repeat="language in languages()" ng-click="updateLanguage(language)"><span>{{language.name}}</span> <img ng-src="./app/assets/svg/country/{{language.id}}.svg"></li>
+                <li ng-repeat="language in languages()" ng-click="updateLanguage(language)"><span>{{language.name}}</span> <img ng-src="{{ languageIconPath(language) }}"></li>
             </ul>
         </div>
     </div>
@@ -40,6 +40,6 @@
 
 <nav id="nav-menu" class="navbar">
     <a href="#" id="logo-link">
-        <img id="logo" src="./app/assets/img/Logo.png">
+        <img id="logo" src="{{ logoImgPath }}">
     </a>
 </nav>

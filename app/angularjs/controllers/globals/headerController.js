@@ -8,13 +8,13 @@
  * Déclaration du module du header
  */
 
-var headerApp = angular.module('headerApp', []);
+var headerCtrl = angular.module('headerCtrl', []);
 
 /**
  * Configuration du module du header
  */
 
-headerApp.config([
+headerCtrl.config([
     '$translateProvider', 
     function(
         $translateProvider) {
@@ -46,7 +46,7 @@ headerApp.config([
  * Contrôleur du module du header
  */
 
-headerApp.controller('headerController', [
+headerCtrl.controller('headerController', [
     '$scope',
     '$locale',
     '$filter',
@@ -54,6 +54,8 @@ headerApp.controller('headerController', [
     'tmhDynamicLocale',
     'languageManager',
     'toastManager',
+    'dialogManager',
+    'appConfig',
     function (
         $scope, 
         $locale,
@@ -61,7 +63,44 @@ headerApp.controller('headerController', [
         $rootScope,
         tmhDynamicLocale, 
         languageManager,
-        toastManager) {
+        toastManager,
+        dialogManager,
+        appConfig) {
+
+        /**
+         * Chemin de l'icône d'aide
+         * @public
+         */
+
+        $scope.helpIconPath = appConfig.paths.svg + 'help.svg';
+
+        /**
+         * Chemin de l'icône d'inscription
+         * @public
+         */
+
+        $scope.registerIconPath = appConfig.paths.svg + 'register.svg';
+
+        /**
+         * Chemin de l'icône de connexion
+         * @public
+         */
+
+        $scope.loginIconPath = appConfig.paths.svg + 'login.svg';
+
+        /**
+         * Chemin de l'image du logo
+         * @public
+         */
+
+        $scope.logoImgPath = appConfig.paths.img + 'logo.png';
+
+        /**
+         * Langue actuelle
+         * @public
+         */
+
+        $scope.currentLanguage = languageManager.getCurrentLanguage();
 
         /**
          * Activité du menu des langues
@@ -69,6 +108,17 @@ headerApp.controller('headerController', [
          */
 
         $scope.isLanguagesList = false;
+
+        /**
+         * Chemin de l'icône de la langue actuelle
+         * @function displayLanguageList
+         * @public
+         * @param {Objet} language Affichage ou non du menu des langues
+         */
+
+        $scope.languageIconPath = function (language) {
+            return appConfig.paths.svgCountries + language.id + '.svg';
+        }
 
         /**
          * Affiche ou cache le menu des langues
@@ -97,15 +147,6 @@ headerApp.controller('headerController', [
         };
 
         /**
-         * Récupère la langue actuelle
-         * @function currentLanguage
-         * @public
-         * @return Langue actuelle
-         */
-
-        $scope.currentLanguage = languageManager.getCurrentLanguage();
-
-        /**
          * Met à jour la langue actuelle
          * @function updateLanguage
          * @public
@@ -124,6 +165,7 @@ headerApp.controller('headerController', [
 
         /**
          * Prévient l'application que le header est chargé
+         * @public
          */
 
         $scope.$on('$viewContentLoaded', function () {

@@ -8,13 +8,13 @@
  * Déclaration du module de la page 404
  */
 
-var notFoundApp = angular.module('notFoundApp', []);
+var notFoundCtrl = angular.module('notFoundCtrl', []);
 
 /**
  * Configuration du module de la page 404
  */
 
-notFoundApp.config([
+notFoundCtrl.config([
     '$translateProvider',
     function (
         $translateProvider) {
@@ -38,7 +38,7 @@ notFoundApp.config([
  * Contrôleur du module de la page d'accueil
  */
 
-notFoundApp.controller('notFoundController', [
+notFoundCtrl.controller('notFoundController', [
     '$scope',
     '$rootScope',
     function (
@@ -47,6 +47,7 @@ notFoundApp.controller('notFoundController', [
 
         /**
          * Prévient l'application que la vue est chargée
+         * @public
          */
 
         $scope.$on('$viewContentLoaded', function () {

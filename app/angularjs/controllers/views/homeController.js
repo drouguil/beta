@@ -8,13 +8,13 @@
  * Déclaration du module de la page d'accueil
  */
 
-var homeApp = angular.module('homeApp', []);
+var homeCtrl = angular.module('homeCtrl', []);
 
 /**
  * Configuration du module de la page d'accueil
  */
 
-homeApp.config([
+homeCtrl.config([
     '$translateProvider',
     function (
         $translateProvider) {
@@ -44,14 +44,30 @@ homeApp.config([
  * Contrôleur du module de la page d'accueil
  */
 
-homeApp.controller('homeController', [
+homeCtrl.controller('homeController', [
     '$scope',
     '$rootScope',
     'dialogManager',
+    'appConfig',
     function (
         $scope,
         $rootScope,
-        dialogManager) {
+        dialogManager,
+        appConfig) {
+
+        $scope.dimensionsIconBtnPath = appConfig.paths.imgPortals + 'enutrosor.png';
+
+        $scope.dimensionsIconPath = appConfig.paths.imgButtons + 'dimensions.jpg';
+
+        $scope.changelogIconBtnPath = appConfig.paths.svg + 'changelog.svg';
+
+        $scope.changelogIconPath = appConfig.paths.imgButtons + 'changelog.png';
+
+        $scope.partnersIconBtnPath = appConfig.paths.svg + 'partners.svg';
+
+        $scope.entraideIconPath = appConfig.paths.imgPartners + 'entraide.png';
+
+        $scope.dofusExchangeIconPath = appConfig.paths.imgPartners + 'dofusExchange.png';
 
         /**
          * Affiche la popin des changelogs
@@ -66,6 +82,7 @@ homeApp.controller('homeController', [
 
         /**
          * Prévient l'application que la page est chargée
+         * @public
          */
 
         $scope.$on('$viewContentLoaded', function () {

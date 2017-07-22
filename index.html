@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html ng-app="mainApp" lang="fr">
 
 <head>
   <meta charset="utf-8">
@@ -13,12 +13,13 @@
   <link rel="stylesheet" type="text/css" href="./app/assets/css/footer.css">
   <link rel="stylesheet" type="text/css" href="./app/assets/css/home.css">
   <link rel="stylesheet" type="text/css" href="./app/assets/css/changelog.css">
+  <link rel="stylesheet" type="text/css" href="./app/assets/css/help.css">
   <link rel="stylesheet" type="text/css" href="./app/assets/css/404.css">
   <link rel="shortcut icon" href="./app/assets/img/icons/favicon.png" type="image/x-icon">
   <link rel="icon" href="./app/assets/img/icons/favicon.png" type="image/x-icon">
 </head>
 
-<body ng-app="mainApp">
+<body>
 
   <style>
     body #app-loader {
@@ -55,7 +56,7 @@
   </style>
 
   <div id="app-loader" ng-if="!headerIsLoaded && !viewIsLoaded && !footerIsLoaded">
-    <img src="./app/assets/img/Dofus.png">
+    <img src="./app/assets/img/dofus.png">
   </div>
 
   <!-- Header -->
@@ -85,11 +86,20 @@
 
   <!-- Controllers -->
 
-  <script src="./app/angularjs/controllers/homeController.js"></script>
-  <script src="./app/angularjs/controllers/headerController.js"></script>
-  <script src="./app/angularjs/controllers/footerController.js"></script>
-  <script src="./app/angularjs/controllers/notFoundController.js"></script>
-  <script src="./app/angularjs/controllers/changelogController.js"></script>
+  <!-- Globaux -->
+
+  <script src="./app/angularjs/controllers/globals/headerController.js"></script>
+  <script src="./app/angularjs/controllers/globals/footerController.js"></script>
+
+  <!-- Vues -->
+
+  <script src="./app/angularjs/controllers/views/homeController.js"></script>
+  <script src="./app/angularjs/controllers/views/notFoundController.js"></script>
+
+  <!-- Popins -->
+
+  <script src="./app/angularjs/controllers/dialogs/changelogController.js"></script>
+  <script src="./app/angularjs/controllers/dialogs/helpController.js"></script>
 
   <!-- Services -->
 
@@ -98,6 +108,10 @@
   <script src="./app/angularjs/services/dialogService.js"></script>
   <script src="./app/angularjs/services/localStorageService.js"></script>
   <script src="./app/angularjs/services/sessionStorageService.js"></script>
+
+  <!-- Configuration -->
+
+  <script src="./app/angularjs/constants/appConfig.js"></script>
 
   <!-- App -->
 

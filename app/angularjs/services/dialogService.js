@@ -16,8 +16,10 @@ var dialogService = angular.module('dialogService', []);
 
 dialogService.service('dialogManager', [
     '$mdDialog',
+    'appConfig',
     function (
-        $mdDialog) {
+        $mdDialog,
+        appConfig) {
 
         /**
          * Affiche une popin de confirmation
@@ -91,7 +93,7 @@ dialogService.service('dialogManager', [
             {
                 $mdDialog.show({
                     controller: 'changelogController',
-                    templateUrl: './app/views/changelog.html',
+                    templateUrl: appConfig.paths.views + 'changelog.html',
                     parent: angular.element(document.body),
                     targetEvent: ev,
                     clickOutsideToClose: clickOutside
@@ -101,7 +103,41 @@ dialogService.service('dialogManager', [
             {
                 $mdDialog.show({
                     controller: 'changelogController',
-                    templateUrl: './app/views/changelog.html',
+                    templateUrl: appConfig.paths.views + 'changelog.html',
+                    parent: angular.element(document.body),
+                    clickOutsideToClose: clickOutside
+                    });
+            }
+        }
+
+        /**
+         * Affiche la popin d'aide
+         * @function showHelpDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         */
+
+        this.showHelpDialog = function(ev, clickOutside) {
+            if(clickOutside == undefined)
+            {
+                clickOutside = true;
+            }
+            if(ev)
+            {
+                $mdDialog.show({
+                    controller: 'helpController',
+                    templateUrl: appConfig.paths.views + 'help.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: clickOutside
+                    });
+            }
+            else
+            {
+                $mdDialog.show({
+                    controller: 'helpController',
+                    templateUrl: appConfig.paths.views + 'help.html',
                     parent: angular.element(document.body),
                     clickOutsideToClose: clickOutside
                     });

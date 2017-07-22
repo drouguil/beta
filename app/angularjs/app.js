@@ -10,23 +10,64 @@
 
 var mainApp = angular.module('mainApp',
     [
+
+        /**
+         * Modules d'Angular
+         */
+
         'ngRoute',
         'ngSanitize',
         'ngAria',
         'ngAnimate',
         'ngMaterial',
+
+        /**
+         * Modules importés
+         */
+
         'tmh.dynamicLocale',
         'pascalprecht.translate',
-        'headerApp',
-        'footerApp',
-        'homeApp',
-        'notFoundApp',
-        'changelogApp',
+
+        /**
+         * Modules des contrôleurs
+        */
+
+        /**
+         * Globaux
+         */
+
+        'headerCtrl',
+        'footerCtrl',
+
+        /**
+         * Vues
+         */
+
+        'homeCtrl',
+        'notFoundCtrl',
+
+        /**
+         * Popins
+         */
+
+        'changelogCtrl',
+        'helpCtrl',
+
+        /**
+         * Modules des services
+         */
+
         'languageService',
         'toastService',
         'dialogService',
         'localStorageService',
-        'sessionStorageService'
+        'sessionStorageService',
+
+        /**
+         * Module de configuration
+         */
+
+        'appConfig'
     ]);
 
 /**
@@ -36,12 +77,14 @@ var mainApp = angular.module('mainApp',
 mainApp.config([
     '$routeProvider',
     'tmhDynamicLocaleProvider',
+    'appConfig',
     function (
         $routeProvider,
-        tmhDynamicLocaleProvider) {
+        tmhDynamicLocaleProvider,
+        appConfig) {
 
         tmhDynamicLocaleProvider.defaultLocale('fr');
-        tmhDynamicLocaleProvider.localeLocationPattern('./app/angularjs/i18n/angular-locale_{{locale}}.js');
+        tmhDynamicLocaleProvider.localeLocationPattern(appConfig.paths.i18n + 'angular-locale_{{locale}}.js');
 
         /**
          * Routes
@@ -54,7 +97,7 @@ mainApp.config([
              */
 
             when('/', {
-                templateUrl: './app/views/home.html',
+                templateUrl: appConfig.paths.views + 'home.html',
                 controller: 'homeController'
             }).
 
@@ -63,7 +106,7 @@ mainApp.config([
              */
 
             when('/404', {
-                templateUrl: './app/views/404.html',
+                templateUrl: appConfig.paths.views + '404.html',
                 controller: 'notFoundController'
             }).
 

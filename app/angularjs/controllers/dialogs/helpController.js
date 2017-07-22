@@ -5,16 +5,16 @@
 'use strict';
 
 /**
- * Déclaration du module de la popin des changelogs
+ * Déclaration du module de la popin d'aide
  */
 
-var changelogApp = angular.module('changelogApp', []);
+var helpCtrl = angular.module('helpCtrl', []);
 
 /**
- * Configuration du module de la popin des changelogs
+ * Configuration du module de la popin d'aide
  */
 
-changelogApp.config([
+helpCtrl.config([
     '$translateProvider',
     function (
         $translateProvider) {
@@ -24,6 +24,7 @@ changelogApp.config([
          */
 
         $translateProvider.translations('fr', {
+            HELP_TITLE: 'Aide',
             CLOSE_BTN: 'Compris'
         });
 
@@ -32,6 +33,7 @@ changelogApp.config([
          */
 
         $translateProvider.translations('en', {
+            HELP_TITLE: 'Help',
             CLOSE_BTN: 'Understand'
         });
     }]);
@@ -40,15 +42,24 @@ changelogApp.config([
  * Contrôleur du module de la popin des changelogs
  */
 
-changelogApp.controller('changelogController', [
+helpCtrl.controller('changelogController', [
     '$scope',
     '$rootScope',
     'dialogManager',
+    'appConfig',
     function (
         $scope,
         $rootScope,
-        dialogManager) {
+        dialogManager,
+        appConfig) {
         
+        /**
+         * Chemin de l'icône de fermeture de la popin
+         * @public
+         */
+
+        $scope.closeIconPath = appConfig.paths.svg + 'close.svg';
+
         /**
          * Ferme la popin des changelogs
          * @function closeDialog

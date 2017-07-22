@@ -18,10 +18,12 @@ languageService.service('languageManager', [
     'tmhDynamicLocale',
     '$translate',
     'localStorageManager',
+    'appConfig',
     function (
         tmhDynamicLocale,
         $translate,
-        localStorageManager) {
+        localStorageManager,
+        appConfig) {
 
         /**
          * Liste des langues
@@ -46,10 +48,10 @@ languageService.service('languageManager', [
          */
 
         this.getCurrentLanguage = function () {
-            if (!localStorageManager.getObj('language')) {
+            if (!localStorageManager.getObj(appConfig.localStorage.languageName)) {
                 this.setCurrentLanguage(languages[0]);
             }
-            return localStorageManager.getObj('language');
+            return localStorageManager.getObj(appConfig.localStorage.languageName);
         }
 
         /**
@@ -70,11 +72,11 @@ languageService.service('languageManager', [
          */
 
         this.initCurrentLanguage = function () {
-            if (!localStorageManager.getObj('language')) {
+            if (!localStorageManager.getObj(appConfig.localStorage.languageName)) {
                 this.setCurrentLanguage(languages[0]);
             }
             else {
-                this.setCurrentLanguage(localStorageManager.getObj('language'));
+                this.setCurrentLanguage(localStorageManager.getObj(appConfig.localStorage.languageName));
             }
         }
 
@@ -98,7 +100,7 @@ languageService.service('languageManager', [
                 }
                 $translate.use(language.id);
                 tmhDynamicLocale.set(language.id);
-                localStorageManager.setObj('language', language);
+                localStorageManager.setObj(appConfig.localStorage.languageName, language);
             }
             else {
                 console.error('La langue n\'est pas définie');

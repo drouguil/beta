@@ -3,7 +3,7 @@
 #home-view {
     width: 100%;
     min-height: 100%;
-    background-image: url('../img/background/home_background.jpg');
+    background-image: url('../img/backgrounds/home_background.jpg');
     background-attachment: fixed;
     background-position: center; 
     background-size: cover;

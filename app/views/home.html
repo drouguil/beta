@@ -3,33 +3,33 @@
         <div class="col-xs-4">
             <a id="dimensions-btn" class="home-btn">
                 <div class="btn-title">
-                    <img id="dimensions-icon" src="./app/assets/img/portals/Enutrosor.png">
+                    <img id="dimensions-icon" ng-src="{{ dimensionsIconBtnPath }}">
                     <h2>{{ 'BTN_DIMENSIONS' | translate }}</h2>
                 </div>
-                <img src="./app/assets/img/buttons/Dimensions.jpg">
+                <img ng-src="{{ dimensionsIconPath }}">
             </a>
         </div>
         <div class="col-xs-4">
             <a id="changelog-btn" ng-click="showChangelogDialog($event)" class="home-btn">
                 <div class="btn-title">
-                    <img id="changelog-icon" src="./app/assets/svg/changelog.svg">
+                    <img id="changelog-icon" ng-src="{{ changelogIconBtnPath }}">
                     <h2>{{ 'BTN_CHANGELOG' | translate }}</h2>
                 </div>
-                <img src="./app/assets/img/buttons/Changelog.png">
+                <img ng-src="{{ dimensionsIconPath }}">
             </a>
         </div>
         <div class="col-xs-4">
             <a id="partners-btn" class="home-btn">
                 <div class="btn-title">
-                    <img id="partners-icon" src="./app/assets/svg/partners.svg">
+                    <img id="partners-icon" ng-src="{{ partnersIconBtnPath }}">
                     <h2>{{ 'PARTNERS' | translate }}</h2>
                 </div>
             </a>
             <a id="partner-entraide" class="partner-link" href="http://entraide.ordre2vlad.fr/" target="_blank">
-                <img src="./app/assets/img/partners/Entraide.png">
+                <img ng-src="{{ entraideIconPath }}">
             </a>
             <a id="partner-dofusExchange" class="partner-link" href="http://dofusexchange.com/fr/" target="_blank">
-                <img src="./app/assets/img/partners/DofusExchange.png">
+                <img ng-src="{{ dofusExchangeIconPath }}">
             </a>
         </div>
     </div>
