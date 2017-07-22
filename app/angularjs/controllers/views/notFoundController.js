@@ -41,9 +41,11 @@ notFoundCtrl.config([
 notFoundCtrl.controller('notFoundController', [
     '$scope',
     '$rootScope',
+    'helpManager',
     function (
         $scope,
-        $rootScope) {
+        $rootScope,
+        helpManager) {
 
         /**
          * Prévient l'application que la vue est chargée

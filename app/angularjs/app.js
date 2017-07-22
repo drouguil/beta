@@ -62,6 +62,7 @@ var mainApp = angular.module('mainApp',
         'dialogService',
         'localStorageService',
         'sessionStorageService',
+        'helpService',
 
         /**
          * Module de configuration
@@ -76,15 +77,18 @@ var mainApp = angular.module('mainApp',
 
 mainApp.config([
     '$routeProvider',
+    '$translateProvider',
     'tmhDynamicLocaleProvider',
     'appConfig',
     function (
         $routeProvider,
+        $translateProvider,
         tmhDynamicLocaleProvider,
         appConfig) {
 
         tmhDynamicLocaleProvider.defaultLocale('fr');
         tmhDynamicLocaleProvider.localeLocationPattern(appConfig.paths.i18n + 'angular-locale_{{locale}}.js');
+        $translateProvider.useSanitizeValueStrategy('escape');
 
         /**
          * Routes

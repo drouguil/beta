@@ -19,40 +19,42 @@ helpCtrl.config([
     function (
         $translateProvider) {
 
-        /**
-         * Dictionnaire Français
-         */
+            /**
+             * Dictionnaire Français
+             */
 
-        $translateProvider.translations('fr', {
-            HELP_TITLE: 'Aide',
-            CLOSE_BTN: 'Compris'
-        });
+            $translateProvider.translations('fr', {
+                HELP_TITLE: 'Aide',
+                CLOSE_BTN: 'Compris'
+            });
 
-        /**
-         * Dictionnaire Anglais
-         */
+            /**
+             * Dictionnaire Anglais
+             */
 
-        $translateProvider.translations('en', {
-            HELP_TITLE: 'Help',
-            CLOSE_BTN: 'Understand'
-        });
+            $translateProvider.translations('en', {
+                HELP_TITLE: 'Help',
+                CLOSE_BTN: 'Understand'
+            });
     }]);
 
 /**
  * Contrôleur du module de la popin des changelogs
  */
 
-helpCtrl.controller('changelogController', [
+helpCtrl.controller('helpController', [
     '$scope',
     '$rootScope',
+    '$route',
     'dialogManager',
     'appConfig',
     function (
         $scope,
         $rootScope,
+        $route,
         dialogManager,
         appConfig) {
-        
+
         /**
          * Chemin de l'icône de fermeture de la popin
          * @public

@@ -110,6 +110,17 @@ headerCtrl.controller('headerController', [
         $scope.isLanguagesList = false;
 
         /**
+         * Affiche la popin d'aide
+         * @function showHelpDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showHelpDialog = function (ev) {
+            dialogManager.showHelpDialog(ev);
+        }
+
+        /**
          * Chemin de l'icône de la langue actuelle
          * @function displayLanguageList
          * @public

@@ -48,30 +48,67 @@ homeCtrl.controller('homeController', [
     '$scope',
     '$rootScope',
     'dialogManager',
+    'helpManager',
     'appConfig',
     function (
         $scope,
         $rootScope,
         dialogManager,
+        helpManager,
         appConfig) {
+
+        /**
+         * Chemin de l'icône du bouton des dimensions
+         * @public
+         */
 
         $scope.dimensionsIconBtnPath = appConfig.paths.imgPortals + 'enutrosor.png';
 
+        /**
+         * Chemin de l'image du bouton des dimensions
+         * @public
+         */
+
         $scope.dimensionsIconPath = appConfig.paths.imgButtons + 'dimensions.jpg';
+
+        /**
+         * Chemin de l'icône du bouton du changelog
+         * @public
+         */
 
         $scope.changelogIconBtnPath = appConfig.paths.svg + 'changelog.svg';
 
+        /**
+         * Chemin de l'image du bouton du changelog
+         * @public
+         */
+
         $scope.changelogIconPath = appConfig.paths.imgButtons + 'changelog.png';
+
+        /**
+         * Chemin de l'icône du bouton des partenaires
+         * @public
+         */
 
         $scope.partnersIconBtnPath = appConfig.paths.svg + 'partners.svg';
 
+        /**
+         * Chemin de l'image d'Entraide
+         * @public
+         */
+
         $scope.entraideIconPath = appConfig.paths.imgPartners + 'entraide.png';
+
+        /**
+         * Chemin de l'image de DofusExchange
+         * @public
+         */
 
         $scope.dofusExchangeIconPath = appConfig.paths.imgPartners + 'dofusExchange.png';
 
         /**
          * Affiche la popin des changelogs
-         * @function
+         * @function showChangelogDialog
          * @public
          * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
          */

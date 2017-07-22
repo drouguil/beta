@@ -4,7 +4,7 @@
     <div clas="navbar-right" id="header-right-div" ng-mouseleave="displayLanguageList(false)">
         <div class="header-right-actions">
             <div class="header-right-actions">
-                <a id="help-link" ng-click="">
+                <a id="help-link" ng-click="showHelpDialog($event)">
                     <md-tooltip>
                         {{ 'HELP_TOOLTIP' | translate}}
                     </md-tooltip>
