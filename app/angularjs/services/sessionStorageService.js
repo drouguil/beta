@@ -19,6 +19,8 @@ sessionStorageService.service('sessionStorageManager', [
     function (
         $window) {
 
+        var self = this;
+
         /**
          * Récupère l'objet du sessionStorage associé à la clef
          * @function getObj
@@ -27,7 +29,7 @@ sessionStorageService.service('sessionStorageManager', [
          * @return Objet du sessionStorage associé à la clef
          */
 
-        this.getObj = function (key) {
+        self.getObj = function (key) {
             if (key) {
                 return JSON.parse($window.sessionStorage.getItem(key));
             }
@@ -44,7 +46,7 @@ sessionStorageService.service('sessionStorageManager', [
          * @param {Objet} obj Objet
          */
 
-        this.setObj = function (key, obj) {
+        self.setObj = function (key, obj) {
             if (key) {
                 if (obj) {
                     $window.sessionStorage.setItem(key, JSON.stringify(obj));
@@ -64,7 +66,7 @@ sessionStorageService.service('sessionStorageManager', [
          * @public
          */
 
-        this.clear = function () {
+        self.clear = function () {
             $window.sessionStorage.clear();
         };
 

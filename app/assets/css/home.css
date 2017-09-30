@@ -3,7 +3,6 @@
 #home-view {
     width: 100%;
     min-height: 100%;
-    background-image: url('../img/backgrounds/home_background.jpg');
     background-attachment: fixed;
     background-position: center; 
     background-size: cover;
@@ -37,29 +36,33 @@
     text-shadow: 0 2px 2px rgba(0,0,0,.35);
     width: 100%;
     margin: auto;
-    font-size: 2rem;
+    font-size: 3rem;
     padding: 2rem 0;
     line-height: 3.6rem;
 }
 
-#home-content #dimensions-btn > div {
-    background-color: #428bca;
+#home-content #portals-btn > div {
+    background-color: rgb(66,139,202);
 }
 
-#home-content #dimensions-btn:hover > div {
-    background-color : #4B9DE4;
+#home-content #portals-btn:hover > div {
+    background-color : rgb(86,159,222);
 }
 
 #home-content #changelog-btn > div {
-    background-color: #ab1520;
+    background-color: rgb(171,21,32);
 }
 
 #home-content #changelog-btn:hover > div {
-    background-color: #C51823;
+    background-color: rgb(191,41,52);
 }
 
 #home-content #partners-btn > div {
-    background-color: #f66d09;
+    background-color: rgb(235,109,9);
+}
+
+#home-content #partners-btn:hover > div {
+    background-color: rgb(255,129,29);
 }
 
 #home-content .home-btn img {
@@ -89,7 +92,7 @@
     height: 6rem;
 }
 
-#home-content #dimensions-icon {
+#home-content #portals-icon {
     height: 10rem;
 }
 

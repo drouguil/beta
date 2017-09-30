@@ -19,6 +19,8 @@ localStorageService.service('localStorageManager', [
     function (
         $window) {
 
+        var self = this;
+
         /**
          * Récupère l'objet du localStorage associé à la clef
          * @function getObj
@@ -27,7 +29,7 @@ localStorageService.service('localStorageManager', [
          * @return Objet du localStorage associé à la clef
          */
 
-        this.getObj = function (key) {
+        self.getObj = function (key) {
             if (key) {
                 return JSON.parse($window.localStorage.getItem(key));
             }
@@ -44,7 +46,7 @@ localStorageService.service('localStorageManager', [
          * @param {Objet} obj Objet
          */
 
-        this.setObj = function (key, obj) {
+        self.setObj = function (key, obj) {
             if (key) {
                 if (obj) {
                     $window.localStorage.setItem(key, JSON.stringify(obj));
@@ -64,7 +66,7 @@ localStorageService.service('localStorageManager', [
          * @public
          */
 
-        this.clear = function () {
+        self.clear = function () {
             $window.localStorage.clear();
         };
 

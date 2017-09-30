@@ -1,26 +1,32 @@
 <div id="footer-content">
     <div class="col-xs-3">
-        <h2>{{ 'FOLLOW_US' | translate }}</h2>
+        <h2 ng-bind="'FOLLOW_US' | translate"></h2>
         <a class="social-network" href="" target="_blank">
             <md-tooltip>
                 Facebook
             </md-tooltip>
-            <img ng-src="{{ facebookIconPath }}">
+            <img ng-src="{{ facebookIconPath }}" imageonload="imgLoaded()">
         </a>
-        <a class="social-network" href="" target="_blank">
+        <a class="social-network" href="https://twitter.com/Sweet_ovh" target="_blank">
             <md-tooltip>
                 Twitter
             </md-tooltip>
-            <img ng-src="{{ twitterIconPath }}">
+            <img ng-src="{{ twitterIconPath }}" imageonload="imgLoaded()">
+        </a>
+        <a class="social-network" href="https://www.youtube.com/channel/UCLuxufWVaxV61zx7uPt52Lw" target="_blank">
+            <md-tooltip>
+                YouTube
+            </md-tooltip>
+            <img ng-src="{{ youtubeIconPath }}" imageonload="imgLoaded()">
         </a>
     </div>
     <div class="col-xs-6">
-        <h1>{{ 'PURPOSE_HELP' | translate }}</h1>
+        <h1 ng-bind="'PURPOSE_HELP' | translate"></h1>
         <ul class="list-inline">
-            <li>{{ 'REPORT_BUG' | translate }}</li>
-            <li>{{ 'PURPOSE_UPGRADE' | translate }}</li>
-            <li>{{ 'PURPOSE_PICTURE' | translate }}</li>
-            <li>{{ 'CONTACT_US' | translate }}</li>
+            <li ng-bind="'REPORT_BUG' | translate"></li>
+            <li ng-bind="'PURPOSE_UPGRADE' | translate"></li>
+            <li ng-bind="'PURPOSE_PICTURE' | translate"></li>
+            <li ng-bind="'CONTACT_US' | translate"></li>
         </ul>
     </div>
     <div id="copyrights" class="col-xs-3">

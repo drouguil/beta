@@ -1,0 +1,251 @@
+/* Puzzle CSS */
+
+#puzzle-view {
+    width: 100%;
+    min-height: 100%;
+    background-image: url('../img/backgrounds/puzzle_background.jpg');
+    background-attachment: fixed;
+    background-position: center; 
+    background-size: cover;
+    z-index: 1;
+    display: flex;
+}
+
+#puzzle-content {
+    margin: 3rem auto 15rem auto;
+    width: 100%;
+    max-width: 117rem;
+    text-align: center;
+    min-height: calc(100vh - 26rem);
+}
+
+#puzzle-title {
+  margin: auto;
+  display: block;
+  width: 400px;
+  height: 60px;
+  border: 1px solid #8a1;
+  font: normal 30px/60px 'Rye';
+  text-align: center;
+  color: #451;
+  background: #9b2;
+  border-radius: 4px;
+  box-shadow: 0 0 30px rgba(0,0,0,.15) inset,
+                      0 6px 10px rgba(0,0,0,.15);
+}
+
+#puzzle-map {
+    margin: 3rem auto 1rem auto;
+}
+
+#puzzle-map-content {
+    display: flex;
+}
+
+#puzzle-footer {
+    background-color: #777777;
+    min-width: 117rem;
+    height: 12rem;
+    border-radius: 15px;
+    border : 4px solid #444444;
+}
+
+#puzzle-footer > div {
+    height: 100%;
+    display: flex;
+    padding: 0 0.5rem;
+}
+
+#puzzle-en > a {
+    font-family: "Rye", "Verdana", "Geneva", "Tahoma", "sans-serif";
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2rem;
+    color : #ffffff;
+    cursor: pointer;
+    margin: auto;
+    padding: 2rem 1rem;
+    background-color: #9b2;
+    border: 5px solid black;
+}
+
+#puzzle-end-div {
+    cursor: pointer;
+    padding: 0 2px;
+    background-color: #c1b3b0;
+    background: linear-gradient(to bottom, #c1b3b0, #c1b3b0 9%, #4a3424 93%, #1c140d);
+    border-top: 2px solid #AD9A90;
+    border-bottom: 2px solid #1c140d;
+    border-right: none;
+    border-left: none;
+    box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    display: inline-block;
+    margin: auto;
+}
+
+#puzzle-end-link {
+    padding: 4px;
+    background-color: #6f5742;
+    background: linear-gradient(to bottom, #6f5742, #81615d);
+    border-radius: 3px;
+    border: 0;
+    display: block;
+    text-decoration: none;
+}
+
+#puzzle-end-link:hover {
+    background-color: #ffffff;
+    background: linear-gradient(to bottom, #ffffff, #ffffff);
+}
+
+#puzzle-end-span {
+    box-sizing: border-box;
+    background-color: rgb(199, 134, 34);
+    background: linear-gradient(to bottom, rgb(254, 186, 86), rgb(214, 175, 75) 5%, rgb(174, 105, 5) 59%, rgb(145, 131, 31));
+    box-shadow: 0px 2px 6px 0px #331e0b;
+    display: table;
+    padding: 3px;
+    color: white;
+    text-shadow: 1px 1px black;
+    font-size: 1.1rem;
+    line-height: 1;
+    letter-spacing: 1px;
+    text-align: center;
+    border-radius: 2px;
+    height: 35px;
+    height: 2.2rem;
+    min-height: 35px;
+    min-height: 2.2rem;
+    width: 100%;
+}
+
+#puzzle-end-text {
+    font-family: "Rye";
+    background: radial-gradient(circle, rgb(199, 134, 34) 25%, rgb(147, 122, 22) 75%, rgb(150, 116, 16));
+    display: table-cell;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    padding: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 4px #000, 0 0 8px #000;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    text-align: center;
+    line-height: 2.5rem;
+}
+
+#puzzle-spells-content {
+    background-color: #aaaaaa;
+    border-radius: 15px;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+#puzzle-chat-content {
+    background-color: #444444;
+    border-radius: 5px;
+    margin: 0.5rem 0;
+    width: 100%;
+}
+
+.puzzle-spells-tiles {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    padding: 0.1rem 0.2rem;
+}
+
+.puzzle-spell {
+    width: 100%;
+    height: 100%;
+}
+
+.puzzle-spell > img {
+    height: 100%;
+}
+
+.puzzle-spell > img:hover {
+    opacity: 0.6
+}
+
+.puzzle-spell.empty {
+    background-color: #dddddd;
+    border-radius: 10px;
+}
+
+#puzzle-stats {
+    flex-direction: column;
+}
+
+#puzzle-hp {
+    width: 100%;
+}
+
+#puzzle-hp > img {
+    width: 100%;
+}
+
+#puzzle-hp > span {
+    position: absolute;
+    left: 20%;
+    top: 18%;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    font-weight: bold;
+    font-size: 2rem;
+    color: #FFFFFF;
+}
+
+#puzzle-mp, #puzzle-ap {
+    width: 100%
+}
+
+#puzzle-mp > img, #puzzle-ap > img {
+    width: 100%
+}
+
+#puzzle-ap > span {
+    position: absolute;
+    left: 16%;
+    top: 68%;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #FFFFFF;
+}
+
+#puzzle-mp > span {
+    position: absolute;
+    left: 66%;
+    top: 68%;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #FFFFFF;
+}
+
+#puzzle-apmp {
+    display: flex;
+    margin-top: -0.6rem;
+}
+
+#puzzle-chat-content {
+    display: flex;
+}
+
+#puzzle-chat-content > div {
+    display: inline-block;
+    align-self: flex-end;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+#puzzle-chat-content p {
+    color : #8a1;
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    margin-bottom: 0;
+    text-align: left;
+    font-size: 1.2rem;
+}

@@ -5,12 +5,34 @@
     src: url("../fonts/Jackpot.ttf");
 }
 
+@font-face {
+  font-family: 'Rye';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rye Regular'), local('Rye-Regular'), url(https://fonts.gstatic.com/s/rye/v4/vfCSri-Tb-O7uwnRmY9Xaw.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Rye';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Rye Regular'), local('Rye-Regular'), url(https://fonts.gstatic.com/s/rye/v4/CqhMBZ-tK4K13-X4vZ6brQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+html.ready, body.ready {
+    height: inherit;
+    overflow: visible;
+}
+
 html,body {
     min-height: 100%;
     width: 100%;
     margin: 0;
     font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
     position: relative;
+    overflow: hidden;
 }
 
 main {
@@ -19,13 +41,17 @@ main {
     margin: 0;
 }
 
+main.not-ready {
+    max-height: 100vh;
+}
+
 .btn-title {
-    font-family: "Btn Font", "Verdana", "Geneva", "Tahoma", "sans-serif";
+    font-family: "Rye", "Verdana", "Geneva", "Tahoma", "sans-serif";
     text-transform: uppercase;
     display: flex;
 }
 
-.btn-small {
+.btn-primary {
     font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
     text-transform: uppercase;
     margin: auto;
@@ -34,16 +60,61 @@ main {
     font-size: 2rem;
 }
 
-.btn-small:hover {
+.btn-small {
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    text-transform: uppercase;
+    margin: auto;
+    padding: 1rem;
     color: #FFFFFF;
+    font-size: 1.5rem;
+    background-color: #FFFFFF;
+}
+
+.btn-dialog-close {
+    font-family: "Verdana", "Geneva", "Tahoma", "sans-serif";
+    text-transform: uppercase;
+    margin: auto;
+    padding: 1.5rem;
+    color: #FFFFFF;
+    font-size: 2rem;
+    margin: 2rem auto;
+    background-color: rgb(34,34,34);
+}
+
+.btn-dialog-close:hover {
+    color: #FFFFFF;
+    background-color: rgb(54,54,54);
 }
 
 md-toast {
     margin-top: 5.5rem;
     padding-top: 0;
+    position: fixed;
 }
 
-body md-toast.md-default-theme .md-toast-content {
+body.md-dialog-is-showing {
+    overflow: hidden;
+}
+
+body md-toast.md-success-theme .md-toast-content {
     background-color: #27ae60;
+    border-radius: 0 0 2px 2px;
+}
+
+body md-toast.md-error-theme .md-toast-content {
+    background-color: #e74c3c;
     border-radius: 0 0 2px 2px; 
+}
+
+.md-dialog-container{
+    position:fixed !important;
+    height: 100vh !important;
+}
+
+.md-button {
+    line-height: normal !important;
+}
+
+md-tooltip .md-content {
+    height: auto;
 }

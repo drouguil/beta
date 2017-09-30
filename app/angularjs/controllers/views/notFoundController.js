@@ -24,6 +24,7 @@ notFoundCtrl.config([
          */
 
         $translateProvider.translations('fr', {
+            NOTFOUND_TITLE: 'Page introuvable'
         });
 
         /**
@@ -31,28 +32,80 @@ notFoundCtrl.config([
          */
 
         $translateProvider.translations('en', {
+            NOTFOUND_TITLE: 'Page not found'
         });
     }]);
 
 /**
- * Contrôleur du module de la page d'accueil
+ * Contrôleur du module de la page 404
  */
 
 notFoundCtrl.controller('notFoundController', [
     '$scope',
     '$rootScope',
-    'helpManager',
+    '$filter',
+    'imgManager',
     function (
         $scope,
         $rootScope,
-        helpManager) {
+        $filter,
+        imgManager) {
 
         /**
-         * Prévient l'application que la vue est chargée
+         * Détermine si toutes les images sont chargées
+         * @function imgLoaded
          * @public
          */
 
-        $scope.$on('$viewContentLoaded', function () {
+        $scope.imgLoaded = function() {
+            countImgsLoaded++;
+            console.log(countImgsLoaded);
+            if(countImgsLoaded == nbImgs) {
+                $rootScope.imgsIsLoaded = true;
+            }
+        };
+
+        /**
+         * Nombre d'images à charger
+         * @private
+         */
+
+        var nbImgs = 0;
+        
+        /**
+         * Nombre d'images chargées
+         * @private
+         */
+
+        var countImgsLoaded = 0;
+
+        /**
+         * Initalisation de la page 404
+         * @function init
+         * @private
+         */
+
+        function init () {
+
+            $rootScope.imgsIsLoaded = true;
+            
+            // Modification du titre de la page
+
+            $rootScope.title = 'Sweet.ovh - ' + $filter('translate')('NOTFOUND_TITLE');
+
+            // Initialisation de l'image de fond
+
+            imgManager.initBackgroundImage('notFound');
+
+            // Initialisation de la vue terminée
+
             $rootScope.viewIsLoaded = true;
-        });
+        };
+
+        /**
+         * Initialisation de la page 404
+         */
+
+        init();
+
     }]);

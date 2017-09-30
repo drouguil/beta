@@ -1,0 +1,79 @@
+/* Identification CSS */
+
+#identification-dialog {
+    min-width: 65rem;
+}
+
+#identification-dialog md-toolbar {
+    background-color: rgb(102,180,6);
+}
+
+#identification-dialog .btn-primary {
+    margin: 0 auto;
+    background-color: rgb(102,180,6);
+}
+
+#identification-dialog .btn-primary:hover {
+    background-color: rgb(122,200,26);
+}
+
+#identification-dialog md-dialog-actions {
+    flex-direction: column;
+}
+
+#identification-dialog md-dialog-actions #change-form {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+#identification-dialog md-dialog-actions #change-form > a {
+    text-decoration: none;
+    margin-left: 8rem;
+    cursor: pointer;
+}
+
+#identification-dialog md-dialog-actions #change-form > a > img {
+    width: auto;
+    height: 3rem;
+}
+
+#identification-dialog md-dialog-content #login-form {
+    width: 30rem;
+    margin: 2rem auto;
+}
+
+#identification-dialog md-dialog-content #register-form {
+    width: 58rem;
+    margin: 2rem auto;
+}
+
+#identification-dialog md-dialog-content #register-form md-input-container {
+    margin: 1.8rem auto 0 auto;
+    width: 45%;
+}
+
+#identification-dialog md-dialog-content #login-form md-input-container {
+    margin: 1.8rem auto 0 auto;
+    width: 100%;
+}
+
+#identification-dialog md-dialog-content #login-form md-checkbox {
+    margin: 1.8rem auto 3.64rem auto;
+    width: 100%;
+}
+
+#identification-dialog md-dialog-content .input-container {
+    display: flex;
+}
+
+#identification-dialog md-dialog-content md-checkbox.md-checked .md-icon {
+    background-color: rgb(102,180,6);
+}
+
+#identification-dialog md-dialog-content md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(102,180,6);
+}
+
+#identification-dialog md-dialog-content .submit-container {
+    display: flex;
+}

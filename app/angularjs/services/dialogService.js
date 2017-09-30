@@ -21,6 +21,8 @@ dialogService.service('dialogManager', [
         $mdDialog,
         appConfig) {
 
+        var self = this;
+
         /**
          * Affiche une popin de confirmation
          * @function showConfirmDialog
@@ -33,7 +35,7 @@ dialogService.service('dialogManager', [
          * @return
          */
 
-        this.showConfirmDialog = function (title, textContent, textOk, textCancel, ev) {
+        self.showConfirmDialog = function (title, textContent, textOk, textCancel, ev) {
             var confirmDialog = null;
             if (title) {
                 if (textContent) {
@@ -84,31 +86,21 @@ dialogService.service('dialogManager', [
          * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
          */
 
-        this.showChangelogDialog = function(ev, clickOutside) {
-            if(clickOutside == undefined)
-            {
+        self.showChangelogDialog = function (ev, clickOutside) {
+            if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            if(ev)
-            {
-                $mdDialog.show({
-                    controller: 'changelogController',
-                    templateUrl: appConfig.paths.views + 'changelog.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: clickOutside
-                    });
+            var dialog =  {
+                controller: 'changelogController',
+                templateUrl: appConfig.paths.views + 'changelog.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: clickOutside
+            };
+            if (ev) {
+                dialog.targetEvent = ev;
             }
-            else
-            {
-                $mdDialog.show({
-                    controller: 'changelogController',
-                    templateUrl: appConfig.paths.views + 'changelog.html',
-                    parent: angular.element(document.body),
-                    clickOutsideToClose: clickOutside
-                    });
-            }
-        }
+            $mdDialog.show(dialog);
+        };
 
         /**
          * Affiche la popin d'aide
@@ -118,31 +110,107 @@ dialogService.service('dialogManager', [
          * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
          */
 
-        this.showHelpDialog = function(ev, clickOutside) {
-            if(clickOutside == undefined)
-            {
+        self.showHelpDialog = function (ev, clickOutside) {
+            if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            if(ev)
-            {
-                $mdDialog.show({
-                    controller: 'helpController',
-                    templateUrl: appConfig.paths.views + 'help.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: clickOutside
-                    });
+            var dialog = {
+                controller: 'helpController',
+                templateUrl: appConfig.paths.views + 'help.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: clickOutside
             }
-            else
-            {
-                $mdDialog.show({
-                    controller: 'helpController',
-                    templateUrl: appConfig.paths.views + 'help.html',
-                    parent: angular.element(document.body),
-                    clickOutsideToClose: clickOutside
-                    });
+            if (ev) {
+                dialog.targetEvent = ev;
             }
-        }
+            $mdDialog.show(dialog);
+        };
+
+        /**
+         * Affiche la popin de modification d'un portail
+         * @function showUpdatePortalsDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         * @param {Objet} portal Portail que l'on veut modifier
+         * @param {Objet} dimension Dimension du portail que l'on veut modifier
+         */
+
+        self.showUpdatePortalsDialog = function (ev, clickOutside, portal, dimension) {
+            if (clickOutside == undefined) {
+                clickOutside = true;
+            }
+            var dialog = {
+                controller: 'updatePortalsController',
+                templateUrl: appConfig.paths.views + 'updatePortals.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: clickOutside,
+                locals: {
+                    portal: portal,
+                    dimension: dimension
+                }
+            }
+            if (ev) {
+                dialog.targetEvent = ev;
+            }
+            $mdDialog.show(dialog);
+        };
+
+        /**
+         * Affiche la popin d'identification
+         * @function showIdentificationDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         * @param {Booléen} isRegister Détermine si l'on doit afficher le formulaire d'inscription (true) ou le formulaire de connexion (false)
+         */
+
+        self.showIdentificationDialog = function (ev, clickOutside, isRegister) {
+            if (clickOutside == undefined) {
+                clickOutside = true;
+            }
+            var dialog = {
+                controller: 'identificationController',
+                templateUrl: appConfig.paths.views + 'identification.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: clickOutside,
+                locals: {
+                    isRegister: isRegister
+                }
+            }
+            if (ev) {
+                dialog.targetEvent = ev;
+            }
+            $mdDialog.show(dialog);
+        };
+
+        /**
+         * Affiche la popin du profil
+         * @function showProfileDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         * @param {Booléen} isupdate Détermine si l'on doit afficher le formulaire d'inscription (true) ou le formulaire de connexion (false)
+         */
+
+        self.showProfileDialog = function (ev, clickOutside, isupdate) {
+            if (clickOutside == undefined) {
+                clickOutside = true;
+            }
+            var dialog = {
+                controller: 'profileController',
+                templateUrl: appConfig.paths.views + 'profile.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose: clickOutside,
+                locals: {
+                    isupdate: isupdate
+                }
+            }
+            if (ev) {
+                dialog.targetEvent = ev
+            }
+            $mdDialog.show(dialog);
+        };
 
         /**
          * Ferme toutes les popins en cours
@@ -150,7 +218,7 @@ dialogService.service('dialogManager', [
          * @public
          */
 
-        this.closeDialogs = function () {
+        self.closeDialogs = function () {
             $mdDialog.cancel();
         };
 

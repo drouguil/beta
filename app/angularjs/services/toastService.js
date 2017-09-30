@@ -19,21 +19,27 @@ toastService.service('toastManager', [
     function (
         $mdToast) {
 
+        var self = this;
+
         /**
          * Affiche une notification classique
          * @function showSimpleToast
          * @public
          * @param {Caractères} textContent Texte du contenu de la notification
+         * @param {Caractères} theme Thème du toast ('success','error')
          * @param {Caractères} position Optionnel valeur par défault : 'top right' ; Position de la notification ('top left', 'top right', 'bottom left', 'bottom right')
          * @param {Nombre} delay Optionnel valeur par défault : 3000 ; Durée d'affichage de la notification en millisecondes
          */
 
-        this.showSimpleToast = function (textContent, position, delay) {
+        self.showSimpleToast = function (textContent, theme, position, delay) {
             if (!delay) {
                 delay = 3000;
             }
             if (!position) {
                 position = 'top right';
+            }
+            if(!theme) {
+                theme = 'success';
             }
             if (textContent) {
                 $mdToast.show(
@@ -41,6 +47,7 @@ toastService.service('toastManager', [
                         .textContent(textContent)
                         .position(position)
                         .hideDelay(delay)
+                        .theme(theme)
                 );
             }
             else {
@@ -55,7 +62,7 @@ toastService.service('toastManager', [
          * @public
          */
 
-        this.closeToasts = function () {
+        self.closeToasts = function () {
             $mdToast.hide();
         };
 

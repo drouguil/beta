@@ -1,1 +1,5 @@
 /* Help CSS */
+
+#help-dialog md-toolbar {
+    background-color: rgb(37,183,211);
+}

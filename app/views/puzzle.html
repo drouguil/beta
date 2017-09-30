@@ -1,0 +1,64 @@
+<div id="puzzle-view">
+    <div id="puzzle-content">
+        <h1 id="puzzle-title">
+            {{ 'LEVEL' | translate }} {{ getLevel().id }} : {{ getLevel().name }}
+        </h1>
+        <div id="puzzle-map-content">
+            <canvas id="puzzle-map" ng-bind="'CANVAS_NOT_SUPPORTED' | translate"></canvas>
+        </div>
+        <div id="puzzle-footer">
+            <div id="puzzle-chat" class="col-xs-3">
+                <div id="puzzle-chat-content">
+                    <div>
+                        <p ng-repeat="action in actions" ng-bind="action | translate" ></p>
+                    </div>
+                </div>
+            </div>
+            <div id="puzzle-stats" class="col-xs-1">
+                <div id="puzzle-hp">
+                    <img ng-src="{{ hpEmptyImg }}" imageonload="imgLoaded()">
+                    <span>4000</span>
+                </div>
+                <div id="puzzle-apmp">
+                    <div id="puzzle-ap">
+                        <img ng-src="{{ apPathImg }}" imageonload="imgLoaded()">
+                        <span>11</span>
+                    </div>
+                    <div id="puzzle-mp">
+                        <img ng-src="{{ mpPathImg }}" imageonload="imgLoaded()">
+                        <span>6</span>
+                    </div>
+                </div>
+            </div>
+            <div id="puzzle-spells" class="col-xs-6">
+                <div id="puzzle-spells-content">
+                    <div class="puzzle-spells-tiles">
+                        <div ng-repeat="spell in getSpellsFirstLine() track by $index" class="puzzle-spell">
+                            <img ng-click="hoverSpellTiles(1, 2)" ng-src="{{ getSpellImg(spell) }}" imageonload="imgLoaded()">
+                        </div>
+                        <div ng-repeat="i in getSpellsFirstLineEmpty()  track by $index" class="puzzle-spell">
+                            <img ng-src="{{ getSpellEmpty() }}" imageonload="imgLoaded()">
+                        </div>
+                    </div>
+                    <div class="puzzle-spells-tiles">
+                        <div ng-repeat="spell in getSpellsSecondLine() track by $index" class="puzzle-spell">
+                            <img ng-click="hoverSpellTiles(1, 2, true)" ng-src="{{ getSpellImg(spell) }}" imageonload="imgLoaded()">
+                        </div>
+                        <div ng-repeat="i in getSpellsSecondLineEmpty()  track by $index" class="puzzle-spell">
+                            <img ng-src="{{ getSpellEmpty() }}" imageonload="imgLoaded()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="puzzle-end" class="col-xs-2">
+                <div id="puzzle-end-div">
+                    <a id="puzzle-end-link">
+                        <span id="puzzle-end-span">
+                            <span id="puzzle-end-text" ng-bind="'END_LINK' | translate"></span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

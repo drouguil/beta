@@ -24,9 +24,10 @@ homeCtrl.config([
          */
 
         $translateProvider.translations('fr', {
-            BTN_DIMENSIONS: 'Gestion des portails',
-            BTN_CHANGELOG: 'Changements du site',
-            PARTNERS: 'Partenaires'
+            HOME_TITLE: 'Accueil',
+            PORTALS_BTN: 'Gestion des portails',
+            CHANGELOG_BTN: 'Mises à jour',
+            PARTNERS_BTN: 'Partenaires'
         });
 
         /**
@@ -34,9 +35,10 @@ homeCtrl.config([
          */
 
         $translateProvider.translations('en', {
-            BTN_DIMENSIONS: 'Portals\' Management',
-            BTN_CHANGELOG: 'Website\'s update',
-            PARTNERS: 'Partners'
+            HOME_TITLE: 'Home',
+            PORTALS_BTN: 'Portals\' Management',
+            CHANGELOG_BTN: 'Website\'s update',
+            PARTNERS_BTN: 'Partners'
         });
     }]);
 
@@ -47,29 +49,33 @@ homeCtrl.config([
 homeCtrl.controller('homeController', [
     '$scope',
     '$rootScope',
+    '$location',
+    '$filter',
     'dialogManager',
-    'helpManager',
+    'imgManager',
     'appConfig',
     function (
         $scope,
         $rootScope,
+        $location,
+        $filter,
         dialogManager,
-        helpManager,
+        imgManager,
         appConfig) {
 
         /**
-         * Chemin de l'icône du bouton des dimensions
+         * Chemin de l'icône du bouton des portails
          * @public
          */
 
-        $scope.dimensionsIconBtnPath = appConfig.paths.imgPortals + 'enutrosor.png';
+        $scope.portalsIconBtnPath = appConfig.paths.imgPortals + 'Enurado.png';
 
         /**
-         * Chemin de l'image du bouton des dimensions
+         * Chemin de l'image du bouton des portails
          * @public
          */
 
-        $scope.dimensionsIconPath = appConfig.paths.imgButtons + 'dimensions.jpg';
+        $scope.portalsIconPath = appConfig.paths.imgButtons + 'portals.jpg';
 
         /**
          * Chemin de l'icône du bouton du changelog
@@ -115,15 +121,73 @@ homeCtrl.controller('homeController', [
 
         $scope.showChangelogDialog = function (ev) {
             dialogManager.showChangelogDialog(ev);
-        }
+        };
 
         /**
-         * Prévient l'application que la page est chargée
+         * Lien vers la page des portails
+         * @function portalsLink
          * @public
          */
 
-        $scope.$on('$viewContentLoaded', function () {
+        $scope.portalsLink = function () {
+            $location.path('/portals');
+        };
+
+        /**
+         * Détermine si toutes les images sont chargées
+         * @function imgLoaded
+         * @public
+         */
+
+        $scope.imgLoaded = function() {
+            countImgsLoaded++;
+            if(countImgsLoaded == nbImgs) {
+                $rootScope.imgsIsLoaded = true;
+                console.log('imgsIsLoaded');
+            }
+        };
+
+        /**
+         * Nombre d'images à charger
+         * @private
+         */
+
+        var nbImgs = 7;
+        
+        /**
+         * Nombre d'images chargées
+         * @private
+         */
+
+        var countImgsLoaded = 0;
+
+        /**
+         * Initalisation de la page d'accueil
+         * @function init
+         * @private
+         */
+
+        function init () {
+            
+            // Modification du titre de la page
+
+            $rootScope.title = 'Sweet.ovh - ' + $filter('translate')('HOME_TITLE');
+
+            // Initialisation de l'image de fond
+
+            imgManager.initBackgroundImage('home');
+
+            // Initialisation de la vue terminée
+
             $rootScope.viewIsLoaded = true;
-        });
+
+            console.log('viewIsLoaded');
+        };
+
+        /**
+         * Initialisation de la page d'accueil
+         */
+
+        init();
 
     }]);

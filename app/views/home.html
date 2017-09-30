@@ -1,35 +1,35 @@
 <div id="home-view">
     <div id="home-content">
         <div class="col-xs-4">
-            <a id="dimensions-btn" class="home-btn">
+            <a id="portals-btn" ng-click="portalsLink()" class="home-btn">
                 <div class="btn-title">
-                    <img id="dimensions-icon" ng-src="{{ dimensionsIconBtnPath }}">
-                    <h2>{{ 'BTN_DIMENSIONS' | translate }}</h2>
+                    <img id="portals-icon" ng-src="{{ portalsIconBtnPath }}" imageonload="imgLoaded()">
+                    <h2 ng-bind="'PORTALS_BTN' | translate"></h2>
                 </div>
-                <img ng-src="{{ dimensionsIconPath }}">
+                <img ng-src="{{ portalsIconPath }}" imageonload="imgLoaded()">
             </a>
         </div>
         <div class="col-xs-4">
             <a id="changelog-btn" ng-click="showChangelogDialog($event)" class="home-btn">
                 <div class="btn-title">
-                    <img id="changelog-icon" ng-src="{{ changelogIconBtnPath }}">
-                    <h2>{{ 'BTN_CHANGELOG' | translate }}</h2>
+                    <img id="changelog-icon" ng-src="{{ changelogIconBtnPath }}" imageonload="imgLoaded()">
+                    <h2 ng-bind="'CHANGELOG_BTN' | translate"></h2>
                 </div>
-                <img ng-src="{{ changelogIconPath }}">
+                <img ng-src="{{ changelogIconPath }}" imageonload="imgLoaded()">
             </a>
         </div>
         <div class="col-xs-4">
             <a id="partners-btn" class="home-btn">
                 <div class="btn-title">
-                    <img id="partners-icon" ng-src="{{ partnersIconBtnPath }}">
-                    <h2>{{ 'PARTNERS' | translate }}</h2>
+                    <img id="partners-icon" ng-src="{{ partnersIconBtnPath }}" imageonload="imgLoaded()">
+                    <h2 ng-bind="'PARTNERS_BTN' | translate"></h2>
                 </div>
             </a>
             <a id="partner-entraide" class="partner-link" href="http://entraide.ordre2vlad.fr/" target="_blank">
-                <img ng-src="{{ entraideIconPath }}">
+                <img ng-src="{{ entraideIconPath }}" imageonload="imgLoaded()">
             </a>
             <a id="partner-dofusExchange" class="partner-link" href="http://dofusexchange.com/fr/" target="_blank">
-                <img ng-src="{{ dofusExchangeIconPath }}">
+                <img ng-src="{{ dofusExchangeIconPath }}" imageonload="imgLoaded()">
             </a>
         </div>
     </div>

@@ -15,32 +15,40 @@ var headerCtrl = angular.module('headerCtrl', []);
  */
 
 headerCtrl.config([
-    '$translateProvider', 
-    function(
+    '$translateProvider',
+    function (
         $translateProvider) {
-    
-    /**
-     * Dictionnaire Français
-     */
 
-    $translateProvider.translations('fr', {
-        LANGUAGE_CHANGED: 'Langue changée',
-        HELP_TOOLTIP: 'Aide',
-        REGISTER_TOOLTIP: 'Inscription',
-        LOGIN_TOOLTIP: 'Connexion'
-    });
+        /**
+         * Dictionnaire Français
+         */
 
-    /**
-     * Dictionnaire Anglais
-     */
+        $translateProvider.translations('fr', {
+            LANGUAGE_CHANGED: 'Langue changée',
+            HELP_TOOLTIP: 'Aide',
+            REGISTER_TOOLTIP: 'Inscription',
+            LOGIN_TOOLTIP: 'Connexion',
+            PROFILE_TOOLTIP: 'Profil',
+            LOGOUT_TOOLTIP: 'Déconnexion',
+            LOGOUT_SUCCESS: 'Déconnexion réussie',
+            LOGOUT_ERROR: 'Une erreur est survenue pendant la déconnexion'
+        });
 
-    $translateProvider.translations('en', {
-        LANGUAGE_CHANGED: 'Language changed',
-        HELP_TOOLTIP: 'Help',
-        REGISTER_TOOLTIP: 'Register',
-        LOGIN_TOOLTIP: 'Login'
-    });
-}]);
+        /**
+         * Dictionnaire Anglais
+         */
+
+        $translateProvider.translations('en', {
+            LANGUAGE_CHANGED: 'Language changed',
+            HELP_TOOLTIP: 'Help',
+            REGISTER_TOOLTIP: 'Register',
+            LOGIN_TOOLTIP: 'Login',
+            PROFILE_TOOLTIP: 'Profile',
+            LOGOUT_TOOLTIP: 'Logout',
+            LOGOUT_SUCCESS: 'Successfully logout',
+            LOGOUT_ERROR: 'An error has occured during the logout'
+        });
+    }]);
 
 /**
  * Contrôleur du module du header
@@ -51,17 +59,19 @@ headerCtrl.controller('headerController', [
     '$locale',
     '$filter',
     '$rootScope',
+    '$location',
     'tmhDynamicLocale',
     'languageManager',
     'toastManager',
     'dialogManager',
     'appConfig',
     function (
-        $scope, 
+        $scope,
         $locale,
         $filter,
         $rootScope,
-        tmhDynamicLocale, 
+        $location,
+        tmhDynamicLocale,
         languageManager,
         toastManager,
         dialogManager,
@@ -87,6 +97,20 @@ headerCtrl.controller('headerController', [
          */
 
         $scope.loginIconPath = appConfig.paths.svg + 'login.svg';
+
+        /**
+         * Chemin de l'icône du profil
+         * @public
+         */
+
+        $scope.profileIconPath = appConfig.paths.svg + 'profile.svg';
+
+        /**
+         * Chemin de l'icône de déconnexion
+         * @public
+         */
+
+        $scope.logoutIconPath = appConfig.paths.svg + 'logout.svg';
 
         /**
          * Chemin de l'image du logo
@@ -118,6 +142,49 @@ headerCtrl.controller('headerController', [
 
         $scope.showHelpDialog = function (ev) {
             dialogManager.showHelpDialog(ev);
+        };
+
+        /**
+         * Affiche la popin d'identification partie inscription
+         * @function showRegisterDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showRegisterDialog = function (ev) {
+            dialogManager.showIdentificationDialog(ev, true, true);
+        };
+
+        /**
+         * Affiche la popin d'identification partie connexion
+         * @function showLoginDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showLoginDialog = function (ev) {
+            dialogManager.showIdentificationDialog(ev, true, false);
+        };
+
+        /**
+         * Affiche la popin du profil
+         * @function showProfileDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showProfileDialog = function (ev) {
+            dialogManager.showProfileDialog(ev, true, false);
+        };
+
+        /**
+         * @function logout
+         * @public
+         */
+
+        $scope.logout = function () {
+            $rootScope.isLog = false;
+            toastManager.showSimpleToast($filter('translate')('LOGOUT_SUCCESS'));
         }
 
         /**
@@ -129,7 +196,7 @@ headerCtrl.controller('headerController', [
 
         $scope.languageIconPath = function (language) {
             return appConfig.paths.svgCountries + language.id + '.svg';
-        }
+        };
 
         /**
          * Affiche ou cache le menu des langues
@@ -138,9 +205,8 @@ headerCtrl.controller('headerController', [
          * @param {Booléen} newVal Affichage ou non du menu des langues
          */
 
-        $scope.displayLanguageList = function(newVal) {
-            if(newVal)
-            {
+        $scope.displayLanguageList = function (newVal) {
+            if (newVal) {
                 toastManager.closeToasts();
             }
             $scope.isLanguagesList = newVal;
@@ -153,7 +219,7 @@ headerCtrl.controller('headerController', [
          * @return Liste des langues
          */
 
-        $scope.languages = function() {
+        $scope.languages = function () {
             return languageManager.getLanguages();
         };
 
@@ -165,9 +231,8 @@ headerCtrl.controller('headerController', [
          */
 
         $scope.updateLanguage = function (languageSelected) {
-            if(languageManager.getCurrentLanguage().id != languageSelected.id)
-            {
-                toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name, 'top right');
+            if (languageManager.getCurrentLanguage().id != languageSelected.id) {
+                toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name);
                 $scope.currentLanguage = languageSelected;
                 languageManager.setCurrentLanguage(languageSelected);
                 $scope.isLanguagesList = false;
@@ -175,12 +240,57 @@ headerCtrl.controller('headerController', [
         };
 
         /**
-         * Prévient l'application que le header est chargé
+         * Détermine si la page est une page pleine écran ou non
+         * @function isFullscreenPage
+         * @public
+         * @return true -> Page plein écran, false -> Page normale
+         */
+
+        $scope.isFullscreenPage = function () {
+            if ($location.$$path == '/puzzle') {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        /**
+         * Lien vers la page d'accueil
+         * @function homeLink
          * @public
          */
 
-        $scope.$on('$viewContentLoaded', function () {
-            $rootScope.headerIsLoaded = true;
-        });
+        $scope.homeLink = function () {
+            $location.path('/');
+        }
+
+        /**
+         * Détermine si toutes les images sont chargées
+         * @function imgLoaded
+         * @public
+         */
+
+        $scope.imgLoaded = function() {
+            countImgsLoaded++;
+            if(countImgsLoaded == nbImgs) {
+                $rootScope.headerIsLoaded = true;
+                console.log('headerIsLoaded');
+            }
+        };
+
+        /**
+         * Nombre d'images à charger
+         * @private
+         */
+
+        var nbImgs = 5;
+        
+        /**
+         * Nombre d'images chargées
+         * @private
+         */
+
+        var countImgsLoaded = 0;
 
     }]);

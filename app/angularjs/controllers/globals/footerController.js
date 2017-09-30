@@ -68,13 +68,6 @@ footerCtrl.controller('footerController', [
         appConfig) {
 
         /**
-         * Chemin de l'icône de Twitter
-         * @public
-         */
-
-        $scope.twitterIconPath = appConfig.paths.svgSocialNetworks + 'twitter.svg';
-
-        /**
          * Chemin de l'icône de Facebook
          * @public
          */
@@ -82,12 +75,45 @@ footerCtrl.controller('footerController', [
         $scope.facebookIconPath = appConfig.paths.svgSocialNetworks + 'facebook.svg';
 
         /**
-         * Prévient l'application que le footer est chargé
+         * Chemin de l'icône de Twitter
          * @public
          */
 
-        $scope.$on('$viewContentLoaded', function () {
-            $rootScope.headerIsLoaded = true;
-        });
+        $scope.twitterIconPath = appConfig.paths.svgSocialNetworks + 'twitter.svg';
+
+        /**
+         * Chemin de l'icône de YouTube
+         * @public
+         */
+
+        $scope.youtubeIconPath = appConfig.paths.svgSocialNetworks + 'youtube.svg';
+
+        /**
+         * Détermine si toutes les images sont chargées
+         * @function imgLoaded
+         * @public
+         */
+
+        $scope.imgLoaded = function() {
+            countImgsLoaded++;
+            if(countImgsLoaded == nbImgs) {
+                $rootScope.footerIsLoaded = true;
+                console.log('footerIsLoaded');
+            }
+        };
+
+        /**
+         * Nombre d'images à charger
+         * @private
+         */
+
+        var nbImgs = 3;
+        
+        /**
+         * Nombre d'images chargées
+         * @private
+         */
+
+        var countImgsLoaded = 0;
 
     }]);

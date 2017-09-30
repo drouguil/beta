@@ -25,6 +25,8 @@ languageService.service('languageManager', [
         localStorageManager,
         appConfig) {
 
+        var self = this;
+        
         /**
          * Liste des langues
          * @private
@@ -47,9 +49,9 @@ languageService.service('languageManager', [
          * @return {Objet} Langue actuelle sous le format
          */
 
-        this.getCurrentLanguage = function () {
+        self.getCurrentLanguage = function () {
             if (!localStorageManager.getObj(appConfig.localStorage.languageName)) {
-                this.setCurrentLanguage(languages[0]);
+                self.setCurrentLanguage(languages[0]);
             }
             return localStorageManager.getObj(appConfig.localStorage.languageName);
         }
@@ -61,7 +63,7 @@ languageService.service('languageManager', [
          * @return Liste des langues
          */
 
-        this.getLanguages = function () {
+        self.getLanguages = function () {
             return languages;
         }
 
@@ -71,12 +73,12 @@ languageService.service('languageManager', [
          * @public
          */
 
-        this.initCurrentLanguage = function () {
+        self.initCurrentLanguage = function () {
             if (!localStorageManager.getObj(appConfig.localStorage.languageName)) {
-                this.setCurrentLanguage(languages[0]);
+                self.setCurrentLanguage(languages[0]);
             }
             else {
-                this.setCurrentLanguage(localStorageManager.getObj(appConfig.localStorage.languageName));
+                self.setCurrentLanguage(localStorageManager.getObj(appConfig.localStorage.languageName));
             }
         }
 
@@ -87,7 +89,7 @@ languageService.service('languageManager', [
          * @param {Objet} language Nouvelle langue
          */
 
-        this.setCurrentLanguage = function (language) {
+        self.setCurrentLanguage = function (language) {
             if (language) {
                 var isFound = false;
                 languages.forEach(function (tempLanguage) {

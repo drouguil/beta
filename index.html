@@ -1,10 +1,10 @@
-<!doctype html>
-<html ng-app="mainApp" lang="fr">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html ng-app="mainApp" lang="fr" ng-class="{'ready' : headerIsLoaded && imgsIsLoaded && footerIsLoaded && backgroundIsLoaded && viewIsLoaded}">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>Sweet.ovh</title>
+  <title ng-bind="title">Sweet.ovh</title>
   <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap-theme.min.css">
   <link rel="stylesheet" type="text/css" href="./node_modules/angular-material/angular-material.css">
@@ -14,14 +14,20 @@
   <link rel="stylesheet" type="text/css" href="./app/assets/css/home.css">
   <link rel="stylesheet" type="text/css" href="./app/assets/css/changelog.css">
   <link rel="stylesheet" type="text/css" href="./app/assets/css/help.css">
+  <link rel="stylesheet" type="text/css" href="./app/assets/css/profile.css">
   <link rel="stylesheet" type="text/css" href="./app/assets/css/404.css">
+  <link rel="stylesheet" type="text/css" href="./app/assets/css/puzzle.css">
+  <link rel="stylesheet" type="text/css" href="./app/assets/css/portals.css">
+  <link rel="stylesheet" type="text/css" href="./app/assets/css/identification.css">
+  <link rel="stylesheet" type="text/css" href="./app/assets/css/updatePortals.css">
   <link rel="shortcut icon" href="./app/assets/img/icons/favicon.png" type="image/x-icon">
   <link rel="icon" href="./app/assets/img/icons/favicon.png" type="image/x-icon">
 </head>
 
-<body>
+<body ng-class="{'ready' : headerIsLoaded && imgsIsLoaded && footerIsLoaded && backgroundIsLoaded && viewIsLoaded}">
 
   <style>
+
     body #app-loader {
       background-color: rgb(60, 60, 60);
       width: 100%;
@@ -55,17 +61,17 @@
     }
   </style>
 
-  <div id="app-loader" ng-if="!headerIsLoaded && !viewIsLoaded && !footerIsLoaded">
+  <div id="app-loader" ng-if="!headerIsLoaded || !imgsIsLoaded || !footerIsLoaded || !backgroundIsLoaded || !viewIsLoaded">
     <img src="./app/assets/img/dofus.png">
   </div>
 
   <!-- Header -->
 
-  <header ng-controller="headerController" ng-include="'./app/views/header.html'"></header>
+  <header ng-class="{ 'fullscreen' : isFullscreenPage() }" ng-controller="headerController" ng-include="'./app/views/header.html'"></header>
 
   <!-- Vue actuelle -->
 
-  <main ng-view>
+  <main ng-class="{ 'not-ready' : !headerIsLoaded || !imgsIsLoaded || !footerIsLoaded || !backgroundIsLoaded || !viewIsLoaded }" ng-view>
 
   </main>
 
@@ -81,8 +87,12 @@
   <script src="./node_modules/angular-aria/angular-aria.js"></script>
   <script src="./node_modules/angular-animate/angular-animate.js"></script>
   <script src="./node_modules/angular-material/angular-material.js"></script>
+  <script src="./node_modules/angular-messages/angular-messages.js"></script>
   <script src="./node_modules/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
   <script src="./node_modules/angular-translate/dist/angular-translate.js"></script>
+  <script src="./node_modules/clipboard/dist/clipboard.js"></script>
+  <script src="./node_modules/ngclipboard/dist/ngclipboard.js"></script>
+  <script src="./node_modules/underscore/underscore-min.js"></script>
 
   <!-- Controllers -->
 
@@ -94,12 +104,32 @@
   <!-- Vues -->
 
   <script src="./app/angularjs/controllers/views/homeController.js"></script>
+  <script src="./app/angularjs/controllers/views/portalsController.js"></script>
   <script src="./app/angularjs/controllers/views/notFoundController.js"></script>
+  <script src="./app/angularjs/controllers/views/puzzleController.js"></script>
 
-  <!-- Popins -->
+  <!-- Popins Accueil -->
 
-  <script src="./app/angularjs/controllers/dialogs/changelogController.js"></script>
-  <script src="./app/angularjs/controllers/dialogs/helpController.js"></script>
+  <script src="./app/angularjs/controllers/dialogs/home/changelogController.js"></script>
+
+  <!-- Popins Globales -->
+
+  <script src="./app/angularjs/controllers/dialogs/globals/helpController.js"></script>
+  <script src="./app/angularjs/controllers/dialogs/globals/profileController.js"></script>
+
+  <!-- Popins Identification -->
+
+  <script src="./app/angularjs/controllers/dialogs/identification/identificationController.js"></script>
+  <script src="./app/angularjs/controllers/dialogs/identification/loginController.js"></script>
+  <script src="./app/angularjs/controllers/dialogs/identification/registerController.js"></script>
+
+  <!-- Popins Portails -->
+
+  <script src="./app/angularjs/controllers/dialogs/portals/updatePortalsController.js"></script>
+
+  <!-- Directives -->
+
+  <script src="./app/angularjs/directives/imageOnLoadDirective.js"></script>
 
   <!-- Services -->
 
@@ -109,10 +139,16 @@
   <script src="./app/angularjs/services/localStorageService.js"></script>
   <script src="./app/angularjs/services/sessionStorageService.js"></script>
   <script src="./app/angularjs/services/helpService.js"></script>
+  <script src="./app/angularjs/services/puzzleService.js"></script>
+  <script src="./app/angularjs/services/devToolsService.js"></script>
+  <script src="./app/angularjs/services/imgService.js"></script>
+  <script src="./app/angularjs/services/daoService.js"></script>
+  
 
   <!-- Configuration -->
 
   <script src="./app/angularjs/constants/appConfig.js"></script>
+  <script src="./app/angularjs/constants/puzzleConfig.js"></script>
 
   <!-- App -->
 

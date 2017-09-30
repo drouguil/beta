@@ -1,12 +1,5 @@
+/* ChangeLog CSS */
+
 #changelog-dialog md-toolbar {
-    background-color: #ab1520;
-}
-
-#changelog-dialog .btn-small {
-    margin: 2rem auto;
-    background-color: #ab1520;
-}
-
-#changelog-dialog .btn-small:hover {
-    background-color: #C51823;
+    background-color: rgb(171,21,32);
 }

@@ -1,11 +1,10 @@
 <md-dialog id="changelog-dialog" aria-label="Changelog">
-  <form>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>{{ 'CHANGELOG_TITLE' | translate }}</h2>
+        <h2 ng-bind="'CHANGELOG_TITLE' | translate"></h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="closeDialog()">
-          <md-icon md-svg-src="{{closeIconPath}}" aria-label="Close dialog"></md-icon>
+          <md-icon md-svg-src="{{ closeIconPath }}" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -15,7 +14,6 @@
     </md-dialog-content>
 
     <md-dialog-actions>
-      <a class="btn btn-small" ng-click="closeDialog()">{{ 'CLOSE_BTN' | translate }}</a>
+      <a class="btn btn-dialog-close" ng-click="closeDialog()" ng-bind="'CLOSE_BTN' | translate"></a>
     </md-dialog-actions>
-  </form>
 </md-dialog>

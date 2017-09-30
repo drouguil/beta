@@ -17,16 +17,6 @@ var helpService = angular.module('helpService', []);
 helpService.service('helpManager', [
     function () {
 
-        this.content =  {
-
-        };
-
-        this.getContent = function () {
-            return this.content;
-        }
-
-        this.setContent = function (content) {
-            this.content = content;
-        }
+        var self = this;
 
     }]);

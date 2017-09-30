@@ -32,11 +32,22 @@ appConfig.constant('appConfig', {
                     imgBackgrounds : './app/assets/img/backgrounds/',
                     imgButtons : './app/assets/img/buttons/',
                     imgIcons : './app/assets/img/icons/',
+                    imgModifiers : './app/assets/img/modifiers/',
                     imgPartners : './app/assets/img/partners/',
                     imgPortals : './app/assets/img/portals/',
+                    imgServers: './app/assets/img/servers/',
+                    imgPuzzle : './app/assets/img/puzzle/',
+                        imgBombs : './app/assets/img/puzzle/bombs/',
+                        imgTargets : './app/assets/img/puzzle/targets/',
+                        imgRogue : './app/assets/img/puzzle/rogue/',
+                            imgAnimations : './app/assets/img/puzzle/rogue/animations/',
+                        imgSpells : './app/assets/img/puzzle/spells/',
+                        imgHud : './app/assets/img/puzzle/hud/',
                 svg : './app/assets/svg/',
                     svgCountries : './app/assets/svg/countries/',
                     svgSocialNetworks : './app/assets/svg/socialNetworks/',
+                    svgPortals : './app/assets/svg/portals/',
+            php: './app/php/',
             views : './app/views/',
     },
     localStorage : {
@@ -44,5 +55,8 @@ appConfig.constant('appConfig', {
     },
     sessionStorage : {
 
+    },
+    portals : {
+        refreshTime: 60000
     }
 });
