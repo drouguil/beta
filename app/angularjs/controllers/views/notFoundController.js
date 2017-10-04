@@ -8,7 +8,7 @@
  * Déclaration du module de la page 404
  */
 
-var notFoundCtrl = angular.module('notFoundCtrl', []);
+let notFoundCtrl = angular.module('notFoundCtrl', []);
 
 /**
  * Configuration du module de la page 404
@@ -24,6 +24,9 @@ notFoundCtrl.config([
          */
 
         $translateProvider.translations('fr', {
+
+            // Titre de la page
+
             NOTFOUND_TITLE: 'Page introuvable'
         });
 
@@ -32,6 +35,9 @@ notFoundCtrl.config([
          */
 
         $translateProvider.translations('en', {
+
+            // Titre de la page
+
             NOTFOUND_TITLE: 'Page not found'
         });
     }]);

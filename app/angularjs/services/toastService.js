@@ -8,7 +8,7 @@
  * Déclaration du module du service de gestion des notifications
  */
 
-var toastService = angular.module('toastService', []);
+let toastService = angular.module('toastService', []);
 
 /**
  * Service de gestion des notifications
@@ -18,6 +18,11 @@ toastService.service('toastManager', [
     '$mdToast',
     function (
         $mdToast) {
+
+        /**
+         * Référence sur le service
+         * @private
+         */
 
         var self = this;
 

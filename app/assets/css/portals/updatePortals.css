@@ -1,0 +1,397 @@
+/* updatePortals CSS */
+
+/* Global */
+
+#updatePortals-dialog {
+    max-width: 95%;
+    max-height: 95%;
+}
+
+#updatePortals-dialog md-toolbar {
+    background-color: rgb(225,210,65);
+}
+
+#updatePortals-dialog .btn-primary {
+    margin: 0rem auto;
+    background-color: rgb(225,210,65);
+}
+
+#updatePortals-dialog .btn-primary:hover {
+    background-color: rgb(245,230,85);
+}
+
+#updatePortals-dialog md-dialog-actions {
+    flex-direction: column;
+}
+
+#updatePortals-dialog #isUnknow md-checkbox.md-checked .md-icon {
+    background-color: rgb(225,210,65);
+}
+
+#updatePortals-dialog #isUnknow md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(225,210,65);
+}
+
+#updatePortals-dialog #isUnknow {
+    margin: auto;
+}
+
+/* Modifiers Cycle */
+
+#modifiers-cycle{
+    width: 350px;
+    height: 350px;
+    margin: auto;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 10px solid #fff;
+    box-shadow: rgba(0,0,0,0.2) 0px 0px 10px, rgba(0,0,0,0.05) 0px 3px 0px;
+}
+
+#modifiers-cycle:before{
+    content: '';
+    position: absolute;
+    border: 4px solid rgba(0,0,0,0.1);
+    width: 334px;
+    height: 334px;
+    border-radius: 50%;
+}
+
+#modifiers-cycle .modifier > img{
+    outline: none;
+}
+
+#modifiers-cycle .modifier > img.current-modifier {
+    cursor: default;
+}
+
+#modifiers-cycle .modifier > img:not(.current-modifier){
+    opacity: 0.4;
+}
+
+#modifiers-cycle .modifier > img:not(.current-modifier):hover{
+    opacity: 0.6;
+}
+
+#modifiers{
+	width:100%;
+	height:100%;
+	
+	-webkit-transition: all 5s cubic-bezier(0,.99,.44,.99);
+	-moz-transition:    all 5 cubic-bezier(0,.99,.44,.99);
+	-o-transition:      all 5s cubic-bezier(0,.99,.44,.99);
+	-ms-transition:     all 5s cubic-bezier(0,.99,.44,.99);
+	transition:         all 5s cubic-bezier(0,.99,.44,.99);	
+}
+
+#modifiers-cycle div.modifier{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 182px 59px 0;
+    border-color: #fff transparent;
+    transform-origin: 59px 182px;
+    left: 106px;
+    top: -15px;
+    opacity: 1;
+}
+
+#modifiers-cycle div.modifier:nth-child(1){
+	transform: rotate(36deg);
+	-webkit-transform: rotate(36deg);
+	-moz-transform: rotate(36deg);
+	-o-transform: rotate(36deg);
+	-ms-transform: rotate(36deg);
+	border-color: #eee transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(2){
+	transform: rotate(72deg);
+	-webkit-transform: rotate(72deg);
+	-moz-transform: rotate(72deg);
+	-o-transform: rotate(72deg);
+	-ms-transform: rotate(72deg);
+	border-color: #ddd transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(3){
+	transform: rotate(108deg);
+	-webkit-transform: rotate(108deg);
+	-moz-transform: rotate(108deg);
+	-o-transform: rotate(108deg);
+	-ms-transform: rotate(108deg);
+	border-color: #eee transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(4){
+	transform: rotate(144deg);
+	-webkit-transform: rotate(144deg);
+	-moz-transform: rotate(144deg);
+	-o-transform: rotate(144deg);
+	-ms-transform: rotate(144deg);
+	border-color: #ddd transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(5){
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	border-color: #eee transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(6){
+	transform: rotate(216deg);
+	-webkit-transform: rotate(216deg);
+	-moz-transform: rotate(216deg);
+	-o-transform: rotate(216deg);
+	-ms-transform: rotate(216deg);
+	border-color: #ddd transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(7){
+	transform: rotate(252deg);
+	-webkit-transform: rotate(252deg);
+	-moz-transform: rotate(252deg);
+	-o-transform: rotate(252deg);
+	-ms-transform: rotate(252deg);
+	border-color: #eee transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(8){
+	transform: rotate(288deg);
+	-webkit-transform: rotate(288deg);
+	-moz-transform: rotate(288deg);
+	-o-transform: rotate(288deg);
+	-ms-transform: rotate(288deg);
+	border-color: #ddd transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(9){
+	transform: rotate(324deg);
+	-webkit-transform: rotate(324deg);
+	-moz-transform: rotate(324deg);
+	-o-transform: rotate(324deg);
+	-ms-transform: rotate(324deg);
+	border-color: #eee transparent;	
+}
+
+#modifiers-cycle div.modifier:nth-child(10){
+	transform: rotate(360deg);
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+	-o-transform: rotate(360deg);
+	-ms-transform: rotate(360deg);
+	border-color: #ddd transparent;	
+}
+
+
+#modifiers-cycle div.modifier .modifier-img{
+    margin-top: -100px;
+    color: rgba(0,0,0,0.2);
+    position: relative;
+    display: block;
+    margin-left: -25px;
+    top: -52px;
+}
+
+#modifiers-spin{
+    width: 162px;
+    height: 162px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -81px 0 0 -81px;
+    border-radius: 50%;
+    box-shadow: rgba(0,0,0,0.1) 0px 3px 0px;
+    background: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    z-index: 1;
+}
+
+#modifiers-spin:before{
+	content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 25px 28px 25px;
+    border-color: transparent transparent #fff transparent;
+    top: -21px;
+    left: 56px;
+}
+
+#current-modifier-div{
+    width: 146px;
+    height: 146px;
+    display: flex;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: -73px 0 0 -73px;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: rgba(255,255,255,1) 0px -2px 0px inset, rgba(255,255,255,1) 0px 2px 0px inset, rgba(0,0,0,0.4) 0px 0px 5px;
+    background: rgb(255,255,255);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%, rgba(234,234,234,1) 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,255,1)), color-stop(100%,rgba(234,234,234,1)));
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 100%);
+    background: -o-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 100%);
+    background: -ms-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 100%);
+    background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%,rgba(234,234,234,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=1 );
+}
+
+#modifiers-spin #current-modifier-title {
+    text-transform: uppercase;
+    margin: auto;
+    font-size: 1.4rem;
+    line-height: 3rem;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: bold;
+    color: #848484;
+    max-width: 14rem;
+}
+
+/* LG + MD */
+
+@media screen and (min-width: 992px) {
+    
+    #portal-form {
+        height: 100%;
+        display: flex;
+    }
+    
+    #portal-form > div {
+        width: 50%;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+    }
+    
+    #updatePortals-dialog md-dialog-content {
+        padding: 2rem;
+        min-width: 73rem;
+        width: 1px;
+    }
+    
+    #updatePortals-dialog #positions {
+        margin: auto;
+        font-size: 2rem;
+        display: flex;
+        width: 80%;
+    }
+    
+    #updatePortals-dialog #positions > img {
+        margin: auto auto auto 0;
+        height: 5rem;
+        width: 5rem;
+    }
+    
+    #updatePortals-dialog #positions > div {
+        margin: auto;
+    }
+    
+    #updatePortals-dialog .position {
+        width: 5rem;
+        font-size: 1.4rem;
+    }
+    
+    #updatePortals-dialog #numberUses {
+        margin: auto;
+        display: flex;
+        width: 80%;
+    }
+    
+    #updatePortals-dialog #numberUses > img {
+        margin: auto auto auto 0;
+        height: 5rem;
+        width: 5rem;
+    }
+    
+    #updatePortals-dialog #numberUses > div {
+        margin: auto;
+    }
+    
+    #updatePortals-dialog #numberUses md-input-container {
+        width: 20rem;
+    }
+}
+
+/* SM + XS */
+
+@media screen and (max-width: 991px) {
+    
+    #portal-form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #portal-form > div {
+        width: 100%;
+        display: flex;
+        margin: auto;
+        flex-direction: column;
+    }
+    
+    #updatePortals-dialog md-dialog-content {
+        padding: 1rem;
+        min-width: 60rem;
+        width: 1px;
+    }
+    
+    #updatePortals-dialog #positions {
+        margin: auto;
+        font-size: 2rem;
+        display: flex;
+        width: 100%;
+    }
+    
+    #updatePortals-dialog #positions > img {
+        margin: auto auto auto 0;
+        height: 5rem;
+        width: 5rem;
+    }
+    
+    #updatePortals-dialog #positions > div {
+        margin: auto;
+    }
+    
+    #updatePortals-dialog .position {
+        width: 5rem;
+        font-size: 1.4rem;
+    }
+    
+    #updatePortals-dialog #numberUses {
+        margin: auto;
+        display: flex;
+        width: 100%;
+    }
+    
+    #updatePortals-dialog #numberUses > img {
+        margin: auto auto auto 0;
+        height: 5rem;
+        width: 5rem;
+    }
+    
+    #updatePortals-dialog #numberUses > div {
+        margin: auto;
+    }
+    
+    #updatePortals-dialog #numberUses md-input-container {
+        width: 20rem;
+    }
+
+    #updatePortals-dialog #portal-infos {
+        display: flex;
+    }
+}

@@ -8,7 +8,7 @@
  * Déclaration du module du header
  */
 
-var headerCtrl = angular.module('headerCtrl', []);
+let headerCtrl = angular.module('headerCtrl', []);
 
 /**
  * Configuration du module du header
@@ -82,35 +82,35 @@ headerCtrl.controller('headerController', [
          * @public
          */
 
-        $scope.helpIconPath = appConfig.paths.svg + 'help.svg';
+        $scope.helpIconPath = appConfig.paths.svgHeader + 'help.svg';
 
         /**
          * Chemin de l'icône d'inscription
          * @public
          */
 
-        $scope.registerIconPath = appConfig.paths.svg + 'register.svg';
+        $scope.registerIconPath = appConfig.paths.svgHeader + 'register.svg';
 
         /**
          * Chemin de l'icône de connexion
          * @public
          */
 
-        $scope.loginIconPath = appConfig.paths.svg + 'login.svg';
+        $scope.loginIconPath = appConfig.paths.svgHeader + 'login.svg';
 
         /**
          * Chemin de l'icône du profil
          * @public
          */
 
-        $scope.profileIconPath = appConfig.paths.svg + 'profile.svg';
+        $scope.profileIconPath = appConfig.paths.svgHeader + 'profile.svg';
 
         /**
          * Chemin de l'icône de déconnexion
          * @public
          */
 
-        $scope.logoutIconPath = appConfig.paths.svg + 'logout.svg';
+        $scope.logoutIconPath = appConfig.paths.svgHeader + 'logout.svg';
 
         /**
          * Chemin de l'image du logo
@@ -178,6 +178,7 @@ headerCtrl.controller('headerController', [
         };
 
         /**
+         * Déconnecte l'utilisateur en cours
          * @function logout
          * @public
          */
@@ -192,6 +193,7 @@ headerCtrl.controller('headerController', [
          * @function displayLanguageList
          * @public
          * @param {Objet} language Affichage ou non du menu des langues
+         * @return {}
          */
 
         $scope.languageIconPath = function (language) {
@@ -216,7 +218,7 @@ headerCtrl.controller('headerController', [
          * Récupère la liste des langues
          * @function languages
          * @public
-         * @return Liste des langues
+         * @return {[Objet]} Liste des langues
          */
 
         $scope.languages = function () {

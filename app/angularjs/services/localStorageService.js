@@ -8,7 +8,7 @@
  * Déclaration du module du service de gestion du localStorage
  */
 
-var localStorageService = angular.module('localStorageService', []);
+let localStorageService = angular.module('localStorageService', []);
 
 /**
  * Service de gestion du localStorage
@@ -18,6 +18,11 @@ localStorageService.service('localStorageManager', [
     '$window',
     function (
         $window) {
+
+        /**
+         * Référence sur le service
+         * @private
+         */
 
         var self = this;
 
@@ -34,7 +39,7 @@ localStorageService.service('localStorageManager', [
                 return JSON.parse($window.localStorage.getItem(key));
             }
             else {
-                console.error('La clef n\'est pas définie');
+                return 'La clef n\'est pas définie';
             }
         };
 

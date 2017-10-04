@@ -8,7 +8,7 @@
  * Déclaration du module du service de gestion des requêtes de base de données
  */
 
-var daoService = angular.module('daoService', []);
+let daoService = angular.module('daoService', []);
 
 /**
  * Service de gestion des requêtes de base de données
@@ -22,6 +22,11 @@ daoService.service('daoManager', [
         appConfig
     ) {
 
+        /**
+         * Référence sur le service
+         * @private
+         */
+
         var self = this;
 
         /**
@@ -33,10 +38,15 @@ daoService.service('daoManager', [
          */
 
         self.login = function (userToLogin) {
-            var params = {
-                user: userToLogin
-            };
-            return request('login', 'POST', params);
+            if (userToLogin) {
+                let params = {
+                    user: userToLogin
+                };
+                return request('login', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'utilisateur est manquant'));
+            }
         };
 
         /**
@@ -48,10 +58,15 @@ daoService.service('daoManager', [
          */
 
         self.register = function (userToRegister) {
-            var params = {
-                user: userToRegister
-            };
-            return request('register', 'POST', params);
+            if (userToRegister) {
+                let params = {
+                    user: userToRegister
+                };
+                return request('register', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'utilisateur est manquant'));
+            }
         };
 
         /**
@@ -64,22 +79,27 @@ daoService.service('daoManager', [
          */
 
         self.checkSame = function (fieldToCheck, value) {
-            var params = {};
-            switch(fieldToCheck) {
+            if (fieldToCheck && value) {
+                let params = {};
+                switch (fieldToCheck) {
 
-                case 'username' :
-                    params.username = value;
-                    break;
+                    case 'username':
+                        params.username = value;
+                        break;
 
-                case 'login' :
-                    params.login = value;
-                    break;
+                    case 'login':
+                        params.login = value;
+                        break;
 
-                case 'email' :
-                    params.email = value;
-                    break;
+                    case 'email':
+                        params.email = value;
+                        break;
+                }
+                return request('check_same', 'POST', params);
             }
-            return request('check_same', 'POST', params);
+            else {
+                return Promise.reject(new Error('Le champ a vérifier et/ou sa valeur est manquant'));
+            }
         };
 
         /**
@@ -113,10 +133,15 @@ daoService.service('daoManager', [
          */
 
         self.getPortalById = function (portalId) {
-            var params = {
-                id: portalId
-            };
-            return request('get_portal_by_id', 'POST', params);
+            if (portalId) {
+                let params = {
+                    id: portalId
+                };
+                return request('get_portal_by_id', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'identifiant du portail est manquant'));
+            }
         };
 
         /**
@@ -128,10 +153,15 @@ daoService.service('daoManager', [
          */
 
         self.getUserById = function (userId) {
-            var params = {
-                id: userId
-            };
-            return request('get_user_by_id', 'POST', params);
+            if (userId) {
+                let params = {
+                    id: userId
+                };
+                return request('get_user_by_id', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'identifiant de l\'utilisateur est manquant'));
+            }
         };
 
         /**
@@ -143,10 +173,15 @@ daoService.service('daoManager', [
          */
 
         self.getModifiersByDimensionId = function (dimensionId) {
-            var params = {
-                dimension_id: dimensionId
-            };
-            return request('get_modifiers_by_dimension_id', 'POST', params);
+            if (dimensionId) {
+                let params = {
+                    dimension_id: dimensionId
+                };
+                return request('get_modifiers_by_dimension_id', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'identifiant de la dimension est manquant'));
+            }
         };
 
         /**
@@ -158,13 +193,17 @@ daoService.service('daoManager', [
          */
 
         self.getPortalsByServerId = function (serverId) {
-            var params = {
-                server_id: serverId
-            };
-            return request('get_portals_by_server_id', 'POST', params);
-        };
+            if (serverId) {
+                let params = {
+                    server_id: serverId
+                };
+                return request('get_portals_by_server_id', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'identifiant du serveur est manquant'));
+            }
 
-        
+        };
 
         /**
          * Envoi d'une requête http
@@ -177,19 +216,33 @@ daoService.service('daoManager', [
          */
 
         function request(fileName, method, params) {
-            var config = {
-                url: appConfig.paths.php + fileName + '.php',
-                method: method
-            };
+            if(fileName) {
 
-            if(method == 'POST') {
-                config.data = params;
+                let config = {
+                    url: appConfig.paths.php + fileName + '.php'
+                };
+
+                if(method) {
+                    config.method = method;
+                }
+                else {
+                    config.method = 'GET';
+                }
+
+                if(params) {
+                    if (method == 'POST') {
+                        config.data = params;
+                    }
+                    else {
+                        config.params = params;
+                    }
+                }
+    
+                return $http(config);
             }
             else {
-                config.params = params;
+                return Promise.reject(new Error('Le nom du fichier est manquant'));
             }
-
-            return $http(config);
         };
 
     }]);

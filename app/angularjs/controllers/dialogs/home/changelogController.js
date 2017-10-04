@@ -8,7 +8,7 @@
  * Déclaration du module de la popin des changelogs
  */
 
-var changelogCtrl = angular.module('changelogCtrl', []);
+let changelogCtrl = angular.module('changelogCtrl', []);
 
 /**
  * Configuration du module de la popin des changelogs
@@ -58,7 +58,7 @@ changelogCtrl.controller('changelogController', [
          * @public
          */
 
-        $scope.closeIconPath = appConfig.paths.svg + 'close.svg';
+        $scope.closeIconPath = appConfig.paths.svgDialogs + 'close.svg';
 
         /**
          * Ferme la popin des changelogs

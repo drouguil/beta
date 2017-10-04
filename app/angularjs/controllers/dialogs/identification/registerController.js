@@ -8,7 +8,7 @@
  * Déclaration du module de la popin d'identification partie inscription
  */
 
-var registerCtrl = angular.module('registerCtrl', []);
+let registerCtrl = angular.module('registerCtrl', []);
 
 /**
  * Configuration du module de la popin d'identification partie inscription
@@ -109,6 +109,7 @@ registerCtrl.controller('registerController', [
 
         /**
          * Liste des serveurs de jeu
+         * @public
          */
 
         $scope.servers = [];
@@ -117,12 +118,13 @@ registerCtrl.controller('registerController', [
          * Détermine si tous les champs du formulaire d'inscription sont valides
          * @function isReady
          * @public
+         * @return {Booléen} Validité du formulaire (true -> Valide, false -> Invalide)
          */
 
         $scope.isReady = function () {
-            var user = $scope.user;
+            let user = $scope.user;
 
-            var val =
+            let val =
 
                 // Vérification du pseudo
 
@@ -152,6 +154,7 @@ registerCtrl.controller('registerController', [
         };
 
         /**
+         * Vérifie si la valeur d'un champ unique n'est pas déjà utilisé par un autre utilisateur 
          * @function checkSame
          * @public
          * @param {Caractères} field champ que l'on veut vérifier ('username', 'login', 'email')
@@ -233,7 +236,7 @@ registerCtrl.controller('registerController', [
             
             daoManager.getServers().then(function (response) {
                 response.data.forEach(function(data) {
-                    var server = {
+                    let server = {
                         id : data[0],
                         name: data[1]
                     }

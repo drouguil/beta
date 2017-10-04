@@ -8,7 +8,7 @@
  * Déclaration du module de la directive imageOnLoad
  */
 
-var imageOnLoadDirective = angular.module('imageOnLoadDirective', []);
+let imageOnLoadDirective = angular.module('imageOnLoadDirective', []);
 
 /**
  * Directive imageOnLoad

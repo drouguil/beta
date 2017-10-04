@@ -8,7 +8,7 @@
  * Déclaration du module de la page des puzzles
  */
 
-var puzzleCtrl = angular.module('puzzleCtrl', []);
+let puzzleCtrl = angular.module('puzzleCtrl', []);
 
 /**
  * Configuration du module de la page des puzzles

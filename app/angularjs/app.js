@@ -8,7 +8,7 @@
  * Déclaration du module principal de l'application
  */
 
-var mainApp = angular.module('mainApp',
+let mainApp = angular.module('mainApp',
     [
 
         /**
@@ -82,7 +82,6 @@ var mainApp = angular.module('mainApp',
         'dialogService',
         'localStorageService',
         'sessionStorageService',
-        'helpService',
         'puzzleService',
         'devToolsService',
         'imgService',
@@ -135,7 +134,7 @@ mainApp.config([
              */
 
             when('/', {
-                templateUrl: appConfig.paths.views + 'home.html',
+                templateUrl: appConfig.paths.viewsHome + 'home.html',
                 controller: 'homeController'
             }).
 
@@ -144,7 +143,7 @@ mainApp.config([
              */
 
             when('/puzzle', {
-                templateUrl: appConfig.paths.views + 'puzzle.html',
+                templateUrl: appConfig.paths.viewsPuzzle + 'puzzle.html',
                 controller: 'puzzleController'
             }).
 
@@ -153,7 +152,7 @@ mainApp.config([
              */
 
             when('/portals', {
-                templateUrl: appConfig.paths.views + 'portals.html',
+                templateUrl: appConfig.paths.viewsPortals + 'portals.html',
                 controller: 'portalsController'
             }).
 
@@ -162,7 +161,7 @@ mainApp.config([
              */
 
             when('/404', {
-                templateUrl: appConfig.paths.views + '404.html',
+                templateUrl: appConfig.paths.views404 + '404.html',
                 controller: 'notFoundController'
             }).
 

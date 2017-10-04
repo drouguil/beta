@@ -8,7 +8,7 @@
  * Déclaration du module du footer
  */
 
-var footerCtrl = angular.module('footerCtrl', []);
+let footerCtrl = angular.module('footerCtrl', []);
 
 /**
  * Configuration du module du footer
@@ -30,6 +30,9 @@ footerCtrl.config([
             PURPOSE_UPGRADE: 'Proposer une amélioration',
             PURPOSE_PICTURE: 'Proposer un dessin/logo/image',
             CONTACT_US: 'Nous contacter',
+
+            // Copyright
+
             COPYRIGHT_1: 'Les icônes faîtes par ',
             COPYRIGHT_2: ' sur ',
             COPYRIGHT_3: ' sont autorisées à être publiées par '
@@ -46,6 +49,9 @@ footerCtrl.config([
             PURPOSE_UPGRADE: 'Purpose an upgrade',
             PURPOSE_PICTURE: 'Purpose a drawing/logo/picture',
             CONTACT_US: 'Contact us',
+
+            // Copyright
+
             COPYRIGHT_1: 'Icons made by ',
             COPYRIGHT_2: ' from ',
             COPYRIGHT_3: ' are licensed by '

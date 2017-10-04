@@ -8,7 +8,7 @@
  * Déclaration du module de la popin du profil
  */
 
-var profileCtrl = angular.module('profileCtrl', []);
+let profileCtrl = angular.module('profileCtrl', []);
 
 /**
  * Configuration du module de la popin du profil
@@ -58,7 +58,7 @@ profileCtrl.controller('profileController', [
          * @public
          */
 
-        $scope.closeIconPath = appConfig.paths.svg + 'close.svg';
+        $scope.closeIconPath = appConfig.paths.svgDialogs + 'close.svg';
 
         /**
          * Ferme la popin du profil

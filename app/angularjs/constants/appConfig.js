@@ -8,7 +8,7 @@
  * Déclaration du module des paramètres de configuration de l'application
  */
 
-var appConfig = angular.module('appConfig', []);
+let appConfig = angular.module('appConfig', []);
 
 /**
  * Paramètres de configuration de l'application
@@ -45,10 +45,20 @@ appConfig.constant('appConfig', {
                         imgHud : './app/assets/img/puzzle/hud/',
                 svg : './app/assets/svg/',
                     svgCountries : './app/assets/svg/countries/',
-                    svgSocialNetworks : './app/assets/svg/socialNetworks/',
+                    svgDialogs : './app/assets/svg/dialogs/',
+                    svgFooter : './app/assets/svg/footer/',
+                    svgHeader : './app/assets/svg/header/',
+                    svgHome : './app/assets/svg/home/',
                     svgPortals : './app/assets/svg/portals/',
+                    svgSocialNetworks : './app/assets/svg/socialNetworks/',
             php: './app/php/',
             views : './app/views/',
+                views404 : './app/views/404/',
+                viewsFooter : './app/views/footer/',
+                viewsHeader : './app/views/header/',
+                viewsHome : './app/views/home/',
+                viewsPortals : './app/views/portals/',
+                viewsPuzzle : './app/views/puzzle/'
     },
     localStorage : {
         languageName : 'language'

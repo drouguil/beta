@@ -25,6 +25,11 @@ puzzleService.service('puzzleManager', [
         devToolsManager,
         $timeout) {
 
+        /**
+         * Référence sur le service
+         * @private
+         */
+
         var self = this;
 
         self.map = document.getElementById("puzzle-map");

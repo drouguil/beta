@@ -8,7 +8,7 @@
  * Déclaration du module des paramètres de configuration du puzzle
  */
 
-var puzzleConfig = angular.module('puzzleConfig', []);
+let puzzleConfig = angular.module('puzzleConfig', []);
 
 /**
  * Paramètres de configuration du puzzle

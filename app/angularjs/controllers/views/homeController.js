@@ -8,7 +8,7 @@
  * Déclaration du module de la page d'accueil
  */
 
-var homeCtrl = angular.module('homeCtrl', []);
+let homeCtrl = angular.module('homeCtrl', []);
 
 /**
  * Configuration du module de la page d'accueil
@@ -24,7 +24,13 @@ homeCtrl.config([
          */
 
         $translateProvider.translations('fr', {
+
+            // Titre de la page
+
             HOME_TITLE: 'Accueil',
+
+            // Boutons
+
             PORTALS_BTN: 'Gestion des portails',
             CHANGELOG_BTN: 'Mises à jour',
             PARTNERS_BTN: 'Partenaires'
@@ -35,7 +41,13 @@ homeCtrl.config([
          */
 
         $translateProvider.translations('en', {
+
+            // Titre de la page
+
             HOME_TITLE: 'Home',
+
+            // Boutons
+
             PORTALS_BTN: 'Portals\' Management',
             CHANGELOG_BTN: 'Website\'s update',
             PARTNERS_BTN: 'Partners'
@@ -68,7 +80,7 @@ homeCtrl.controller('homeController', [
          * @public
          */
 
-        $scope.portalsIconBtnPath = appConfig.paths.imgPortals + 'Enurado.png';
+        $scope.portalsIconBtnPath = appConfig.paths.imgPortals + 'enurado.png';
 
         /**
          * Chemin de l'image du bouton des portails
@@ -82,7 +94,7 @@ homeCtrl.controller('homeController', [
          * @public
          */
 
-        $scope.changelogIconBtnPath = appConfig.paths.svg + 'changelog.svg';
+        $scope.changelogIconBtnPath = appConfig.paths.svgHome + 'changelog.svg';
 
         /**
          * Chemin de l'image du bouton du changelog
@@ -96,7 +108,7 @@ homeCtrl.controller('homeController', [
          * @public
          */
 
-        $scope.partnersIconBtnPath = appConfig.paths.svg + 'partners.svg';
+        $scope.partnersIconBtnPath = appConfig.paths.svgHome + 'partners.svg';
 
         /**
          * Chemin de l'image d'Entraide

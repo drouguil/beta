@@ -8,7 +8,7 @@
  * Déclaration du module du service de gestion du sessionStorage
  */
 
-var sessionStorageService = angular.module('sessionStorageService', []);
+let sessionStorageService = angular.module('sessionStorageService', []);
 
 /**
  * Service de gestion du sessionStorage
@@ -18,6 +18,11 @@ sessionStorageService.service('sessionStorageManager', [
     '$window',
     function (
         $window) {
+
+        /**
+         * Référence sur le service
+         * @private
+         */
 
         var self = this;
 
@@ -34,7 +39,7 @@ sessionStorageService.service('sessionStorageManager', [
                 return JSON.parse($window.sessionStorage.getItem(key));
             }
             else {
-                console.error('La clef n\'est pas définie');
+                return 'La clef n\'est pas définie';
             }
         };
 

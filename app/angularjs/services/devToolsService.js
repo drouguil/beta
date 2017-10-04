@@ -8,7 +8,7 @@
  * Déclaration du module du service de gestion des outils de développement
  */
 
-var devToolsService = angular.module('devToolsService', []);
+let devToolsService = angular.module('devToolsService', []);
 
 /**
  * Service de gestion des outils de développement
@@ -20,10 +20,16 @@ devToolsService.service('devToolsManager', [
         $interval
     ) {
 
+        /**
+         * Référence sur le service
+         * @private
+         */
+
         var self = this;
 
         /**
          * Timer
+         * @public
          */
 
         self.timer = 0;
@@ -37,6 +43,12 @@ devToolsService.service('devToolsManager', [
         self.startTimer = function () {
             self.timer = 0;
         };
+
+        /**
+         * Incrémentation du timeur
+         * @function runTimer
+         * @private
+         */
         
         var runTimer = $interval(function () {
             self.timer++;

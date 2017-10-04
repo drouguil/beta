@@ -8,7 +8,7 @@
  * Déclaration du module de la popin d'aide
  */
 
-var helpCtrl = angular.module('helpCtrl', []);
+let helpCtrl = angular.module('helpCtrl', []);
 
 /**
  * Configuration du module de la popin d'aide
@@ -58,7 +58,7 @@ helpCtrl.controller('helpController', [
          * @public
          */
 
-        $scope.closeIconPath = appConfig.paths.svg + 'close.svg';
+        $scope.closeIconPath = appConfig.paths.svgDialogs + 'close.svg';
 
         /**
          * Ferme la popin d'aide

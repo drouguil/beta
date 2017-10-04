@@ -8,7 +8,7 @@
  * Déclaration du module de la popin d'identification
  */
 
-var identificationCtrl = angular.module('identificationCtrl', []);
+let identificationCtrl = angular.module('identificationCtrl', []);
 
 /**
  * Configuration du module de la popin d'identification
@@ -66,14 +66,14 @@ identificationCtrl.controller('identificationController', [
          * @public
          */
 
-        $scope.registerIconPath = appConfig.paths.svg + 'register.svg';
+        $scope.registerIconPath = appConfig.paths.svgHeader + 'register.svg';
 
         /**
          * Chemin de l'icône de connexion
          * @public
          */
 
-        $scope.loginIconPath = appConfig.paths.svg + 'login.svg';
+        $scope.loginIconPath = appConfig.paths.svgHeader + 'login.svg';
 
         /**
          * Détermine si l'on doit afficher le formulaire d'inscription (true) ou le formulaire de connexion (false)
@@ -87,7 +87,7 @@ identificationCtrl.controller('identificationController', [
          * @public
          */
 
-        $scope.closeIconPath = appConfig.paths.svg + 'close.svg';
+        $scope.closeIconPath = appConfig.paths.svgDialogs + 'close.svg';
 
         /**
          * Ferme la popin d'identification
@@ -123,7 +123,7 @@ identificationCtrl.controller('identificationController', [
          * Retourne le texte à afficher sur le bouton de changement de formulaire
          * @function changeFormText
          * @public 
-         * @return Texte du bouton de changement de formulaire
+         * @return {Caractères} Texte du bouton de changement de formulaire
          */
 
         $scope.changeFormText = function () {

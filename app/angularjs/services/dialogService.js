@@ -21,6 +21,11 @@ dialogService.service('dialogManager', [
         $mdDialog,
         appConfig) {
 
+        /**
+         * Référence sur le service
+         * @private
+         */
+
         var self = this;
 
         /**
@@ -32,17 +37,18 @@ dialogService.service('dialogManager', [
          * @param {Caractères} textOk Texte de confirmation
          * @param {Caractères} textCancel Texte d'annulation
          * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
-         * @return
+         * @return {Promesse}
          */
 
         self.showConfirmDialog = function (title, textContent, textOk, textCancel, ev) {
-            var confirmDialog = null;
+            let confirmDialog = null;
+            let error = 'Une erreur est survenue lors de l\'ouverture de la popin de confirmation';
             if (title) {
                 if (textContent) {
                     if (textOk) {
                         if (textCancel) {
                             if (ev) {
-                                var confirmDialog = $mdDialog.confirm()
+                                confirmDialog = $mdDialog.confirm()
                                     .title(title)
                                     .textContent(textContent)
                                     .targetEvent(ev)
@@ -50,7 +56,7 @@ dialogService.service('dialogManager', [
                                     .cancel(textCancel);
                             }
                             else {
-                                var confirmDialog = $mdDialog.confirm()
+                                confirmDialog = $mdDialog.confirm()
                                     .title(title)
                                     .textContent(textContent)
                                     .ok(textOk)
@@ -60,22 +66,22 @@ dialogService.service('dialogManager', [
                             return $mdDialog.show(confirmDialog);
                         }
                         else {
-                            console.error('Le texte d\'annulation n\'est pas défini');
+                            error = 'Le texte d\'annulation n\'est pas défini';
                         }
                     }
                     else {
-                        console.error('Le texte de confirmation n\'est pas défini');
+                        error = 'Le texte de confirmation n\'est pas défini';
                     }
                 }
                 else {
-                    console.error('Le texte du contenu n\'est pas défini');
+                    error = 'Le texte du contenu n\'est pas défini';
                 }
             }
             else {
-                console.error('Le titre n\'est pas défini');
+                error = 'Le titre n\'est pas défini';
             }
 
-            return 'Erreur lors de l\'ouverture de la popin de confirmation';
+            return Promise.reject(new Error(error));
         };
 
         /**
@@ -90,9 +96,9 @@ dialogService.service('dialogManager', [
             if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            var dialog =  {
+            let dialog =  {
                 controller: 'changelogController',
-                templateUrl: appConfig.paths.views + 'changelog.html',
+                templateUrl: appConfig.paths.viewsHome + 'changelog.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: clickOutside
             };
@@ -114,9 +120,9 @@ dialogService.service('dialogManager', [
             if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            var dialog = {
+            let dialog = {
                 controller: 'helpController',
-                templateUrl: appConfig.paths.views + 'help.html',
+                templateUrl: appConfig.paths.viewsHeader + 'help.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: clickOutside
             }
@@ -140,9 +146,9 @@ dialogService.service('dialogManager', [
             if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            var dialog = {
+            let dialog = {
                 controller: 'updatePortalsController',
-                templateUrl: appConfig.paths.views + 'updatePortals.html',
+                templateUrl: appConfig.paths.viewsPortals + 'updatePortals.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: clickOutside,
                 locals: {
@@ -169,9 +175,9 @@ dialogService.service('dialogManager', [
             if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            var dialog = {
+            let dialog = {
                 controller: 'identificationController',
-                templateUrl: appConfig.paths.views + 'identification.html',
+                templateUrl: appConfig.paths.viewsHeader + 'identification.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: clickOutside,
                 locals: {
@@ -197,9 +203,9 @@ dialogService.service('dialogManager', [
             if (clickOutside == undefined) {
                 clickOutside = true;
             }
-            var dialog = {
+            let dialog = {
                 controller: 'profileController',
-                templateUrl: appConfig.paths.views + 'profile.html',
+                templateUrl: appConfig.paths.viewsHeader + 'profile.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: clickOutside,
                 locals: {

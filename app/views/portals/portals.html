@@ -1,0 +1,135 @@
+<div id="portals-view">
+    <div id="portals-content">
+        <!--<md-input-container class="md-block">
+            <label ng-bind="'SERVER_LABEL' | translate"></label>
+            <md-select required name="server" ng-model="currentServer">
+                <md-option ng-repeat="server in servers" value="{{server}}" ng-bind="server.name"></md-option>
+            </md-select>
+        </md-input-container>-->
+        <div id="portals-header">
+            <div class="col-xs-6">
+                <a id="guild-clipboard" class="btn btn-small" ngclipboard ngclipboard-success="copyInfos('success')" ngclipboard-error="copyInfos('error')"
+                    data-clipboard-text="{{ getAnnouncement() }}">
+                    <img class="noselect" ng-src="{{ guildIconPath }}" imageonload="imgLoaded()">
+                    <span ng-bind="'COPY_ANNOUNCEMENT' | translate"></span>
+                    <md-tooltip ng-bind="'COPY_ANNOUNCEMENT_TOOLTIP' | translate"></md-tooltip>
+                    <img class="noselect" ng-src="{{ allianceIconPath }}" imageonload="imgLoaded()">
+                </a>
+            </div>
+            <div class="col-xs-6">
+                <a ng-disabled="refreshTimer > 45" id="refresh-btn" ng-class="{ 'disabled' : refreshTimer > 45 }" class="btn btn-small" ng-click="refreshData()">
+                    <img class="noselect" ng-src="{{ refreshIconPath }}" imageonload="imgLoaded()">
+                    <span ng-bind="refreshTimer"></span>
+                    <md-tooltip ng-bind="'REFRESH_TOOLTIP' | translate"></md-tooltip>
+                </a>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6" ng-repeat="portal in currentServer.portals | orderBy: 'dimensionId' track by $index">
+            <div class="portal-div">
+                <div class="portal {{getDimensionClassNameById(portal.dimensionId)}}">
+                    <div class="dimension">
+                        <img class="noselect dimension-img" ng-src="{{getDimensionImgPathById(portal.dimensionId)}}" imageonload="imgLoaded()">
+                        <h1 class="dimension-title" ng-bind="getDimensionNameById(portal.dimensionId)"></h1>
+                    </div>
+
+                    <div class="infos">
+                        <div class="position">
+                            <div>
+                                <img class="noselect" ng-src="{{ positionIconPath }}" imageonload="imgLoaded()">
+                                <span>[ {{ portal.posX }} , {{ portal.posY }} ]</span>
+                                <md-tooltip ng-bind="'POSITION_TOOLTIP' | translate"></md-tooltip>
+                            </div>
+                            <a ngclipboard ngclipboard-success="copyInfos('success')" ngclipboard-error="copyInfos('error')" data-clipboard-text="{{ getPos(portal) }}">
+                                <img class="noselect" ng-src="{{ clipboardIconPath }}" imageonload="imgLoaded()">
+                                <md-tooltip ng-bind="'COPY_POSITION_TOOLTIP' | translate"></md-tooltip>
+                            </a>
+                        </div>
+                        <div class="numberUses">
+                            <img class="noselect" ng-src="{{ numberUsesIconPath }}" imageonload="imgLoaded()">
+                            <span ng-style="{ 'color' : getColorNumberUses(portal.numberUses) }" ng-bind="portal.numberUses"></span>
+                            <md-tooltip ng-bind="'NUMBER_USES_TOOLTIP' | translate"></md-tooltip>
+                        </div>
+                    </div>
+
+                    <div class="modifiers-div">
+                        <div class="modifiers-header">
+                            <div>
+                                <span ng-show="!displayModifiers" ng-bind="getCurrentModifierName(portal)"></span>
+                                <md-tooltip ng-show="!displayModifiers" ng-bind="'CURRENT_MODIFIER_TOOLTIP' | translate"></md-tooltip>
+                                <span ng-show="displayModifiers" ng-bind="'MODIFIERS_CYCLE' | translate"></span>
+                            </div>
+                            <div>
+                                <img class="noselect" ng-show="!displayModifiers" ng-src="{{ displayModifiersIconPath }}" ng-click="displayModifiers = !displayModifiers"
+                                    imageonload="imgLoaded()">
+                                <md-tooltip ng-if="!displayModifiers" ng-bind="'DISPLAY_MODIFIERS_TOOLTIP' | translate"></md-tooltip>
+                                <img class="noselect" ng-show="displayModifiers" ng-src="{{ hideModifiersIconPath }}" ng-click="displayModifiers = !displayModifiers" imageonload="imgLoaded()">
+                                <md-tooltip ng-if="displayModifiers" ng-bind="'HIDE_MODIFIERS_TOOLTIP' | translate"></md-tooltip>
+                            </div>
+                        </div>
+                        <div ng-show="displayModifiers" class="modifiers-cycle">
+                            <div class="modifiers">
+                                <div class="modifier" ng-repeat="modifier in getModifiersByDimensionId(portal.dimensionId) track by $index">
+                                    <span class="modifier-span">
+                                        <img class="noselect modifier-img" ng-class="{ 'current-modifier' : modifier.id == portal.modifierId }" ng-src="{{getModifierImgPathByName(modifier.name)}}"
+                                            imageonload="imgLoaded()">
+                                        <md-tooltip ng-bind="getModifierTooltip(modifier.name)"></md-tooltip>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div id="modifiers-spin">
+                                <div id="current-modifier-div">
+                                    <h2 id="current-modifier-title" ng-bind="getCurrentModifierName(portal)"></h2>
+                                    <md-tooltip ng-bind="'CURRENT_MODIFIER_TOOLTIP' | translate"></md-tooltip>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="copy-infos">
+                        <a ngclipboard ngclipboard-success="copyInfos('success')" ngclipboard-error="copyInfos('error')" data-clipboard-text="{{ getInfos(portal) }}"
+                            aria-label="copy">
+                            <span ng-bind="'COPY_INFOS_BTN' | translate"></span>
+                            <img class="noselect" ng-src="{{ clipboardIconPath }}" imageonload="imgLoaded()">
+                            <md-tooltip ng-bind="'COPY_INFOS_TOOLTIP' | translate"></md-tooltip>
+                        </a>
+                    </div>
+
+                    <div class="user">
+                        <span ng-bind="portal.user.username"></span>
+                        <md-tooltip ng-bind="'USER_TOOLTIP' | translate"></md-tooltip>
+                    </div>
+
+                    <div class="votes">
+                        <a class="confirm" ng-click="confirm(portal)" aria-label="confirm">
+                            <span class="badge" ng-bind="portal.numberConfirms"></span>
+                            <img class="noselect" ng-src="{{ confirmIconPath }}" imageonload="imgLoaded()">
+                            <md-tooltip ng-bind="'CONFIRM_TOOLTIP' | translate"></md-tooltip>
+                        </a>
+                        <a class="report" ng-click="report(portal)" aria-label="report">
+                            <span class="badge" ng-bind="portal.numberReports"></span>
+                            <img class="noselect" ng-src="{{ reportIconPath }}" imageonload="imgLoaded()">
+                            <md-tooltip ng-bind="'REPORT_TOOLTIP' | translate"></md-tooltip>
+                        </a>
+                    </div>
+
+                    <div class="update">
+                        <div class="update-time">
+                            <img class="noselect" ng-src="{{ updateTimeIconPath }}" imageonload="imgLoaded()">
+                            <span>10j 12h 15min</span>
+                            <md-tooltip ng-bind="'UPDATE_TIME_TOOLTIP' | translate"></md-tooltip>
+                        </div>
+                        <div class="update-link">
+                            <a ng-click="showUpdatePortalsDialog($event, portal, dimensions[portal.id-1])" aria-label="update">
+                                <span ng-bind="'UPDATE_BTN' | translate"></span>
+                                <img class="noselect" ng-src="{{ updateIconPath }}" imageonload="imgLoaded()">
+                                <md-tooltip ng-bind="'UPDATE_LINK_TOOLTIP' | translate"></md-tooltip>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

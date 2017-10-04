@@ -8,7 +8,7 @@
  * Déclaration du module de la popin d'identification partie connexion
  */
 
-var loginCtrl = angular.module('loginCtrl', []);
+let loginCtrl = angular.module('loginCtrl', []);
 
 /**
  * Configuration du module de la popin d'identification partie connexion
@@ -83,11 +83,22 @@ loginCtrl.controller('loginController', [
             remember: true 
         };
 
+        /**
+         * Identifiant incorrect de la dernière tentative de connexion échouée
+         * @public
+         */
+
         $scope.wrongLogin = undefined;
+
+        /**
+         * Mot de passe incorrect de la dernière tentative de connexion échouée
+         * @public
+         */
+
         $scope.wrongPassword = undefined;
 
         /**
-         * 
+         * Valide le formulaire si l'identifiant et le mot de passe ne correspondent pas à ceux de la dernière tentative de connexion échouée
          * @function checkWrong
          * @public
          */
@@ -109,12 +120,13 @@ loginCtrl.controller('loginController', [
          * Détermine si tous les champs du formulaire de connexion sont valides
          * @function isReady
          * @public
+         * @return {Booléen} Validité du formulaire (true -> Valide, false -> Invalide)
          */
 
         $scope.isReady = function () {
-            var user = $scope.user;
+            let user = $scope.user;
 
-            var val =
+            let val =
 
                 // Vérification du nom d'utilisateur/adresse mail
 

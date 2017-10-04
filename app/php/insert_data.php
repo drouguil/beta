@@ -17,35 +17,17 @@
             // Liste des serveurs
 
             $servers = array(
-                "Agride",
-                "Amayiro",
-                "Atcham",
-                "Beta 1",
-                "Beta 2",
-                "Brumaire",
-                "Crocabulia",
-                "Djaul",
-                "Echo",
-                "Goultard",
-                "Hecate",
-                "Hel Munster",
-                "Helsephine",
-                "Lily",
-                "Many",
-                "Menalt",
-                "Meriana",
-                "Mylaise",
-                "Ombre",
-                "Oto Mustam",
-                "Otomai",
-                "Pandore",
-                "Raval",
-                "Rubilax",
-                "Rykke Errel",
-                "Silouate",
-                "Silvosse",
-                "Ulette",
-                "Vil Smisse"
+                "AGRIDE",
+                "ATCHAM",
+                "BETA_1",
+                "BETA_2",
+                "CROCABULIA",
+                "ECHO",
+                "MERIANA",
+                "OMBRE",
+                "OTO_MUSTAM",
+                "PANDORE",
+                "RUBILAX"
             );
 
             // Création de la requête
@@ -107,10 +89,10 @@
             // Liste des dimensions
 
             $dimensions = array(
-                "Ecaflipus",
-                "Enurado",
-                "Srambad",
-                "Xelorium");
+                "ECAFLIPUS",
+                "ENURADO",
+                "SRAMBAD",
+                "XELORIUM");
 
             // Création de la requête
             
@@ -173,42 +155,42 @@
             // Liste des modificateurs
 
             $modifiers = array(
-                "Explosive disappearance",
-                "Cyclic power",
-                "Invigorating solitude",
-                "Long range liaison",
-                "Stunning summons",
+                "EXPLOSIVE_DISAPPEARANCE",
+                "CYCLIC_POWER",
+                "INVIGORATING_PUSHES",
+                "LONG_RANGE_LIAISON",
+                "STUNNING_SUMMONS",
 
                 //Ecaflipus
 
-                "Critical regeneration",
-                "Elementary roulette",
-                "Bonus cell",
-                "Priority target",
-                "Correct distance",
+                "CRITICAL_REGENERATION",
+                "ELEMENTARY_ROULETTE",
+                "BONUS_CELL",
+                "PRIORITY_TARGET",
+                "CORRECT_DISTANCE",
 
                 //Enutrosor
                 
-                "Hurtful hindrances",
-                "Incapacitating movement",
-                "Solidarity",
-                "Measured distance",
-                "Invigorating pushes",
+                "HURTFUL_HINDRANCES",
+                "INCAPACITATING_MOVEMENT",
+                "SOLIDARITY",
+                "MEASURED_DISTANCE",
+                "INVIGORATING_SOLITUDE",
 
                 //Srambad
                 
-                "Low blows",
-                "Berserker",
-                "Dangerous game",
-                "Larceny",
-                "Evasion",
+                "LOW_BLOWS",
+                "BERSERKER",
+                "DANGEROUS_GAME",
+                "LARCENY",
+                "EVASION",
             
                 //Xelorium
-                "Looking for action",
-                "Leap gobball",
-                "Go back",
-                "Fettered actions",
-                "Mummifying solitude"
+                "LOOKING_FOR_ACTION",
+                "LEAP_GOBBALL",
+                "GO_BACK",
+                "FETTERED_ACTIONS",
+                "MUMMIFYING_SOLITUDE"
             );
 
             // Création de la requête
@@ -286,58 +268,58 @@
             // Ecaflipus
 
             array(
-                "Explosive disappearance",
-                "Critical regeneration",
-                "Cyclic power",
-                "Elementary roulette",
-                "Invigorating pushes",
-                "Bonus cell",
-                "Long range liaison",
-                "Priority target",
-                "Stunning summons",
-                "Correct distance"),
+                "EXPLOSIVE_DISAPPEARANCE",
+                "CRITICAL_REGENERATION",
+                "CYCLIC_POWER",
+                "ELEMENTARY_ROULETTE",
+                "INVIGORATING_PUSHES",
+                "BONUS_CELL",
+                "LONG_RANGE_LIAISON",
+                "PRIORITY_TARGET",
+                "STUNNING_SUMMONS",
+                "CORRECT_DISTANCE"),
 
             // Enutrosor
 
             array(
-                "Explosive disappearance",
-                "Invigorating pushes",
-                "Hurtful hindrances",
-                "Long range liaison",
-                "Incapacitating movement",
-                "Stunning summons",
-                "Invigorating solitude",
-                "Cyclic power",
-                "Solidarity",
-                "Measured distance"),
+                "EXPLOSIVE_DISAPPEARANCE",
+                "INVIGORATING_PUSHES",
+                "HURTFUL_HINDRANCES",
+                "LONG_RANGE_LIAISON",
+                "INCAPACITATING_MOVEMENT",
+                "STUNNING_SUMMONS",
+                "INVIGORATING_SOLITUDE",
+                "CYCLIC_POWER",
+                "SOLIDARITY",
+                "MEASURED_DISTANCE"),
 
             // Srambad
 
             array(
-                "Explosive disappearance",
-                "Dangerous game",
-                "Invigorating pushes",
-                "Larceny",
-                "Long range liaison",
-                "Evasion",
-                "Cyclic power",
-                "Low blows",
-                "Stunning summons",
-                "Berserker"),
+                "EXPLOSIVE_DISAPPEARANCE",
+                "DANGEROUS_GAME",
+                "INVIGORATING_PUSHES",
+                "LARCENY",
+                "LONG_RANGE_LIAISON",
+                "EVASION",
+                "CYCLIC_POWER",
+                "LOW_BLOWS",
+                "STUNNING_SUMMONS",
+                "BERSERKER"),
 
             // Xelorium
 
             array(
-                "Explosive disappearance",
-                "Go back",
-                "Long range liaison",
-                "Fettered actions",
-                "Invigorating pushes",
-                "Mummifying solitude",
-                "Stunning summons",
-                "Looking for action",
-                "Cyclic power",
-                "Leap gobball")
+                "EXPLOSIVE_DISAPPEARANCE",
+                "GO_BACK",
+                "LONG_RANGE_LIAISON",
+                "FETTERED_ACTIONS",
+                "INVIGORATING_PUSHES",
+                "MUMMIFYING_SOLITUDE",
+                "STUNNING_SUMMONS",
+                "LOOKING_FOR_ACTION",
+                "CYCLIC_POWER",
+                "LEAP_GOBBALL")
 
             );
 

@@ -25,6 +25,11 @@ languageService.service('languageManager', [
         localStorageManager,
         appConfig) {
 
+        /**
+         * Référence sur le service
+         * @private
+         */
+
         var self = this;
         
         /**
@@ -60,7 +65,7 @@ languageService.service('languageManager', [
          * Récupère la liste des langues
          * @function getLanguages
          * @public
-         * @return Liste des langues
+         * @return {[Objet]} Liste des langues
          */
 
         self.getLanguages = function () {
@@ -91,7 +96,7 @@ languageService.service('languageManager', [
 
         self.setCurrentLanguage = function (language) {
             if (language) {
-                var isFound = false;
+                let isFound = false;
                 languages.forEach(function (tempLanguage) {
                     if (tempLanguage.id == language.id) {
                         isFound = true;
