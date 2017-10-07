@@ -583,6 +583,16 @@ portalsCtrl.controller('portalsController', [
         });
 
         /**
+         * Rafraîchit les données des portails
+         * @function refreshDataPortals
+         * @public
+         */
+
+        $scope.$on('refreshDataPortals', function() {
+            $scope.refreshData();
+        });
+
+        /**
          * Actualise les données
          * @function refreshData
          * @public
@@ -592,6 +602,7 @@ portalsCtrl.controller('portalsController', [
             $scope.refreshTimer = appConfig.portals.refreshTime / 1000;
             $scope.currentServer.portals.forEach(function (portal, indexPortal, portals) {
                 daoManager.getPortalById(portal.id).then(function (response) {
+
                     let data = response.data;
 
                     let refreshPortal = {
@@ -601,12 +612,12 @@ portalsCtrl.controller('portalsController', [
                         userId: data['user_id'],
                         modifierId: data['modifier_id'],
                         user: portal.user,
-                        posX: parseInt(data['pos_x']),
-                        posY: parseInt(data['pos_y']),
-                        numberUses: parseInt(data['number_uses']),
-                        isUnknow: parseInt(data['is_unknow']),
-                        numberConfirms : parseInt(data['number_confirms']),
-                        numberReports : parseInt(data['number_reports'])
+                        posX: data['pos_x'],
+                        posY: data['pos_y'],
+                        numberUses: data['number_uses'],
+                        isUnknow: data['is_unknow'],
+                        numberConfirms : data['number_confirms'],
+                        numberReports : data['number_reports']
                     };
 
                     // Récupération de l'utilisateur

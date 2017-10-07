@@ -63,7 +63,7 @@
         }
     }
     else {
-        $error = "Error user ";
+        $error = "Error user";
         $return = $error;
     }
 

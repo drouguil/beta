@@ -20,15 +20,29 @@
 
         // Requête de sélection du portail
 
-        $request = "SELECT * FROM `sw_portals` WHERE `id` = " . $id;
+        $request = "SELECT * FROM `sw_portals` WHERE `id` = ?";
+
+        $stmt = $conn->prepare($request);
+        
+        if($stmt) {
+
+            $stmt->bind_param('i', $id);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            // Conversion du résultat
     
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
-    
-        // Conversion du résultat
-    
-        $return = mysqli_fetch_assoc($result);
+            $result = $result->fetch_assoc();
+
+            $stmt->close();
+        }
+        else {
+            $result = "Error request";
+        }
+
+        $return = $result;
     
         // Fermeture de la connexion à la base de données
     

@@ -27,6 +27,7 @@ updatePortalsCtrl.config([
             UPDATE_PORTALS_TITLE: 'Modification du portail',
             UPDATE_PORTALS_BTN: 'Valider la modification',
             UPDATE_PORTALS_SUCCESS: 'Modification effectuée',
+            UPDATE_PORTALS_ERROR: 'Modification échouée',
             NB_USES_LABEL: 'Nombre d\'utilisations',
             IS_UNKNOW_LABEL: 'Position inconnue',
             CANCEL_BTN: 'Annuler',
@@ -65,6 +66,7 @@ updatePortalsCtrl.config([
             UPDATE_PORTALS_TITLE: 'Portal\'s update',
             UPDATE_PORTALS_BTN: 'Valid modifications',
             UPDATE_PORTALS_SUCCESS: 'Successfully update',
+            UPDATE_PORTALS_ERROR: 'Failed update',
             NB_USES_LABEL: 'Number of uses',
             IS_UNKNOW_LABEL: 'Unknow position',
             CANCEL_BTN: 'Cancel',
@@ -106,6 +108,7 @@ updatePortalsCtrl.controller('updatePortalsController', [
     '$filter',
     'dialogManager',
     'toastManager',
+    'daoManager',
     'appConfig',
     'portal',
     'dimension',
@@ -115,6 +118,7 @@ updatePortalsCtrl.controller('updatePortalsController', [
         $filter,
         dialogManager,
         toastManager,
+        daoManager,
         appConfig,
         portal,
         dimension) {
@@ -302,7 +306,14 @@ updatePortalsCtrl.controller('updatePortalsController', [
         $scope.update = function () {
             $scope.newPortal.isUnknow ? $scope.newPortal.isUnknow = 1 : $scope.newPortal.isUnknow = 0;
             $scope.closeDialog();
-            toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_SUCCESS'), 'success');
+            daoManager.updatePortal($scope.newPortal).then(
+                function (response) {
+                    toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_SUCCESS'), 'success');
+                    $rootScope.$broadcast('refreshDataPortals');
+                }, function (error) {
+                    toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_ERROR'), 'error');
+                }
+            );
         };
 
         /**

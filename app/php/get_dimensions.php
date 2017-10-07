@@ -8,17 +8,37 @@
 
     $request = "SELECT * FROM `sw_dimensions`";
 
-    // Execution de la requête et récupération de son résultat
+    $stmt = $conn->prepare($request);
+    
+    if($stmt) {
 
-    $result = $conn->query($request);
+        $stmt->execute();
 
-    // Conversion du résultat en tableau
+        $result = $stmt->get_result();
 
-    $dimensions = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $array = array();
+
+        // Conversion du résultat
+
+        while ($row = $result->fetch_assoc()) {
+            
+            array_push($array, $row);
+    
+        }
+
+        $result = $array;
+
+        $stmt->close();
+    }
+    else {
+        $result = "Error request";
+    }
+
+    $return = $result;
     
     // Encodage en json du résultat
 
-    $return = json_encode($dimensions);
+    $return = json_encode($return);
 
     // Fermeture de la connexion à la base de données
 

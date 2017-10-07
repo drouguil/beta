@@ -92,20 +92,8 @@ dialogService.service('dialogManager', [
          * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
          */
 
-        self.showChangelogDialog = function (ev, clickOutside) {
-            if (clickOutside == undefined) {
-                clickOutside = true;
-            }
-            let dialog =  {
-                controller: 'changelogController',
-                templateUrl: appConfig.paths.viewsHome + 'changelog.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: clickOutside
-            };
-            if (ev) {
-                dialog.targetEvent = ev;
-            }
-            $mdDialog.show(dialog);
+        self.showChangelogDialog = function (ev, clickOutside = true) {
+            showDialog('changelogController', appConfig.paths.viewsHome + 'changelog.html', ev, clickOutside);
         };
 
         /**
@@ -116,20 +104,8 @@ dialogService.service('dialogManager', [
          * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
          */
 
-        self.showHelpDialog = function (ev, clickOutside) {
-            if (clickOutside == undefined) {
-                clickOutside = true;
-            }
-            let dialog = {
-                controller: 'helpController',
-                templateUrl: appConfig.paths.viewsHeader + 'help.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: clickOutside
-            }
-            if (ev) {
-                dialog.targetEvent = ev;
-            }
-            $mdDialog.show(dialog);
+        self.showHelpDialog = function (ev, clickOutside = true) {
+            showDialog('helpController', appConfig.paths.viewsHeader + 'help.html', ev, clickOutside);
         };
 
         /**
@@ -142,24 +118,12 @@ dialogService.service('dialogManager', [
          * @param {Objet} dimension Dimension du portail que l'on veut modifier
          */
 
-        self.showUpdatePortalsDialog = function (ev, clickOutside, portal, dimension) {
-            if (clickOutside == undefined) {
-                clickOutside = true;
-            }
-            let dialog = {
-                controller: 'updatePortalsController',
-                templateUrl: appConfig.paths.viewsPortals + 'updatePortals.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: clickOutside,
-                locals: {
-                    portal: portal,
-                    dimension: dimension
-                }
-            }
-            if (ev) {
-                dialog.targetEvent = ev;
-            }
-            $mdDialog.show(dialog);
+        self.showUpdatePortalsDialog = function (ev, clickOutside = true, portal, dimension) {
+            let locals = {
+                portal: portal,
+                dimension: dimension
+            };
+            showDialog('updatePortalsController', appConfig.paths.viewsPortals + 'updatePortals.html', ev, clickOutside, locals);
         };
 
         /**
@@ -171,23 +135,11 @@ dialogService.service('dialogManager', [
          * @param {Booléen} isRegister Détermine si l'on doit afficher le formulaire d'inscription (true) ou le formulaire de connexion (false)
          */
 
-        self.showIdentificationDialog = function (ev, clickOutside, isRegister) {
-            if (clickOutside == undefined) {
-                clickOutside = true;
-            }
-            let dialog = {
-                controller: 'identificationController',
-                templateUrl: appConfig.paths.viewsHeader + 'identification.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: clickOutside,
-                locals: {
-                    isRegister: isRegister
-                }
-            }
-            if (ev) {
-                dialog.targetEvent = ev;
-            }
-            $mdDialog.show(dialog);
+        self.showIdentificationDialog = function (ev, clickOutside = true, isRegister = false) {
+            let locals = {
+                isRegister: isRegister
+            };
+            showDialog('identificationController', appConfig.paths.viewsHeader + 'identification.html', ev, clickOutside, locals);
         };
 
         /**
@@ -196,26 +148,14 @@ dialogService.service('dialogManager', [
          * @public
          * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
          * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
-         * @param {Booléen} isupdate Détermine si l'on doit afficher le formulaire d'inscription (true) ou le formulaire de connexion (false)
+         * @param {Booléen} isUpdate Détermine si l'on doit afficher le formulaire d'inscription (true) ou le formulaire de connexion (false)
          */
 
-        self.showProfileDialog = function (ev, clickOutside, isupdate) {
-            if (clickOutside == undefined) {
-                clickOutside = true;
-            }
-            let dialog = {
-                controller: 'profileController',
-                templateUrl: appConfig.paths.viewsHeader + 'profile.html',
-                parent: angular.element(document.body),
-                clickOutsideToClose: clickOutside,
-                locals: {
-                    isupdate: isupdate
-                }
-            }
-            if (ev) {
-                dialog.targetEvent = ev
-            }
-            $mdDialog.show(dialog);
+        self.showProfileDialog = function (ev, clickOutside = true, isUpdate = false) {
+            let locals = {
+                isUpdate: isUpdate
+            };
+            showDialog('profileController', appConfig.paths.viewsHeader + 'profile.html', ev, clickOutside, locals);
         };
 
         /**
@@ -226,6 +166,30 @@ dialogService.service('dialogManager', [
 
         self.closeDialogs = function () {
             $mdDialog.cancel();
+        };
+
+        /**
+         * Affiche une popin
+         * @function showDialog
+         * @private
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         */
+
+        function showDialog(controller, templateUrl, ev, clickOutside = true, locals) {
+            let dialog = {
+                controller: controller,
+                templateUrl: templateUrl,
+                parent: angular.element(document.body),
+                clickOutsideToClose: clickOutside
+            }
+            if (ev) {
+                dialog.targetEvent = ev
+            }
+            if (locals) {
+                dialog.locals = locals
+            }
+            $mdDialog.show(dialog);
         };
 
     }]);

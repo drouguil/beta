@@ -114,6 +114,26 @@ daoService.service('daoManager', [
         };
 
         /**
+         * Modifie un portail
+         * @function register
+         * @public
+         * @param {Objet} portalToUpdate Portail à modifier
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.updatePortal = function (portalToUpdate) {
+            if (portalToUpdate) {
+                let params = {
+                    portal: portalToUpdate
+                };
+                return request('update_portal', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('Le portail est manquant'));
+            }
+        };
+
+        /**
          * Récupère l'ensemble des dimensions
          * @function getDimensions
          * @public

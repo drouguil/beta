@@ -20,19 +20,38 @@
 
         // Requête de sélection de tous les portails
 
-        $request = "SELECT * FROM `sw_portals` WHERE `server_id` = " . $server_id;
+        $request = "SELECT * FROM `sw_portals` WHERE `server_id` = ?";
     
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
-    
-        // Conversion du résultat en tableau
-    
-        $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    
-        // Fermeture de la connexion à la base de données
-    
-        $conn->close();
+        $stmt = $conn->prepare($request);
+        
+        if($stmt) {
+
+            $stmt->bind_param('i', $server_id);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+
+            $array = array();
+
+            // Conversion du résultat
+
+            while ($row = $result->fetch_assoc()) {
+                
+                array_push($array, $row);
+        
+            }
+
+            $result = $array;
+
+            $stmt->close();
+        }
+        else {
+            $result = "Error request";
+        }
+
+        $return = $result;
+        
     }
     else {
         $error = "Error server id";
@@ -42,6 +61,10 @@
     // Encodage en json du résultat
 
     $return = json_encode($return);
+
+    // Fermeture de la connexion à la base de données
+    
+    $conn->close();
 
     // On renvoie la liste des portails
 

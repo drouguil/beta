@@ -147,7 +147,7 @@ loginCtrl.controller('loginController', [
 
         $scope.login = function () {
             daoManager.login($scope.user).then(function (response) {
-                if (Array.isArray(response.data)) {
+                if (response.data.id) {
                     $rootScope.isLog = true;
                     toastManager.showSimpleToast($filter('translate')('LOGIN_SUCCESS'), 'success');
                     dialogManager.closeDialogs();
