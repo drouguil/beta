@@ -49,7 +49,7 @@ imgService.service('imgManager', [
                         $rootScope.$digest();
                     }
                 }
-                if (img.complete) img.onload();
+                if (img.complete) img.onload(); // TODO check if necessary
             }
             else {
                 console.error('L\'identifiant de la vue est manquant');
