@@ -29,6 +29,7 @@ let mainApp = angular.module('mainApp',
         'tmh.dynamicLocale',
         'pascalprecht.translate',
         'ngclipboard',
+        'md.data.table',
 
         /**
          * Modules des contrôleurs
@@ -46,6 +47,7 @@ let mainApp = angular.module('mainApp',
          */
 
         'homeCtrl',
+        'adminCtrl',
         'portalsCtrl',
         'notFoundCtrl',
         'puzzleCtrl',
@@ -136,6 +138,15 @@ mainApp.config([
             when('/', {
                 templateUrl: appConfig.paths.viewsHome + 'home.html',
                 controller: 'homeController'
+            }).
+
+            /**
+             * Page Admin
+             */
+
+            when('/admin', {
+                templateUrl: appConfig.paths.viewsAdmin + 'admin.html',
+                controller: 'adminController'
             }).
 
             /**

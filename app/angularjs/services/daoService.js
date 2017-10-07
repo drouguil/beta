@@ -125,6 +125,17 @@ daoService.service('daoManager', [
         };
 
         /**
+         * Récupère l'ensemble des utilisateurs
+         * @function getUsers
+         * @public
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.getUsers = function () {
+            return request('get_users', 'GET');
+        };
+
+        /**
          * Récupère un portail avec son identifiant
          * @function getPortalById
          * @public

@@ -1,0 +1,43 @@
+<div id="admin-view">
+    <div id="admin-content">
+        <div>
+            <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <span>Utilisateurs</span>
+                </div>
+            </md-toolbar>
+
+            <!-- exact table from live demo -->
+            <md-table-container>
+                <table md-table md-row-select multiple ng-model="selected">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-numeric>
+                                <span>id</span>
+                            </th>
+                            <th md-column>
+                                <span>username</span>
+                            </th>
+                            <th md-column>login</th>
+                            <th md-column md-numeric>server_id</th>
+                            <th md-column>email</th>
+                            <th md-column>ip</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="user" md-select-id="id" md-auto-select ng-repeat="user in users">
+                            <td md-cell>{{user.id}}</td>
+                            <td md-cell>{{user.username}}</td>
+                            <td md-cell>{{user.login}}</td>
+                            <td md-cell>{{user.server_id}}</td>
+                            <td md-cell>{{user.email}}</td>
+                            <td md-cell>{{user.ip}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+
+            <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="1" md-page-select></md-table-pagination>
+        </div>
+    </div>
+</div>
