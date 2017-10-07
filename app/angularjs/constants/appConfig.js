@@ -58,7 +58,8 @@ appConfig.constant('appConfig', {
                 viewsHeader : './app/views/header/',
                 viewsHome : './app/views/home/',
                 viewsPortals : './app/views/portals/',
-                viewsPuzzle : './app/views/puzzle/'
+                viewsPuzzle : './app/views/puzzle/',
+                viewsAdmin : './app/views/admin/'
     },
     localStorage : {
         languageName : 'language'
