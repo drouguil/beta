@@ -49,7 +49,7 @@
 
             $conn->close();
         
-            $result = mysqli_fetch_row($result);
+            $result = mysqli_fetch_assoc($result);
             
             if($result) {
                 $return = $result;

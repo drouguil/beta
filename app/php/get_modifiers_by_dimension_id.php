@@ -28,13 +28,13 @@
     
         // Conversion du résultat en tableau
     
-        $modifiers_ids = mysqli_fetch_all($result);
+        $modifiers_ids = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
         $modifiers = array();
 
         foreach($modifiers_ids as $modifier_id) {
             
-            $request = "SELECT * FROM `sw_modifiers` WHERE `id` = " . $modifier_id[0];
+            $request = "SELECT * FROM `sw_modifiers` WHERE `id` = " . $modifier_id['modifier_id'];
 
             // Execution de la requête et récupération de son résultat
     
@@ -42,7 +42,7 @@
         
             // Conversion du résultat en tableau
         
-            $modifier = mysqli_fetch_row($result);
+            $modifier = mysqli_fetch_assoc($result);
 
             array_push($modifiers, $modifier);
         }

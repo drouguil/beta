@@ -595,18 +595,18 @@ portalsCtrl.controller('portalsController', [
                     let data = response.data;
 
                     let refreshPortal = {
-                        id: data[0],
-                        dimensionId: data[1],
-                        serverId: data[2],
-                        userId: data[3],
-                        modifierId: data[4],
+                        id: data['id'],
+                        dimensionId: data['dimension_id'],
+                        serverId: data['server_id'],
+                        userId: data['user_id'],
+                        modifierId: data['modifier_id'],
                         user: portal.user,
-                        posX: parseInt(data[5]),
-                        posY: parseInt(data[6]),
-                        numberUses: parseInt(data[7]),
-                        isUnknow: parseInt(data[8]),
-                        numberConfirms : parseInt(data[9]),
-                        numberReports : parseInt(data[10])
+                        posX: parseInt(data['pos_x']),
+                        posY: parseInt(data['pos_y']),
+                        numberUses: parseInt(data['number_uses']),
+                        isUnknow: parseInt(data['is_unknow']),
+                        numberConfirms : parseInt(data['number_confirms']),
+                        numberReports : parseInt(data['number_reports'])
                     };
 
                     // Récupération de l'utilisateur
@@ -615,9 +615,9 @@ portalsCtrl.controller('portalsController', [
                         let data = response.data;
 
                         let user = {
-                            id: data[0],
-                            username: data[1],
-                            serverId: data[2]
+                            id: data['id'],
+                            username: data['username'],
+                            serverId: data['server_id']
                         };
 
                         refreshPortal.user = user;
@@ -718,8 +718,8 @@ portalsCtrl.controller('portalsController', [
             daoManager.getDimensions().then(function (response) {
                 response.data.forEach(function (data) {
                     let dimension = {
-                        id: data[0],
-                        name: data[1],
+                        id: data['id'],
+                        name: data['name'],
                         modifiers: []
                     };
 
@@ -728,8 +728,8 @@ portalsCtrl.controller('portalsController', [
                     daoManager.getModifiersByDimensionId(dimension.id).then(function (response) {
                         response.data.forEach(function (data) {
                             let modifier = {
-                                id: data[0],
-                                name: data[1]
+                                id: data['id'],
+                                name: data['name']
                             };
 
                             dimension.modifiers.push(modifier);
@@ -746,8 +746,8 @@ portalsCtrl.controller('portalsController', [
             daoManager.getServers().then(function (servers) {
                 servers.data.forEach(function (data, indexServer, servers) {
                     let server = {
-                        id: data[0],
-                        name: data[1],
+                        id: data['id'],
+                        name: data['name'],
                         portals: []
                     };
 
@@ -756,18 +756,18 @@ portalsCtrl.controller('portalsController', [
                     daoManager.getPortalsByServerId(server.id).then(function (portals) {
                         portals.data.forEach(function (data, indexPortal, portals) {
                             let portal = {
-                                id: data[0],
-                                dimensionId: data[1],
-                                serverId: data[2],
-                                userId: data[3],
-                                modifierId: data[4],
+                                id: data['id'],
+                                dimensionId: data['dimension_id'],
+                                serverId: data['server_id'],
+                                userId: data['user_id'],
+                                modifierId: data['modifier_id'],
                                 user: {},
-                                posX: parseInt(data[5]),
-                                posY: parseInt(data[6]),
-                                numberUses: parseInt(data[7]),
-                                isUnknow: parseInt(data[8]),
-                                numberConfirms : parseInt(data[9]),
-                                numberReports : parseInt(data[10])
+                                posX: parseInt(data['pos_x']),
+                                posY: parseInt(data['pos_y']),
+                                numberUses: parseInt(data['number_uses']),
+                                isUnknow: parseInt(data['is_unknow']),
+                                numberConfirms : parseInt(data['number_confirms']),
+                                numberReports : parseInt(data['number_reports'])
                             };
 
                             // Récupération de l'utilisateur
@@ -776,9 +776,9 @@ portalsCtrl.controller('portalsController', [
                                 let data = user.data;
 
                                 let userTemp = {
-                                    id: data[0],
-                                    username: data[1],
-                                    serverId: data[2]
+                                    id: data['id'],
+                                    username: data['username'],
+                                    serverId: data['server_id']
                                 };
 
                                 portal.user = userTemp;

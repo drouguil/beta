@@ -14,7 +14,7 @@
 
     // Conversion du résultat en tableau
 
-    $dimensions = mysqli_fetch_all($result);
+    $dimensions = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
     // Encodage en json du résultat
 

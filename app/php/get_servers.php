@@ -14,7 +14,7 @@
 
     // Conversion du résultat en tableau
 
-    $servers = mysqli_fetch_all($result);
+    $servers = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
     // Encodage en json du résultat
 

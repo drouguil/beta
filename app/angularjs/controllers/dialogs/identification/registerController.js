@@ -236,9 +236,10 @@ registerCtrl.controller('registerController', [
             
             daoManager.getServers().then(function (response) {
                 response.data.forEach(function(data) {
+                    
                     let server = {
-                        id : data[0],
-                        name: data[1]
+                        id : data['id'],
+                        name: data['name']
                     }
                     $scope.servers.push(server);
                 });

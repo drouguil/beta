@@ -21,9 +21,14 @@
                 "ATCHAM",
                 "BETA_1",
                 "BETA_2",
+                "BRUMEN",
                 "CROCABULIA",
                 "ECHO",
+                "FURYE",
+                "ILZAELLE",
                 "MERIANA",
+                "MERKATOR",
+                "NIDAS",
                 "OMBRE",
                 "OTO_MUSTAM",
                 "PANDORE",
@@ -259,7 +264,7 @@
         
             // Conversion du résultat en tableau
         
-            $dimensions = mysqli_fetch_all($result);
+            $dimensions = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
             // Tableau des modificateurs par dimension
 
@@ -333,9 +338,7 @@
 
                 $dimension_count++;
 
-                $dimension[0];
-
-                $modifiers_names = $modifiers_dimensions[($dimension[0]-1)];
+                $modifiers_names = $modifiers_dimensions[($dimension['id']-1)];
 
                 $modifier_count = 0;
                 
@@ -351,9 +354,9 @@
 
                     // Conversion du résultat
         
-                    $modifier = mysqli_fetch_row($result);
+                    $modifier = mysqli_fetch_assoc($result);
 
-                    $request .= "(" . $dimension[0] . "," . $modifier[0] . "," . $modifier_count . ")";
+                    $request .= "(" . $dimension['id'] . "," . $modifier['id'] . "," . $modifier_count . ")";
 
                     if($modifier_count < sizeof($modifiers_names)) {
                         $request .= ",";
@@ -455,7 +458,7 @@
         
             // Conversion du résultat en tableau
         
-            $servers = mysqli_fetch_all($result);
+            $servers = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
             // Requête de sélection de toutes les dimenions
     
@@ -467,7 +470,7 @@
         
             // Conversion du résultat en tableau
         
-            $dimensions = mysqli_fetch_all($result);
+            $dimensions = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
             // Création de la requête
             
@@ -487,7 +490,7 @@
     
                     $dimension_count++;
     
-                    $request .= "(" . $dimension[0] . "," . $server[0] . ")";
+                    $request .= "(" . $dimension['id'] . "," . $server['id'] . ")";
     
                     if($dimension_count < sizeof($dimensions)) {
                         $request .= ",";

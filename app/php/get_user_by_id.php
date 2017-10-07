@@ -28,7 +28,7 @@
     
         // Conversion du résultat
     
-        $return = mysqli_fetch_row($result);
+        $return = mysqli_fetch_assoc($result);
     
         // Fermeture de la connexion à la base de données
     

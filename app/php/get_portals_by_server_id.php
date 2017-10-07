@@ -28,7 +28,7 @@
     
         // Conversion du résultat en tableau
     
-        $return = mysqli_fetch_all($result);
+        $return = mysqli_fetch_all($result, MYSQLI_ASSOC);
     
         // Fermeture de la connexion à la base de données
     
