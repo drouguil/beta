@@ -1,15 +1,10 @@
 <?php
 
-    // Connexion à la base de données
+    // DAO
 
-    include("connect.php");
+    include("dao.php");
 
-    // Récupération des arguments
-
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
-
-    // Vérification de l'identifiant 
+    $request = get_params();
 
     if(isset($request->id))
     {
@@ -17,34 +12,20 @@
         $id = json_decode(json_encode($id), true);
 
         $id = htmlspecialchars($id);
-
-        // Requête de sélection de l'utilisateur
-
-        $request = "SELECT `id`, `username`, `server_id` FROM `sw_users` WHERE `id` = " . $id;
-
-        // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $selected_fields = array("id", "username", "login", "server_id", "email", "ip");
     
-        // Conversion du résultat
+        $conditions = array("id" => array("i", $id));
     
-        $return = mysqli_fetch_assoc($result);
+        $is_unique = true;
     
-        // Fermeture de la connexion à la base de données
+        // Récupération de l'utilisateur
     
-        $conn->close();
+        return_result(select("sw_users", $selected_fields, $conditions, $is_unique));
     }
     else {
-        $error = "Error id";
-        $return = $error;
+        $error = "Erreur identifiant";
+
+        return_result($error);
     }
-    
-    // Encodage en json du résultat
-
-    $return = json_encode($return);
-
-    // On renvoie l'utilisateur
-
-    echo($return);
-
 ?>

@@ -1,13 +1,10 @@
 <?php
 
-    // Connexion à la base de données
+    // DAO
 
-    include("connect.php");
+    include("dao.php");
 
-    // Récupération des arguments
-
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
+    $request = get_params();
 
     // Vérification de l'identifiant de la dimension
 
@@ -18,52 +15,41 @@
 
         $dimension_id = htmlspecialchars($dimension_id);
 
-        // Requête de sélection de tous les modificateurs des dimensions
+        $selected_fields = array("modifier_id");
 
-        $request = "SELECT `modifier_id` FROM `sw_modifiers_dimensions` WHERE `dimension_id` = " . $dimension_id . " ORDER BY `order` ASC";
+        $conditions = array("dimension_id" => array("i", $dimension_id));
+
+        // Récupération de tous les modificateurs des dimensions
     
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
-    
-        // Conversion du résultat en tableau
-    
-        $modifiers_ids = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $modifiers_ids = select("sw_modifiers_dimensions", $selected_fields, $conditions);
 
         $modifiers = array();
 
         foreach($modifiers_ids as $modifier_id) {
-            
-            $request = "SELECT * FROM `sw_modifiers` WHERE `id` = " . $modifier_id['modifier_id'];
 
-            // Execution de la requête et récupération de son résultat
-    
-            $result = $conn->query($request);
+            $selected_fields = false;
+
+            $conditions = array("id" => array("i", $modifier_id["modifier_id"]));
+
+            $is_unique = true;
         
-            // Conversion du résultat en tableau
-        
-            $modifier = mysqli_fetch_assoc($result);
+            $modifier = select("sw_modifiers", $selected_fields, $conditions, $is_unique);
 
             array_push($modifiers, $modifier);
         }
 
         $return = $modifiers;
-    
-        // Fermeture de la connexion à la base de données
-    
-        $conn->close();
+
+        return_result($return);
+
     }
     else {
         $error = "Error dimension id";
-        $return = $error;
+       
+        return_result($error);
+
     }
     
-    // Encodage en json du résultat
-
-    $return = json_encode($return);
-
-    // On renvoie la liste des modificateurs des dimensions
-
-    echo($return);
+    
 
 ?>

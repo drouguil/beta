@@ -3,29 +3,17 @@
     // Suppression des données des portails
 
     function delete_portals() {
-        
-        // Connexion à la base de données
 
-        include("connect.php");
+        // Suppression des données des portails
         
-        // Requête de suppression des données des portails
-    
-        $request = "DELETE FROM `sw_portals`";
-    
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
+        $result = delete("sw_portals");
 
-        if($result) {
+        if($result == true) {
             echo "Suppression des données des portails réussie\n";
         }
         else {
             echo "Suppression des données des portails échouée\n";
         }
-
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
 
     }
 
@@ -33,17 +21,9 @@
 
     function delete_users() {
         
-        // Connexion à la base de données
-
-        include("connect.php");
+        // Suppression des données des utilisateurs
         
-        // Requête de suppression des données des utilisateurs
-    
-        $request = "DELETE FROM `sw_users`";
-    
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
+        $result = delete("sw_users");
 
         if($result) {
             echo "Suppression des données des utilisateurs réussie\n";
@@ -52,27 +32,15 @@
             echo "Suppression des données des utilisateurs échouée\n";
         }
 
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des données des modificateurs/dimensions
 
     function delete_modifiers_dimensions() {
         
-        // Connexion à la base de données
-
-        include("connect.php");
+        // Suppression des données des modificateurs/dimensions
         
-        // Requête de suppression des données des modificateurs/dimensions
-    
-        $request = "DELETE FROM `sw_modifiers_dimensions`";
-    
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
+        $result = delete("sw_modifiers_dimensions");
 
         if($result) {
             echo "Suppression des données des modificateurs/dimensions réussie\n";
@@ -81,27 +49,15 @@
             echo "Suppression des données des modificateurs/dimensions échouée\n";
         }
 
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des données des modificateurs
 
     function delete_modifiers() {
         
-        // Connexion à la base de données
-
-        include("connect.php");
+        // Suppression des données des modificateurs
         
-        // Requête de suppression des données des modificateurs
-    
-        $request = "DELETE FROM `sw_modifiers`";
-    
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
+        $result = delete("sw_modifiers");
 
         if($result) {
             echo "Suppression des données des modificateurs réussie\n";
@@ -110,27 +66,15 @@
             echo "Suppression des données des modificateurs échouée\n";
         }
 
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des données des dimensions
 
     function delete_dimensions() {
-        
-        // Connexion à la base de données
 
-        include("connect.php");
+        // Suppression des données des dimensions
         
-        // Requête de suppression des données des dimensions
-    
-        $request = "DELETE FROM `sw_dimensions`";
-    
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
+        $result = delete("sw_dimensions");
 
         if($result) {
             echo "Suppression des données des dimensions réussie\n";
@@ -139,27 +83,15 @@
             echo "Suppression des données des dimensions échouée\n";
         }
 
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des données des serveurs
 
     function delete_servers() {
-
-        // Connexion à la base de données
-
-        include("connect.php");
         
-        // Requête de suppression des données des serveurs
-    
-        $request = "DELETE FROM `sw_servers`";
-    
-        // Execution de la requête et récupération de son résultat
-    
-        $result = $conn->query($request);
+        // Suppression des données des serveurs
+        
+        $result = delete("sw_servers");
 
         if($result) {
             echo "Suppression des données des serveurs réussie\n";
@@ -168,15 +100,15 @@
             echo "Suppression des données des serveurs échouée\n";
         }
 
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression de toutes les données
 
     function delete_all() {
+
+        // DAO
+
+        include_once("dao.php");
 
         echo "\n\nDébut de la suppression de toutes les données\n\n";
 

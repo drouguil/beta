@@ -1,15 +1,10 @@
 <?php
 
-    // Connexion à la base de données
+    // DAO
 
-    include("connect.php");
-
-    // Récupération des arguments
-
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
-
-    // Vérification de l'identifiant du serveur
+    include("dao.php");
+    
+    $request = get_params();
 
     if(isset($request->server_id))
     {
@@ -18,56 +13,17 @@
 
         $server_id = htmlspecialchars($server_id);
 
-        // Requête de sélection de tous les portails
-
-        $request = "SELECT * FROM `sw_portals` WHERE `server_id` = ?";
+        $selected_fields = false;
+        
+        $conditions = array("server_id" => array("i", $server_id));
     
-        $stmt = $conn->prepare($request);
-        
-        if($stmt) {
-
-            $stmt->bind_param('i', $server_id);
-
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-
-            $array = array();
-
-            // Conversion du résultat
-
-            while ($row = $result->fetch_assoc()) {
-                
-                array_push($array, $row);
-        
-            }
-
-            $result = $array;
-
-            $stmt->close();
-        }
-        else {
-            $result = "Error request";
-        }
-
-        $return = $result;
-        
+        // Récupération des portails
+    
+        return_result(select("sw_portals", $selected_fields, $conditions));
     }
     else {
-        $error = "Error server id";
-        $return = $error;
+        $error = "Erreur identifiant";
+
+        return_result($error);
     }
-    
-    // Encodage en json du résultat
-
-    $return = json_encode($return);
-
-    // Fermeture de la connexion à la base de données
-    
-    $conn->close();
-
-    // On renvoie la liste des portails
-
-    echo($return);
-
 ?>

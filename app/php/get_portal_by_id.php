@@ -1,15 +1,10 @@
 <?php
 
-    // Connexion à la base de données
+    // DAO
 
-    include("connect.php");
-
-    // Récupération des arguments
-
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
-
-    // Vérification de l'identifiant 
+    include("dao.php");
+    
+    $request = get_params();
 
     if(isset($request->id))
     {
@@ -18,47 +13,19 @@
 
         $id = htmlspecialchars($id);
 
-        // Requête de sélection du portail
-
-        $request = "SELECT * FROM `sw_portals` WHERE `id` = ?";
-
-        $stmt = $conn->prepare($request);
+        $selected_fields = false;
         
-        if($stmt) {
-
-            $stmt->bind_param('i', $id);
-
-            $stmt->execute();
-
-            $result = $stmt->get_result();
-
-            // Conversion du résultat
+        $conditions = array("id" => array("i", $id));
     
-            $result = $result->fetch_assoc();
-
-            $stmt->close();
-        }
-        else {
-            $result = "Error request";
-        }
-
-        $return = $result;
+        $is_unique = true;
     
-        // Fermeture de la connexion à la base de données
+        // Récupération du portail
     
-        $conn->close();
+        return_result(select("sw_portals", $selected_fields, $conditions, $is_unique));
     }
     else {
-        $error = "Error id";
-        $return = $error;
+        $error = "Erreur identifiant";
+
+        return_result($error);
     }
-    
-    // Encodage en json du résultat
-
-    $return = json_encode($return);
-
-    // On renvoie le portail
-
-    echo($return);
-
 ?>

@@ -6,33 +6,33 @@
             <div class="header-right-actions">
                 <a class="header-link" id="help-link" ng-click="showHelpDialog($event)">
                     <md-tooltip ng-bind="'HELP_TOOLTIP' | translate"></md-tooltip>
-                    <img ng-src="{{ helpIconPath }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ helpIconPath }}" imageonload="imgLoaded()">
                 </a>
 
                 <!-- Si l'utilisateur n'est pas connecté -->
 
                 <a ng-if="!isLog" class="header-link" id="register-link" ng-click="showRegisterDialog($event)">
                     <md-tooltip ng-bind="'REGISTER_TOOLTIP' | translate"></md-tooltip>
-                    <img ng-src="{{ registerIconPath }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ registerIconPath }}" imageonload="imgLoaded()">
                 </a>
                 <a ng-if="!isLog" class="header-link" id="login-link" ng-click="showLoginDialog($event)">
                     <md-tooltip ng-bind="'LOGIN_TOOLTIP' | translate"></md-tooltip>
-                    <img ng-src="{{ loginIconPath }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ loginIconPath }}" imageonload="imgLoaded()">
                 </a>
 
                 <!-- Si l'utilisateur est connecté -->
 
                 <a ng-if="isLog" class="header-link" id="profile-link" ng-click="showProfileDialog($event)">
                     <md-tooltip ng-bind="'PROFILE_TOOLTIP' | translate"></md-tooltip>
-                    <img ng-src="{{ profileIconPath }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ profileIconPath }}" imageonload="imgLoaded()">
                 </a>
                 <a ng-if="isLog" class="header-link" id="logout-link" ng-click="logout()">
                     <md-tooltip ng-bind="'LOGOUT_TOOLTIP' | translate"></md-tooltip>
-                    <img ng-src="{{ logoutIconPath }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ logoutIconPath }}" imageonload="imgLoaded()">
                 </a>
 
                 <a class="header-link" id="language-current" ng-class="{'active' : isLanguagesList}" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)">
-                    <img ng-src="{{ languageIconPath(currentLanguage) }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ languageIconPath(currentLanguage) }}" imageonload="imgLoaded()">
                 </a>
             </div>
         </div>
@@ -40,7 +40,7 @@
             <ul>
                 <li ng-repeat="language in languages() track by $index" ng-click="updateLanguage(language)">
                     <span ng-bind="language.name"></span>
-                    <img ng-src="{{ languageIconPath(language) }}" imageonload="imgLoaded()">
+                    <img class="noselect" ng-src="{{ languageIconPath(language) }}" imageonload="imgLoaded()">
                 </li>
             </ul>
         </div>
@@ -52,6 +52,6 @@
 
 <nav id="nav-menu" class="navbar">
     <a ng-click="homeLink()" id="logo-link">
-        <img id="logo" src="{{ logoImgPath }}" imageonload="imgLoaded()">
+        <img id="logo" class="noselect" src="{{ logoImgPath }}" imageonload="imgLoaded()">
     </a>
 </nav>
