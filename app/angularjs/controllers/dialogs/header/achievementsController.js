@@ -5,16 +5,16 @@
 'use strict';
 
 /**
- * Déclaration du module de la popin d'aide
+ * Déclaration du module de la popin des succès
  */
 
-let helpCtrl = angular.module('helpCtrl', []);
+let achievementsCtrl = angular.module('achievementsCtrl', []);
 
 /**
- * Configuration du module de la popin d'aide
+ * Configuration du module de la popin des succès
  */
 
-helpCtrl.config([
+achievementsCtrl.config([
     '$translateProvider',
     function (
         $translateProvider) {
@@ -24,8 +24,8 @@ helpCtrl.config([
              */
 
             $translateProvider.translations('fr', {
-                HELP_TITLE: 'Aide',
-                CLOSE_BTN: 'Compris'
+                ACHIEVEMENTS_TITLE: 'Succès',
+                CLOSE_BTN: 'Fermer'
             });
 
             /**
@@ -33,16 +33,16 @@ helpCtrl.config([
              */
 
             $translateProvider.translations('en', {
-                HELP_TITLE: 'Help',
-                CLOSE_BTN: 'Understand'
+                ACHIEVEMENTS_TITLE: 'Achievements',
+                CLOSE_BTN: 'Close'
             });
     }]);
 
 /**
- * Contrôleur du module de la popin d'aide
+ * Contrôleur du module de la popin des succès
  */
 
-helpCtrl.controller('helpController', [
+achievementsCtrl.controller('achievementsController', [
     '$scope',
     '$rootScope',
     'dialogManager',
@@ -61,7 +61,7 @@ helpCtrl.controller('helpController', [
         $scope.closeIconPath = appConfig.paths.svgDialogs + 'close.svg';
 
         /**
-         * Ferme la popin d'aide
+         * Ferme la popin des succès
          * @function closeDialog
          * @public
          */

@@ -109,6 +109,30 @@ dialogService.service('dialogManager', [
         };
 
         /**
+         * Affiche la popin des succès
+         * @function showAchievementsDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         */
+
+        self.showAchievementsDialog = function (ev, clickOutside = true) {
+            showDialog('achievementsController', appConfig.paths.viewsHeader + 'achievements.html', ev, clickOutside);
+        };
+
+        /**
+         * Affiche la popin des ornements/titres
+         * @function showOrnamentsTitlesDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         * @param {Booléen} clickOutside Détermine si le clic en dehors de la popin la ferme ou non
+         */
+
+        self.showOrnamentsTitlesDialog = function (ev, clickOutside = true) {
+            showDialog('ornamentsTitlesController', appConfig.paths.viewsHeader + 'ornamentsTitles.html', ev, clickOutside);
+        };
+
+        /**
          * Affiche la popin de modification d'un portail
          * @function showUpdatePortalsDialog
          * @public

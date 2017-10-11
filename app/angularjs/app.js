@@ -60,6 +60,8 @@ let mainApp = angular.module('mainApp',
         'helpCtrl',
         'profileCtrl',
         'updatePortalsCtrl',
+        'achievementsCtrl',
+        'ornamentsTitlesCtrl',
 
         /**
          * Identification Popin

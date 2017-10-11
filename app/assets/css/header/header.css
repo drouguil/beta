@@ -66,6 +66,14 @@ header {
         width: 5rem;
     }
 
+    header #nav #header-right-div #achievement-link img {
+        height: 4rem;
+    }
+
+    header #nav #header-right-div #ornaments-titles-link img {
+        height: 4rem;
+    }
+
     header #nav #header-right-div #language-current.active {
         background-color: rgb(102,180,6);
     }

@@ -11,32 +11,42 @@
 
                 <!-- Si l'utilisateur n'est pas connecté -->
 
-                <a ng-if="!isLog" class="header-link" id="register-link" ng-click="showRegisterDialog($event)">
+                <a ng-show="!isLog" class="header-link" id="register-link" ng-click="showRegisterDialog($event)">
                     <md-tooltip ng-bind="'REGISTER_TOOLTIP' | translate"></md-tooltip>
                     <img class="noselect" ng-src="{{ registerIconPath }}" imageonload="imgLoaded()">
                 </a>
-                <a ng-if="!isLog" class="header-link" id="login-link" ng-click="showLoginDialog($event)">
+                <a ng-show="!isLog" class="header-link" id="login-link" ng-click="showLoginDialog($event)">
                     <md-tooltip ng-bind="'LOGIN_TOOLTIP' | translate"></md-tooltip>
                     <img class="noselect" ng-src="{{ loginIconPath }}" imageonload="imgLoaded()">
                 </a>
 
                 <!-- Si l'utilisateur est connecté -->
 
-                <a ng-if="isLog" class="header-link" id="profile-link" ng-click="showProfileDialog($event)">
+                <a ng-show="isLog" class="header-link" id="achievement-link" ng-click="showAchievementsDialog($event)">
+                    <md-tooltip ng-bind="'ACHIEVEMENTS_TOOLTIP' | translate"></md-tooltip>
+                    <img class="noselect" ng-src="{{ achievementsIconPath }}" imageonload="imgLoaded()">
+                </a>
+                <a ng-show="isLog" class="header-link" id="ornaments-titles-link" ng-click="showOrnamentsTitlesDialog($event)">
+                    <md-tooltip ng-bind="'ORNAMENTS_TITLES_TOOLTIP' | translate"></md-tooltip>
+                    <img class="noselect" ng-src="{{ ornamentsTitlesIconPath }}" imageonload="imgLoaded()">
+                </a>
+                <a ng-show="isLog" class="header-link" id="profile-link" ng-click="showProfileDialog($event)">
                     <md-tooltip ng-bind="'PROFILE_TOOLTIP' | translate"></md-tooltip>
                     <img class="noselect" ng-src="{{ profileIconPath }}" imageonload="imgLoaded()">
                 </a>
-                <a ng-if="isLog" class="header-link" id="logout-link" ng-click="logout()">
+                <a ng-show="isLog" class="header-link" id="logout-link" ng-click="logout()">
                     <md-tooltip ng-bind="'LOGOUT_TOOLTIP' | translate"></md-tooltip>
                     <img class="noselect" ng-src="{{ logoutIconPath }}" imageonload="imgLoaded()">
                 </a>
+
+                <!-- Changement de langue -->
 
                 <a class="header-link" id="language-current" ng-class="{'active' : isLanguagesList}" ng-mouseover="displayLanguageList(true)" ng-click="displayLanguageList(true)">
                     <img class="noselect" ng-src="{{ languageIconPath(currentLanguage) }}" imageonload="imgLoaded()">
                 </a>
             </div>
         </div>
-        <div ng-if="isLanguagesList" id="language-list">
+        <div ng-show="isLanguagesList" id="language-list">
             <ul>
                 <li ng-repeat="language in languages() track by $index" ng-click="updateLanguage(language)">
                     <span ng-bind="language.name"></span>

@@ -26,10 +26,12 @@ headerCtrl.config([
         $translateProvider.translations('fr', {
             LANGUAGE_CHANGED: 'Langue changée',
             HELP_TOOLTIP: 'Aide',
-            REGISTER_TOOLTIP: 'Inscription',
-            LOGIN_TOOLTIP: 'Connexion',
+            REGISTER_TOOLTIP: 'S\'inscrire',
+            LOGIN_TOOLTIP: 'Se connecter',
+            ACHIEVEMENTS_TOOLTIP: 'Succès',
+            ORNAMENTS_TITLES_TOOLTIP: 'Ornements et titres',
             PROFILE_TOOLTIP: 'Profil',
-            LOGOUT_TOOLTIP: 'Déconnexion',
+            LOGOUT_TOOLTIP: 'Se déconnecter',
             LOGOUT_SUCCESS: 'Déconnexion réussie',
             LOGOUT_ERROR: 'Une erreur est survenue pendant la déconnexion'
         });
@@ -41,8 +43,10 @@ headerCtrl.config([
         $translateProvider.translations('en', {
             LANGUAGE_CHANGED: 'Language changed',
             HELP_TOOLTIP: 'Help',
-            REGISTER_TOOLTIP: 'Register',
-            LOGIN_TOOLTIP: 'Login',
+            REGISTER_TOOLTIP: 'Sign up',
+            LOGIN_TOOLTIP: 'Sign in',
+            ACHIEVEMENTS_TOOLTIP: 'Achievements',
+            ORNAMENTS_TITLES_TOOLTIP: 'Ornaments and titles',
             PROFILE_TOOLTIP: 'Profile',
             LOGOUT_TOOLTIP: 'Logout',
             LOGOUT_SUCCESS: 'Successfully logout',
@@ -99,6 +103,20 @@ headerCtrl.controller('headerController', [
         $scope.loginIconPath = appConfig.paths.svgHeader + 'login.svg';
 
         /**
+         * Chemin de l'icône des succès
+         * @public
+         */
+
+        $scope.achievementsIconPath = appConfig.paths.imgIcons + 'achievements.png';
+
+        /**
+         * Chemin de l'icône des ornements/titres
+         * @public
+         */
+
+        $scope.ornamentsTitlesIconPath = appConfig.paths.imgIcons + 'ornaments_titles.png';
+
+        /**
          * Chemin de l'icône du profil
          * @public
          */
@@ -142,6 +160,28 @@ headerCtrl.controller('headerController', [
 
         $scope.showHelpDialog = function (ev) {
             dialogManager.showHelpDialog(ev);
+        };
+
+        /**
+         * Affiche la popin des succès
+         * @function showAchievementsDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showAchievementsDialog = function (ev) {
+            dialogManager.showAchievementsDialog(ev);
+        };
+
+        /**
+         * Affiche la popin des ornements/titres
+         * @function showOrnamentsTitlesDialog
+         * @public
+         * @param {Objet} ev Endroit d'où l'on veut faire apparaitre la popin (avec $event)
+         */
+
+        $scope.showOrnamentsTitlesDialog = function (ev) {
+            dialogManager.showOrnamentsTitlesDialog(ev);
         };
 
         /**
@@ -286,7 +326,7 @@ headerCtrl.controller('headerController', [
          * @private
          */
 
-        var nbImgs = 5;
+        var nbImgs = 11;
         
         /**
          * Nombre d'images chargées
