@@ -39,11 +39,11 @@ languageService.service('languageManager', [
 
         var languages = [
             {
-                'name': 'Français',
+                'name': 'FRENCH',
                 'id': 'fr'
             },
             {
-                'name': 'English',
+                'name': 'ENGLISH',
                 'id': 'en'
             }];
 
@@ -55,10 +55,10 @@ languageService.service('languageManager', [
          */
 
         self.getCurrentLanguage = function () {
-            if (!localStorageManager.getObj(appConfig.localStorage.languageName)) {
+            if (!localStorageManager.getObj(appConfig.localStorage.language)) {
                 self.setCurrentLanguage(languages[0]);
             }
-            return localStorageManager.getObj(appConfig.localStorage.languageName);
+            return localStorageManager.getObj(appConfig.localStorage.language);
         }
 
         /**
@@ -79,11 +79,11 @@ languageService.service('languageManager', [
          */
 
         self.initCurrentLanguage = function () {
-            if (!localStorageManager.getObj(appConfig.localStorage.languageName)) {
+            if (!localStorageManager.getObj(appConfig.localStorage.language)) {
                 self.setCurrentLanguage(languages[0]);
             }
             else {
-                self.setCurrentLanguage(localStorageManager.getObj(appConfig.localStorage.languageName));
+                self.setCurrentLanguage(localStorageManager.getObj(appConfig.localStorage.language));
             }
         }
 
@@ -107,7 +107,7 @@ languageService.service('languageManager', [
                 }
                 $translate.use(language.id);
                 tmhDynamicLocale.set(language.id);
-                localStorageManager.setObj(appConfig.localStorage.languageName, language);
+                localStorageManager.setObj(appConfig.localStorage.language, language);
             }
             else {
                 console.error('La langue n\'est pas définie');

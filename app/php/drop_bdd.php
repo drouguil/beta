@@ -4,179 +4,217 @@
 
     function drop_portals() {
         
-        // Connexion à la base de données
+        // Execution de la requête et récupération de son résultat
 
-        include("connect.php");
+        $result = drop('sw_portals');
+
+        if($result) {
+            echo "Suppression des portails ✔\n";
+        }
+        else {
+            echo "Suppression des portails X\n";
+        }
+    }
+
+    // Suppression des titres/utilisateurs
+
+    function drop_titles_users() {
         
-        // Requête de suppression des portails
+        // Execution de la requête et récupération de son résultat
     
-        $request = "DROP TABLE `sw_portals`";
+        $result = drop('sw_titles_users');
+
+        if($result) {
+            echo "Suppression des titres/utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des titres/utilisateurs X\n";
+        }
+    }
+
+    // Suppression des titres
+
+    function drop_titles() {
+        
+        // Execution de la requête et récupération de son résultat
+    
+        $result = drop('sw_titles');
+
+        if($result) {
+            echo "Suppression des titres ✔\n";
+        }
+        else {
+            echo "Suppression des titres X\n";
+        }
+    }
+
+    // Suppression des ornaments/utilisateurs
+
+    function drop_ornaments_users() {
+
+        // Execution de la requête et récupération de son résultat
+    
+        $result = drop('sw_ornaments_users');
+
+        if($result) {
+            echo "Suppression des ornements/utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des ornements/utilisateurs X\n";
+        }
+    }
+
+    // Suppression des ornements
+
+    function drop_ornaments() {
+
+        // Execution de la requête et récupération de son résultat
+    
+        $result = drop('sw_ornaments');
+
+        if($result) {
+            echo "Suppression des ornements ✔\n";
+        }
+        else {
+            echo "Suppression des ornements X\n";
+        }
+    }
+
+    // Suppression des succès/utilisateurs
+
+    function drop_achievements_users() {
+
+        // Execution de la requête et récupération de son résultat
+    
+        $result = drop('sw_achievements_users');
+
+        if($result) {
+            echo "Suppression des succès/utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des succès/utilisateurs X\n";
+        }
+    }
+
+    // Suppression des succès
+
+    function drop_achievements() {
     
         // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $result = drop('sw_achievements');
 
         if($result) {
-            echo "Suppression des portails réussie\n";
+            echo "Suppression des succès ✔\n";
         }
         else {
-            echo "Suppression des portails échouée\n";
+            echo "Suppression des succès X\n";
         }
-
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des utilisateurs
 
     function drop_users() {
-        
-        // Connexion à la base de données
 
-        include("connect.php");
-        
-        // Requête de suppression des utilisateurs
-    
-        $request = "DROP TABLE `sw_users`";
-    
         // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $result = drop('sw_users');
 
         if($result) {
-            echo "Suppression des utilisateurs réussie\n";
+            echo "Suppression des utilisateurs ✔\n";
         }
         else {
-            echo "Suppression des utilisateurs échouée\n";
+            echo "Suppression des utilisateurs X\n";
         }
+    }
 
-        // Fermeture de la connexion à la base de données
+    // Suppression des droits des utilisateurs
 
-        $conn->close();
+    function drop_rights() {
+        
+        // Execution de la requête et récupération de son résultat
+    
+        $result = drop('sw_rights');
 
+        if($result) {
+            echo "Suppression des droits des utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des droits des utilisateurs X\n";
+        }
     }
 
     // Suppression des modificateurs/dimensions
 
     function drop_modifiers_dimensions() {
-        
-        // Connexion à la base de données
 
-        include("connect.php");
-        
-        // Requête de suppression des modificateurs/dimensions
-    
-        $request = "DROP TABLE `sw_modifiers_dimensions`";
-    
         // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $result = drop('sw_modifiers_dimensions');
 
         if($result) {
-            echo "Suppression des modificateurs/dimensions réussie\n";
+            echo "Suppression des modificateurs/dimensions ✔\n";
         }
         else {
-            echo "Suppression des modificateurs/dimensions échouée\n";
+            echo "Suppression des modificateurs/dimensions X\n";
         }
-
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des modificateurs
 
     function drop_modifiers() {
-        
-        // Connexion à la base de données
-
-        include("connect.php");
-        
-        // Requête de suppression des modificateurs
-    
-        $request = "DROP TABLE `sw_modifiers`";
     
         // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $result = drop('sw_modifiers');
 
         if($result) {
-            echo "Suppression des modificateurs réussie\n";
+            echo "Suppression des modificateurs ✔\n";
         }
         else {
-            echo "Suppression des modificateurs échouée\n";
+            echo "Suppression des modificateurs X\n";
         }
-
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des dimensions
 
     function drop_dimensions() {
-        
-        // Connexion à la base de données
 
-        include("connect.php");
-        
-        // Requête de suppression des dimensions
-    
-        $request = "DROP TABLE `sw_dimensions`";
-    
         // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $result = drop('sw_dimensions');
 
         if($result) {
-            echo "Suppression des dimensions réussie\n";
+            echo "Suppression des dimensions ✔\n";
         }
         else {
-            echo "Suppression des dimensions échouée\n";
+            echo "Suppression des dimensions X\n";
         }
-
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression des serveurs
 
     function drop_servers() {
 
-        // Connexion à la base de données
-
-        include("connect.php");
-        
-        // Requête de suppression des serveurs
-    
-        $request = "DROP TABLE `sw_servers`";
-    
         // Execution de la requête et récupération de son résultat
     
-        $result = $conn->query($request);
+        $result = drop('sw_servers');
 
         if($result) {
-            echo "Suppression des serveurs réussie\n";
+            echo "Suppression des serveurs ✔\n";
         }
         else {
-            echo "Suppression des serveurs échouée\n";
+            echo "Suppression des serveurs X\n";
         }
-
-        // Fermeture de la connexion à la base de données
-
-        $conn->close();
-
     }
 
     // Suppression de toutes les tables
 
     function drop_all() {
+
+        // DAO
+
+        include_once("dao.php");
 
         echo "\n\nDébut de la suppression de toutes les tables\n\n";
 
@@ -184,9 +222,37 @@
 
         drop_portals();
 
+        // Suppression des titres/utilisateurs
+
+        drop_titles_users();
+
+        // Suppresion des titres
+
+        drop_titles();
+
+        // Suppression des ornements/utilisateurs
+
+        drop_ornaments_users();
+
+        // Suppression des ornements
+
+        drop_ornaments();
+
+        // Suppression des succès/autilisateurs
+
+        drop_achievements_users();
+
+        // Suppression des succès
+
+        drop_achievements();
+
         // Suppression des utilisateurs
 
         drop_users();
+
+        // Suppression des droits des utilisateurs
+
+        drop_rights();
 
         // Suppression des modificateurs/dimensions
 

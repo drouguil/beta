@@ -4,11 +4,13 @@
 
     include("dao.php");
 
-    $request = get_params();
+    // Récupération des paramètres
 
-    if(isset($request->id))
+    $params = get_params();
+
+    if(isset($params->id))
     {
-        $id = $request->id;
+        $id = $params->id;
         $id = json_decode(json_encode($id), true);
 
         $id = htmlspecialchars($id);

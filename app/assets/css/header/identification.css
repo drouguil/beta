@@ -74,6 +74,10 @@
     color: rgb(102,180,6);
 }
 
+#identification-dialog md-dialog-content md-checkbox.md-checked.md-focused .md-ink-ripple:before {
+    background-color: rgba(102,180,6,0.26);
+}
+
 #identification-dialog md-dialog-content .submit-container {
     display: flex;
 }

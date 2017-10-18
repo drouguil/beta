@@ -25,6 +25,8 @@ headerCtrl.config([
 
         $translateProvider.translations('fr', {
             LANGUAGE_CHANGED: 'Langue changée',
+            FRENCH: 'Français',
+            ENGLISH: 'Anglais',
             HELP_TOOLTIP: 'Aide',
             REGISTER_TOOLTIP: 'S\'inscrire',
             LOGIN_TOOLTIP: 'Se connecter',
@@ -42,6 +44,8 @@ headerCtrl.config([
 
         $translateProvider.translations('en', {
             LANGUAGE_CHANGED: 'Language changed',
+            FRENCH: 'French',
+            ENGLISH: 'English',
             HELP_TOOLTIP: 'Help',
             REGISTER_TOOLTIP: 'Sign up',
             LOGIN_TOOLTIP: 'Sign in',
@@ -68,6 +72,7 @@ headerCtrl.controller('headerController', [
     'languageManager',
     'toastManager',
     'dialogManager',
+    'authenticationManager',
     'appConfig',
     function (
         $scope,
@@ -79,6 +84,7 @@ headerCtrl.controller('headerController', [
         languageManager,
         toastManager,
         dialogManager,
+        authenticationManager,
         appConfig) {
 
         /**
@@ -224,7 +230,7 @@ headerCtrl.controller('headerController', [
          */
 
         $scope.logout = function () {
-            $rootScope.isLog = false;
+            authenticationManager.logout();
             toastManager.showSimpleToast($filter('translate')('LOGOUT_SUCCESS'));
         }
 
@@ -274,7 +280,7 @@ headerCtrl.controller('headerController', [
 
         $scope.updateLanguage = function (languageSelected) {
             if (languageManager.getCurrentLanguage().id != languageSelected.id) {
-                toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + languageSelected.name);
+                toastManager.showSimpleToast($filter('translate')('LANGUAGE_CHANGED') + ' : ' + $filter('translate')(languageSelected.name));
                 $scope.currentLanguage = languageSelected;
                 languageManager.setCurrentLanguage(languageSelected);
                 $scope.isLanguagesList = false;

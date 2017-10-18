@@ -3,7 +3,7 @@
 footer {
     display: flex;
     position: absolute;
-    height: 13rem;
+    min-height: 13rem;
     left: 0;
     bottom: 0;
     width: 100%;

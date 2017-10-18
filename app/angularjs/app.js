@@ -90,6 +90,7 @@ let mainApp = angular.module('mainApp',
         'devToolsService',
         'imgService',
         'daoService',
+        'authenticationService',
 
         /**
          * Module de configuration
@@ -105,12 +106,14 @@ let mainApp = angular.module('mainApp',
 
 mainApp.config([
     '$routeProvider',
+    '$locationProvider',
     '$mdThemingProvider',
     '$translateProvider',
     'tmhDynamicLocaleProvider',
     'appConfig',
     function (
         $routeProvider,
+        $locationProvider,
         $mdThemingProvider,
         $translateProvider,
         tmhDynamicLocaleProvider,
@@ -185,6 +188,8 @@ mainApp.config([
             otherwise({
                 redirectTo: '/404'
             });
+
+            $locationProvider.html5Mode(true);
     }]);
 
 /**
@@ -192,15 +197,18 @@ mainApp.config([
  */
 
 mainApp.run([
-    'languageManager',
-    'dialogManager',
     '$rootScope',
     '$interval',
+    'languageManager',
+    'dialogManager',
+    'authenticationManager',
     function (
+        $rootScope,
+        $interval,
         languageManager,
         dialogManager,
-        $rootScope,
-        $interval) {
+        authenticationManager
+    ) {
 
         /**
          * Initialise la langue actuelle
@@ -268,5 +276,16 @@ mainApp.run([
             $rootScope.imgsIsLoaded = false;
             dialogManager.closeDialogs();
         });
+
+        /**
+         * Initialise l'application
+         * @private
+         */
+
+        function init() {
+            authenticationManager.initLogin();
+        }
+
+        init();
 
     }]);

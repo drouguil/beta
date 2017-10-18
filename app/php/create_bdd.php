@@ -15,17 +15,18 @@
         (
             `id` TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(30) NOT NULL UNIQUE
-        ) ENGINE=InnoDB;";
+        ) ENGINE=InnoDB;
+        ";
     
         // Execution de la requête et récupération de son résultat
     
         $result = $conn->query($request);
 
         if($result) {
-            echo "Création des serveurs réussie\n";
+            echo "Création des serveurs ✔\n";
         }
         else {
-            echo "Création des serveurs échouée\n";
+            echo "Création des serveurs X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -49,17 +50,18 @@
         (
             `id` TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(20) NOT NULL UNIQUE
-        ) ENGINE=InnoDB;";
+        ) ENGINE=InnoDB;
+        ";
     
         // Execution de la requête et récupération de son résultat
     
         $result = $conn->query($request);
 
         if($result) {
-            echo "Création des dimensions réussie\n";
+            echo "Création des dimensions ✔\n";
         }
         else {
-            echo "Création des dimensions échouée\n";
+            echo "Création des dimensions X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -83,17 +85,18 @@
         (
             `id` TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
             `name` VARCHAR(30) NOT NULL UNIQUE
-        ) ENGINE=InnoDB;";
+        ) ENGINE=InnoDB;
+        ";
     
         // Execution de la requête et récupération de son résultat
     
         $result = $conn->query($request);
 
         if($result) {
-            echo "Création des modificateurs réussie\n";
+            echo "Création des modificateurs ✔\n";
         }
         else {
-            echo "Création des modificateurs échouée\n";
+            echo "Création des modificateurs X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -121,17 +124,18 @@
             PRIMARY KEY (`dimension_id`, `modifier_id`),
             FOREIGN KEY (`dimension_id`) REFERENCES `sw_dimensions`(`id`),
             FOREIGN KEY (`modifier_id`) REFERENCES `sw_modifiers`(`id`)
-        ) ENGINE=InnoDB;";
+        ) ENGINE=InnoDB;
+        ";
     
         // Execution de la requête et récupération de son résultat
     
         $result = $conn->query($request);
 
         if($result) {
-            echo "Création des modificateurs/dimensions réussie\n";
+            echo "Création des modificateurs/dimensions ✔\n";
         }
         else {
-            echo "Création des modificateurs/dimensions échouée\n";
+            echo "Création des modificateurs/dimensions X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -140,6 +144,40 @@
 
     }
 
+    // Création des droits des utilisateurs
+
+    function create_rights() {
+
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des droits des utilisateurs
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_rights`
+        (
+            `id` TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            `name` VARCHAR(20) NOT NULL UNIQUE
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des droits des utilisateurs ✔\n";
+        }
+        else {
+            echo "Création des droits des utilisateurs X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+    }
+    
     // Création des utilisateurs
 
     function create_users() {
@@ -158,26 +196,252 @@
             `login` VARCHAR(30) NOT NULL UNIQUE,
             `password` VARCHAR(100) NOT NULL,
             `email` VARCHAR(255) UNIQUE,
-            `server_id` TINYINT UNSIGNED NOT NULL,
+            `server_id` TINYINT UNSIGNED NOT NULL DEFAULT 1,
+            `right_id` TINYINT UNSIGNED NOT NULL DEFAULT 1,
+            `auth_token` VARCHAR(64) NOT NULL UNIQUE,
             `ip` VARCHAR(15) NOT NULL,
-            FOREIGN KEY (`server_id`) REFERENCES `sw_servers`(`id`)
-        ) ENGINE=InnoDB;";
+            FOREIGN KEY (`server_id`) REFERENCES `sw_servers`(`id`),
+            FOREIGN KEY (`right_id`) REFERENCES `sw_rights`(`id`)
+        ) ENGINE=InnoDB;
+        ";
     
         // Execution de la requête et récupération de son résultat
     
         $result = $conn->query($request);
 
         if($result) {
-            echo "Création des utilisateurs réussie\n";
+            echo "Création des utilisateurs ✔\n";
         }
         else {
-            echo "Création des utilisateurs échouée\n";
+            echo "Création des utilisateurs X\n";
         }
 
         // Fermeture de la connexion à la base de données
 
         $conn->close();
 
+    }
+
+    // Création des succès
+
+    function create_achievements() {
+        
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des succès
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_achievements`
+        (
+            `id` SMALLINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            `name` VARCHAR(50) NOT NULL UNIQUE
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des succès ✔\n";
+        }
+        else {
+            echo "Création des succès X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+    }
+
+    // Création des succès/utilisateurs
+
+    function create_achievements_users() {
+
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des succès/utilisateurs
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_achievements_users`
+        (
+            `user_id` MEDIUMINT UNSIGNED NOT NULL,
+            `achievement_id` SMALLINT UNSIGNED NOT NULL,
+            `is_unlock` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+            `is_new` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+            PRIMARY KEY (`user_id`, `achievement_id`),
+            FOREIGN KEY (`user_id`) REFERENCES `sw_users`(`id`),
+            FOREIGN KEY (`achievement_id`) REFERENCES `sw_achievements`(`id`)
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des succès/utilisateurs ✔\n";
+        }
+        else {
+            echo "Création des succès/utilisateurs X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+    }
+
+    // Création des ornements
+
+    function create_ornaments() {
+
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des ornements
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_ornaments`
+        (
+            `id` TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            `achievement_id` SMALLINT UNSIGNED NOT NULL,
+            FOREIGN KEY (`achievement_id`) REFERENCES `sw_achievements`(`id`)
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des ornements ✔\n";
+        }
+        else {
+            echo "Création des ornements X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+
+    }
+
+    // Création des ornements/utilisateurs
+
+    function create_ornaments_users() {
+
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des ornements/utilisateurs
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_ornaments_users`
+        (
+            `user_id` MEDIUMINT UNSIGNED NOT NULL,
+            `ornament_id` TINYINT UNSIGNED NOT NULL,
+            `is_unlock` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+            `is_new` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+            PRIMARY KEY (`user_id`, `ornament_id`),
+            FOREIGN KEY (`user_id`) REFERENCES `sw_users`(`id`),
+            FOREIGN KEY (`ornament_id`) REFERENCES `sw_ornaments`(`id`)
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des ornements/utilisateurs ✔\n";
+        }
+        else {
+            echo "Création des ornements/utilisateurs X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+    }
+
+    // Création des titres
+
+    function create_titles() {
+
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des titres
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_titles`
+        (
+            `id` TINYINT UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
+            `achievement_id` SMALLINT UNSIGNED NOT NULL,
+            FOREIGN KEY (`achievement_id`) REFERENCES `sw_achievements`(`id`)
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des titres ✔\n";
+        }
+        else {
+            echo "Création des titres X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+    }
+
+    // Création des titres/utilisateurs
+
+    function create_titles_users() {
+
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des titres/utilisateurs
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_titles_users`
+        (
+            `user_id` MEDIUMINT UNSIGNED NOT NULL,
+            `title_id` TINYINT UNSIGNED NOT NULL,
+            `is_unlock` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+            `is_new` TINYINT UNSIGNED NOT NULL DEFAULT 0,
+            PRIMARY KEY (`user_id`, `title_id`),
+            FOREIGN KEY (`user_id`) REFERENCES `sw_users`(`id`),
+            FOREIGN KEY (`title_id`) REFERENCES `sw_titles`(`id`)
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des titres/utilisateurs ✔\n";
+        }
+        else {
+            echo "Création des titres/utilisateurs X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
     }
 
     // Création des portails
@@ -210,17 +474,18 @@
             FOREIGN KEY (`modifier_id`) REFERENCES `sw_modifiers`(`id`),
             FOREIGN KEY (`dimension_id`, `modifier_id`) REFERENCES `sw_modifiers_dimensions`(`dimension_id`,`modifier_id`),
             UNIQUE (`dimension_id`,`server_id`)
-        ) ENGINE=InnoDB;";
+        ) ENGINE=InnoDB;
+        ";
     
         // Execution de la requête et récupération de son résultat
     
         $result = $conn->query($request);
 
         if($result) {
-            echo "Création des portails réussie\n";
+            echo "Création des portails ✔\n";
         }
         else {
-            echo "Création des portails échouée\n";
+            echo "Création des portails X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -228,7 +493,6 @@
         $conn->close();
 
     }
-
 
     // Création de toutes les tables
 
@@ -252,9 +516,37 @@
 
         create_modifiers_dimensions();
 
+        // Création des droits des utilisateurs
+
+        create_rights();
+
         // Création des utilisateurs
 
         create_users();
+
+        // Création des succès
+
+        create_achievements();
+
+        // Création des succès/utilisateurs
+
+        create_achievements_users();
+
+        // Création des ornements
+
+        create_ornaments();
+
+        // Création des ornements/utilisateurs
+
+        create_ornaments_users();
+
+        // Création des titres
+
+        create_titles();
+
+        // Création des titres/utilisateurs
+
+        create_titles_users();
 
         // Création des portails
 

@@ -1,5 +1,17 @@
 <?php
 
+    // Génération du token de connexion
+
+    function generateToken($login, $password) {
+        
+        define('PREFIX_SALT', 'zKt8');
+        define('SUFFIX_SALT', 'Bg6y');
+
+        $token = $login . ':' . $password;
+
+        return hash('sha256',PREFIX_SALT.$token.SUFFIX_SALT);
+    }
+
     // Connexion à la base de données
 
     include("connect.php");
@@ -73,15 +85,18 @@
 
         if(!isset($error))
         {
+            $token = "'" . generateToken($login, $hashed_password) . "'";
+
             $ip = "'" . $_SERVER["REMOTE_ADDR"] . "'";
 
-            $request = "INSERT INTO `sw_users` (`username`, `login`, `password`, `email`, `server_id`, `ip`)
+            $request = "INSERT INTO `sw_users` (`username`, `login`, `password`, `email`, `server_id`, `auth_token`, `ip`)
             VALUES ("
             . $username . ", "
             . $login . ", "
             . $hashed_password . ", "
             . $email . ", "
             . $server_id . ", "
+            . $token . ", "
             . $ip . ");";
         
             $result = $conn->query($request);

@@ -101,7 +101,7 @@
                     <md-input-container class="md-block">
                         <label ng-bind="'SERVER_LABEL' | translate"></label>
                         <md-select required name="server" ng-model="user.server">
-                            <md-option ng-repeat="server in servers track by $index" value="{{server}}" ng-bind="server.name"></md-option>
+                            <md-option ng-repeat="server in servers | orderBy:'name | translate' track by $index" value="{{server}}" ng-bind="server.name | translate"></md-option>
                         </md-select>
                         <div ng-messages="registerForm.server.$error">
                             <div ng-message="required" ng-bind="'REQUIRED_ERROR' | translate"></div>

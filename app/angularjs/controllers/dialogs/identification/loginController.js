@@ -62,6 +62,7 @@ loginCtrl.controller('loginController', [
     'dialogManager',
     'toastManager',
     'daoManager',
+    'authenticationManager',
     'appConfig',
     function (
         $scope,
@@ -70,6 +71,7 @@ loginCtrl.controller('loginController', [
         dialogManager,
         toastManager,
         daoManager,
+        authenticationManager,
         appConfig) {
 
         /**
@@ -147,8 +149,8 @@ loginCtrl.controller('loginController', [
 
         $scope.login = function () {
             daoManager.login($scope.user).then(function (response) {
-                if (response.data.id) {
-                    $rootScope.isLog = true;
+                if (response.data.auth_token) {
+                    authenticationManager.login(response.data.auth_token);
                     toastManager.showSimpleToast($filter('translate')('LOGIN_SUCCESS'), 'success');
                     dialogManager.closeDialogs();
                 }

@@ -51,6 +51,8 @@ header {
     header #nav #header-right-div #language-list ul li span {
         margin: auto;
         height: auto;
+        font-weight: bold;
+        font-size: 1.8rem;
     }
 
     header #nav #header-right-div #language-list ul li img{
@@ -72,6 +74,20 @@ header {
 
     header #nav #header-right-div #ornaments-titles-link img {
         height: 4rem;
+    }
+
+    header #nav #header-right-div #ornaments-titles-link::after {
+        content: attr(data-after-content);
+        position: absolute;
+        background-color: rgb(231,76,60);
+        border-radius: 50%;
+        margin-left: 2.5rem;
+        margin-top: 2.3rem;
+        color: white;
+        border-right: 7px solid transparent;
+        border-left: 7px solid transparent;
+        border-top: 2px solid transparent;
+        border-bottom: 2px solid transparent;
     }
 
     header #nav #header-right-div #language-current.active {

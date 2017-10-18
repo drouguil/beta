@@ -2,66 +2,55 @@
 
     // Connexion à la base de données
 
-    include("connect.php");
+    include("dao.php");
 
-    // Récupération des arguments
+    // Récupération des paramètres
 
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
+    $params = get_params();
+    $right = get_right();
 
-    // Vérification de l'utilisateur
+    if(isset($right["name"]) && !empty($right["name"])) {
+        // Vérification de l'identifiant du portail
 
-    if(isset($request->portal))
-    {
-        $portal = $request->portal;
-        $portal = json_decode(json_encode($portal), true);
-
-        // Si tous les champs sont valides on tente d'executer la requête d'inscription
-
-        if(!isset($error))
-        {
-
-            $request = "UPDATE `sw_portals` SET `modifier_id` = ?, `pos_x` = ?, `pos_y` = ?, `number_uses` = ?, `is_unknow` = ? WHERE `id` = ?";
-
-            $stmt = $conn->prepare($request);
-
-            if($stmt) {
-
+        if($right["name"] != "BANISHED") {
+            if(isset($params->portal))
+            {
+                $portal = $params->portal;
+                $portal = json_decode(json_encode($portal), true);
+    
                 $modifierId = $portal["modifierId"];
                 $posX = $portal["posX"];
                 $posY = $portal["posY"];
                 $numberUses = $portal["numberUses"];
                 $isUnknow = $portal["isUnknow"];
                 $id = $portal["id"];
-
-                $stmt->bind_param('iiiiii', $modifierId, $posX, $posY, $numberUses, $isUnknow, $id);
     
-                $stmt->execute();
+                $selected_fields = array(
+                    "modifier_id" => array("i", $modifierId),
+                    "pos_x" => array("i", $posX),
+                    "pos_y" => array("i", $posY),
+                    "number_uses" => array("i", $numberUses),
+                    "is_unknow" => array("i", $isUnknow)
+                );
     
-                $result = $stmt->affected_rows;
+                $conditions = array("id" => array("i", $id));
     
-                $stmt->close();
+                return_result(update("sw_portals", $selected_fields, $conditions));
             }
             else {
-                $result = "Error request";
+                $error = "Identifiant du portail manquant";
+                
+                return_result($error);
             }
-    
-            // Fermeture de la connexion à la base de données
-
-            $conn->close();
-            
-            $return = $result;
         }
         else {
-            $return = $error;
+
+            $error = "BANISHED";
+
+            return_result($error);
         }
     }
     else {
-        $error = "Error portal";
-        $return = $error;
+        return_result($right);
     }
-
-    $return = json_encode($return);
-
-    echo $return;
 ?>

@@ -42,7 +42,26 @@ registerCtrl.config([
             MAXLENGTH_PASSWORD_ERROR: 'Mot de passe trop long',
             SAME_USERNAME_ERROR: 'Pseudo déjà pris',
             SAME_LOGIN_ERROR: 'Nom d\'utilisateur déjà pris',
-            SAME_EMAIL_ERROR: 'Adresse mail déjà prise'
+            SAME_EMAIL_ERROR: 'Adresse mail déjà prise',
+
+            // Serveurs
+
+            AGRIDE: 'Agride',
+            ATCHAM: 'Atcham',
+            BETA_1: 'Bêta 1',
+            BETA_2: 'Bêta 2',
+            BRUMEN: 'Brumen',
+            CROCABULIA: 'Crocabulia',
+            ECHO: 'Echo',
+            FURYE: 'Furye',
+            ILYZAELLE: 'Ilyzaelle',
+            MERIANA: 'Meriana',
+            MERKATOR: 'Merkator',
+            NIDAS: 'Nidas',
+            OTO_MUSTAM: 'Oto Mustam',
+            PANDORE: 'Pandore',
+            RUBILAX: 'Rubilax',
+            SHADOW: 'Ombre'
         });
 
         /**
@@ -68,7 +87,26 @@ registerCtrl.config([
             MAXLENGTH_PASSWORD_ERROR: 'Password too long',
             SAME_USERNAME_ERROR: 'Nickname already used',
             SAME_LOGIN_ERROR: 'Username already used',
-            SAME_EMAIL_ERROR: 'Email already used'
+            SAME_EMAIL_ERROR: 'Email already used',
+
+            // Serveurs
+
+            AGRIDE: 'Agride',
+            ATCHAM: 'Atcham',
+            BETA_1: 'Bêta 1',
+            BETA_2: 'Bêta 2',
+            BRUMEN: 'Brumen',
+            CROCABULIA: 'Crocabulia',
+            ECHO: 'Echo',
+            FURYE: 'Furye',
+            ILYZAELLE: 'Ilyzaelle',
+            MERIANA: 'Meriana',
+            MERKATOR: 'Merkator',
+            NIDAS: 'Nidas',
+            OTO_MUSTAM: 'Oto Mustam',
+            PANDORE: 'Pandore',
+            RUBILAX: 'Rubilax',
+            SHADOW: 'Shadow'
         });
     }]);
 
@@ -241,7 +279,9 @@ registerCtrl.controller('registerController', [
                         id : data['id'],
                         name: data['name']
                     }
+
                     $scope.servers.push(server);
+                    
                 });
             });
         };

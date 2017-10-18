@@ -66,6 +66,22 @@ localStorageService.service('localStorageManager', [
         };
 
         /**
+         * Supprime l'objet du localStorage associé à la clef
+         * @function removeObj
+         * @public
+         * @param {Caractères} key Clef
+         */
+
+        self.removeObj = function (key) {
+            if(key) {
+                 $window.localStorage.removeItem(key);
+            }
+            else {
+                console.log('la clef n\'est pas définie');
+            }
+        };
+
+        /**
          * Vide le localStorage
          * @function clear
          * @public

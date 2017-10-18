@@ -3,12 +3,14 @@
     // DAO
 
     include("dao.php");
-    
-    $request = get_params();
 
-    if(isset($request->server_id))
+    // Récupération des paramètres
+    
+    $params = get_params();
+
+    if(isset($params->server_id))
     {
-        $server_id = $request->server_id;
+        $server_id = $params->server_id;
         $server_id = json_decode(json_encode($server_id), true);
 
         $server_id = htmlspecialchars($server_id);

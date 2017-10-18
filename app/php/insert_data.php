@@ -25,14 +25,14 @@
                 "CROCABULIA",
                 "ECHO",
                 "FURYE",
-                "ILZAELLE",
+                "ILYZAELLE",
                 "MERIANA",
                 "MERKATOR",
                 "NIDAS",
-                "OMBRE",
                 "OTO_MUSTAM",
                 "PANDORE",
-                "RUBILAX"
+                "RUBILAX",
+                "SHADOW"
             );
 
             // Création de la requête
@@ -61,14 +61,14 @@
             $result = $conn->query($request);
 
             if($result) {
-                echo "Insertion des serveurs réussie\n";
+                echo "Insertion des serveurs ✔\n";
             }
             else {
-                echo "Insertion des serveurs échouée\n";
+                echo "Insertion des serveurs X\n";
             }
         }
         else {
-            echo "Insertion des serveurs échouée\n";
+            echo "Insertion des serveurs X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -125,16 +125,16 @@
             $result = $conn->query($request);
 
             if($result) {
-                echo "Insertion des dimensions réussie\n";
+                echo "Insertion des dimensions ✔\n";
             }
             else {
-                echo "Insertion des dimensions échouée\n";
+                echo "Insertion des dimensions X\n";
             }
 
 
         }
         else {
-            echo "Insertion des dimensions échouée\n";
+            echo "Insertion des dimensions X\n";
         }
         
         // Fermeture de la connexion à la base de données
@@ -224,14 +224,14 @@
             $result = $conn->query($request);
 
             if($result) {
-                echo "Insertion des modificateurs réussie\n";
+                echo "Insertion des modificateurs ✔\n";
             }
             else {
-                echo "Insertion des modificateurs échouée\n";
+                echo "Insertion des modificateurs X\n";
             }
         }
         else {
-            echo "Insertion des modificateurs échouée\n";
+            echo "Insertion des modificateurs X\n";
         }
         
         // Fermeture de la connexion à la base de données
@@ -377,21 +377,86 @@
             $result = $conn->query($request);
     
             if($result) {
-                echo "Insertion des modificateurs/dimensions réussie\n";
+                echo "Insertion des modificateurs/dimensions ✔\n";
             }
             else {
-                echo "Insertion des modificateurs/dimensions échouée\n";
+                echo "Insertion des modificateurs/dimensions X\n";
             }
         }
         else {
-            echo "Insertion des modificateurs/dimensions échouée\n";
+            echo "Insertion des modificateurs/dimensions X\n";
         }
 
         // Fermeture de la connexion à la base de données
 
         $conn->close();
 
-    }  
+    }
+
+    // Insertion des droits des utilisateurs
+
+    function insert_rights() {
+        
+        // Connexion à la base de données
+
+        include("connect.php");
+
+        $request = "ALTER TABLE `sw_rights` AUTO_INCREMENT = 1";
+
+        $result = $conn->query($request);
+
+        if($result)
+        {
+            // Liste des droits des utilisateurs
+
+            $rights = array(
+                "NORMAL",
+                "BANISHED",
+                "MODERATOR",
+                "ADMINISTRATOR"
+            );
+
+            // Création de la requête
+            
+            $request = "INSERT INTO `sw_rights` (`name`) VALUES ";
+
+            $count = 0;
+
+            // Parcours de la liste des droits des utilisateurs
+
+            foreach ($rights as $right) {
+                
+                $count++;
+                
+                $request .= "('" . $right . "')";
+                
+                if($count < sizeof($rights)) {
+                    $request .= ",";
+                }
+            }
+
+            $request .= ";";
+
+            // Execution de la requête et récupération de son résultat
+
+            $result = $conn->query($request);
+
+            if($result) {
+                echo "Insertion des droits des utilisateurs ✔\n";
+            }
+            else {
+                echo "Insertion des droits des utilisateurs X\n";
+            }
+        }
+        else {
+            echo "Insertion des droits des utilisateurs X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+
+    }
 
     // Insertion des utilisateurs
 
@@ -409,23 +474,23 @@
 
             // Création de la requête
             
-            $request = "INSERT INTO `sw_users` (`username`,`login`,`password`,`server_id`,`ip`) 
-            VALUES ('Miysis', 'Miysis', '" . md5('Miysis') . "', 1, '" . $_SERVER["REMOTE_ADDR"] . "');";
+            $request = "INSERT INTO `sw_users` (`username`,`login`,`password`,`server_id`,`auth_token`,`ip`) 
+            VALUES ('Miysis', 'Miysis', '" . md5('Miysis') . "', 1,'828b3f230c0057a44cc6c58c524639bf222044baf46df0cf97417b64c270362c', '" . $_SERVER["REMOTE_ADDR"] . "');";
 
             // Execution de la requête et récupération de son résultat
 
             $result = $conn->query($request);
 
             if($result) {
-                echo "Insertion des utilisateurs réussie\n";
+                echo "Insertion des utilisateurs ✔\n";
             }
             else {
-                echo "Insertion des utilisateurs échouée\n";
+                echo "Insertion des utilisateurs X\n";
             }
 
         }
         else {
-            echo "Insertion des utilisateurs échouée\n";
+            echo "Insertion des utilisateurs X\n";
         }
         
         // Fermeture de la connexion à la base de données
@@ -511,14 +576,14 @@
             $result = $conn->query($request);
     
             if($result) {
-                echo "Insertion des portails réussie\n";
+                echo "Insertion des portails ✔\n";
             }
             else {
-                echo "Insertion des portails échouée\n";
+                echo "Insertion des portails X\n";
             }
         }
         else {
-            echo "Insertion des portails échouée\n";
+            echo "Insertion des portails X\n";
         }
 
         // Fermeture de la connexion à la base de données
@@ -548,6 +613,10 @@
         // Insertion des modificateurs/dimensions
 
         insert_modifiers_dimensions();
+
+        // Insertion des droits des utilisateurs
+
+        insert_rights();
 
         // Insertion des utilisateurs
 

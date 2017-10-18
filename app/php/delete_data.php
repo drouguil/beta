@@ -9,10 +9,10 @@
         $result = delete("sw_portals");
 
         if($result == true) {
-            echo "Suppression des données des portails réussie\n";
+            echo "Suppression des données des portails ✔\n";
         }
         else {
-            echo "Suppression des données des portails échouée\n";
+            echo "Suppression des données des portails X\n";
         }
 
     }
@@ -26,10 +26,27 @@
         $result = delete("sw_users");
 
         if($result) {
-            echo "Suppression des données des utilisateurs réussie\n";
+            echo "Suppression des données des utilisateurs ✔\n";
         }
         else {
-            echo "Suppression des données des utilisateurs échouée\n";
+            echo "Suppression des données des utilisateurs X\n";
+        }
+
+    }
+
+    // Suppression des données des droits des utilisateurs
+
+    function delete_rights() {
+        
+        // Suppression des données des droits des utilisateurs
+        
+        $result = delete("sw_rights");
+
+        if($result) {
+            echo "Suppression des données des droits des utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des données des droits des utilisateurs X\n";
         }
 
     }
@@ -43,10 +60,10 @@
         $result = delete("sw_modifiers_dimensions");
 
         if($result) {
-            echo "Suppression des données des modificateurs/dimensions réussie\n";
+            echo "Suppression des données des modificateurs/dimensions ✔\n";
         }
         else {
-            echo "Suppression des données des modificateurs/dimensions échouée\n";
+            echo "Suppression des données des modificateurs/dimensions X\n";
         }
 
     }
@@ -60,10 +77,10 @@
         $result = delete("sw_modifiers");
 
         if($result) {
-            echo "Suppression des données des modificateurs réussie\n";
+            echo "Suppression des données des modificateurs ✔\n";
         }
         else {
-            echo "Suppression des données des modificateurs échouée\n";
+            echo "Suppression des données des modificateurs X\n";
         }
 
     }
@@ -77,10 +94,10 @@
         $result = delete("sw_dimensions");
 
         if($result) {
-            echo "Suppression des données des dimensions réussie\n";
+            echo "Suppression des données des dimensions ✔\n";
         }
         else {
-            echo "Suppression des données des dimensions échouée\n";
+            echo "Suppression des données des dimensions X\n";
         }
 
     }
@@ -94,10 +111,10 @@
         $result = delete("sw_servers");
 
         if($result) {
-            echo "Suppression des données des serveurs réussie\n";
+            echo "Suppression des données des serveurs ✔\n";
         }
         else {
-            echo "Suppression des données des serveurs échouée\n";
+            echo "Suppression des données des serveurs X\n";
         }
 
     }
@@ -119,6 +136,10 @@
         // Suppression des données des utilisateurs
 
         delete_users();
+
+        // Suppression des données des droits des utilisateurs
+
+        delete_rights();
 
         // Suppression des données des modificateurs/dimensions
 

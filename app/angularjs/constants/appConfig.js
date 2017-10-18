@@ -62,10 +62,11 @@ appConfig.constant('appConfig', {
                 viewsAdmin : './app/views/admin/'
     },
     localStorage : {
-        languageName : 'language'
+        authToken : 'authToken',
+        language : 'language'
     },
     sessionStorage : {
-
+        authToken : 'authToken'
     },
     portals : {
         refreshTime: 60000

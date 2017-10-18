@@ -1,13 +1,18 @@
 <div id="portals-view">
     <div id="portals-content">
-        <!--<md-input-container class="md-block">
-            <label ng-bind="'SERVER_LABEL' | translate"></label>
-            <md-select required name="server" ng-model="currentServer">
-                <md-option ng-repeat="server in servers" value="{{server}}" ng-bind="server.name"></md-option>
-            </md-select>
-        </md-input-container>-->
         <div id="portals-header">
-            <div class="col-xs-6">
+            <div class="col-xs-12">
+                <div id="current-server" class="btn btn-small">
+                    <md-input-container class="md-block">
+                        <label ng-bind="'SERVER_SELECTED_LABEL' | translate"></label>
+                        <md-select ng-show="viewIsLoaded" ng-change="changeCurrentServer()" ng-model="serverSelected">
+                            <md-option ng-repeat="server in servers | orderBy:'name | translate'" value="{{server}}" ng-selected="server.id == currentServer.id"
+                                ng-bind="server.name | translate"></md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6">
                 <a id="guild-clipboard" class="btn btn-small" ngclipboard ngclipboard-success="copyInfos('success')" ngclipboard-error="copyInfos('error')"
                     data-clipboard-text="{{ getAnnouncement() }}">
                     <img class="noselect" ng-src="{{ guildIconPath }}" imageonload="imgLoaded()">
@@ -16,7 +21,7 @@
                     <img class="noselect" ng-src="{{ allianceIconPath }}" imageonload="imgLoaded()">
                 </a>
             </div>
-            <div class="col-xs-6">
+            <div class="col-xs-12 col-sm-6">
                 <a ng-disabled="refreshTimer > 45" id="refresh-btn" ng-class="{ 'disabled' : refreshTimer > 45 }" class="btn btn-small" ng-click="refreshData()">
                     <img class="noselect" ng-src="{{ refreshIconPath }}" imageonload="imgLoaded()">
                     <span ng-bind="refreshTimer"></span>
@@ -62,7 +67,8 @@
                                 <img class="noselect" ng-show="!displayModifiers" ng-src="{{ displayModifiersIconPath }}" ng-click="displayModifiers = !displayModifiers"
                                     imageonload="imgLoaded()">
                                 <md-tooltip ng-if="!displayModifiers" ng-bind="'DISPLAY_MODIFIERS_TOOLTIP' | translate"></md-tooltip>
-                                <img class="noselect" ng-show="displayModifiers" ng-src="{{ hideModifiersIconPath }}" ng-click="displayModifiers = !displayModifiers" imageonload="imgLoaded()">
+                                <img class="noselect" ng-show="displayModifiers" ng-src="{{ hideModifiersIconPath }}" ng-click="displayModifiers = !displayModifiers"
+                                    imageonload="imgLoaded()">
                                 <md-tooltip ng-if="displayModifiers" ng-bind="'HIDE_MODIFIERS_TOOLTIP' | translate"></md-tooltip>
                             </div>
                         </div>
@@ -121,7 +127,7 @@
                             <md-tooltip ng-bind="'UPDATE_TIME_TOOLTIP' | translate"></md-tooltip>
                         </div>
                         <div class="update-link">
-                            <a ng-click="showUpdatePortalsDialog($event, portal, dimensions[portal.id-1])" aria-label="update">
+                            <a ng-click="showUpdatePortalsDialog($event, portal, dimensions[portal.dimensionId-1])" aria-label="update">
                                 <span ng-bind="'UPDATE_BTN' | translate"></span>
                                 <img class="noselect" ng-src="{{ updateIconPath }}" imageonload="imgLoaded()">
                                 <md-tooltip ng-bind="'UPDATE_LINK_TOOLTIP' | translate"></md-tooltip>

@@ -1,4 +1,4 @@
-<md-dialog id="updatePortals-dialog" aria-label="updatePortals">
+<md-dialog id="updatePortals-dialog" class="{{ getDimensionClassName() }}" aria-label="updatePortals">
     <md-toolbar>
         <div class="md-toolbar-tools">
             <h2>{{ 'UPDATE_PORTALS_TITLE' | translate }} - {{ getDimensionName() }}</h2>
@@ -70,7 +70,7 @@
                         <div>
                             <div id="modifiers-cycle">
                                 <div id="modifiers" ng-style="{ 'transform' : getCurrentRotation() }">
-                                    <div class="modifier" ng-repeat="modifier in modifiers track by $index">
+                                    <div class="modifier" ng-repeat="modifier in modifiers">
                                         <img class="noselect modifier-img" ng-click="changeModifier(modifier.id)" ng-class="{ 'current-modifier' : modifier.id == newPortal.modifierId }"
                                             ng-src="{{getModifierImgPathByName(modifier.name)}}">
                                     </div>

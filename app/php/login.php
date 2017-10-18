@@ -40,7 +40,7 @@
         {
             $ip = "'" . $_SERVER["REMOTE_ADDR"] . "'";
 
-            $request = "SELECT `id` from `sw_users` 
+            $request = "SELECT `auth_token` from `sw_users` 
             WHERE (`login` = " . $login . " OR `email` = " . $login . ") AND `password` = " . $hashed_password;
         
             $result = $conn->query($request);

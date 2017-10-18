@@ -29,16 +29,35 @@ portalsCtrl.config([
 
             PORTALS_TITLE: 'Portails',
 
-            // Diemnsions
+            // Dimensions
 
             ECAFLIPUS: 'Ecaflipus',
             ENURADO: 'Enutrosor',
             SRAMBAD: 'Srambad',
             XELORIUM: 'Xelorium',
 
+            // Serveurs
+
+            AGRIDE: 'Agride',
+            ATCHAM: 'Atcham',
+            BETA_1: 'Bêta 1',
+            BETA_2: 'Bêta 2',
+            BRUMEN: 'Brumen',
+            CROCABULIA: 'Crocabulia',
+            ECHO: 'Echo',
+            FURYE: 'Furye',
+            ILYZAELLE: 'Ilyzaelle',
+            MERIANA: 'Meriana',
+            MERKATOR: 'Merkator',
+            NIDAS: 'Nidas',
+            OTO_MUSTAM: 'Oto Mustam',
+            PANDORE: 'Pandore',
+            RUBILAX: 'Rubilax',
+            SHADOW: 'Ombre',
+
             //
 
-            SERVER_LABEL: 'Serveur actuel',
+            SERVER_SELECTED_LABEL: 'Serveur actuel',
             UPDATE_BTN: 'Mettre à jour',
             POSITION_TOOLTIP: 'Coordonnées du portail',
             NUMBER_USES_TOOLTIP: 'Nombre d\'utilisations restant',
@@ -131,9 +150,28 @@ portalsCtrl.config([
             SRAMBAD: 'Srambad',
             XELORIUM: 'Xelorium',
 
+            // Serveurs
+
+            AGRIDE: 'Agride',
+            ATCHAM: 'Atcham',
+            BETA_1: 'Bêta 1',
+            BETA_2: 'Bêta 2',
+            BRUMEN: 'Brumen',
+            CROCABULIA: 'Crocabulia',
+            ECHO: 'Echo',
+            FURYE: 'Furye',
+            ILYZAELLE: 'Ilyzaelle',
+            MERIANA: 'Meriana',
+            MERKATOR: 'Merkator',
+            NIDAS: 'Nidas',
+            OTO_MUSTAM: 'Oto Mustam',
+            PANDORE: 'Pandore',
+            RUBILAX: 'Rubilax',
+            SHADOW: 'Shadow',
+
             //
 
-            SERVER_LABEL: 'Current server',
+            SERVER_SELECTED_LABEL: 'Current server',
             UPDATE_BTN: 'Update',
             POSITION_TOOLTIP: 'Portal\'s location',
             NUMBER_USES_TOOLTIP: 'Uses\' remaining number',
@@ -257,6 +295,17 @@ portalsCtrl.controller('portalsController', [
          */
 
         $scope.currentServer = {};
+
+        /**
+         * Serveur sélectionné
+         * @public
+         */
+
+        $scope.serverSelected = {
+            id: undefined,
+            name: undefined,
+            portals : []
+        };
 
         /**
          * Timeur d'actualisation des données
@@ -554,6 +603,17 @@ portalsCtrl.controller('portalsController', [
         };
 
         /**
+         * Change le serveur actuel
+         * @function changeCurrentServer
+         * @public
+         */
+
+        $scope.changeCurrentServer = function () {
+            $scope.currentServer = JSON.parse($scope.serverSelected);
+            $scope.refreshData();
+        }
+
+        /**
          * Récupère le nom du modificateur actuel pour un protail donné
          * @function getCurrentModifierName
          * @public
@@ -755,6 +815,7 @@ portalsCtrl.controller('portalsController', [
             // Récupération des serveurs
 
             daoManager.getServers().then(function (servers) {
+                let serversTemp = [];
                 servers.data.forEach(function (data, indexServer, servers) {
                     let server = {
                         id: data['id'],
@@ -798,6 +859,8 @@ portalsCtrl.controller('portalsController', [
 
                                 if (indexPortal == (portals.length - 1) && indexServer == (servers.length - 1)) {
 
+                                    $scope.servers = JSON.parse(JSON.stringify(serversTemp));
+
                                     $scope.currentServer = $scope.servers[0];
 
                                     sortModifiers();
@@ -807,15 +870,11 @@ portalsCtrl.controller('portalsController', [
                                     $rootScope.viewIsLoaded = true;
 
                                     console.log('viewIsLoaded');
-
-                                    console.log($scope.servers);
-
-                                    console.log($scope.dimensions);
                                 }
                             });
                         });
                     });
-                    $scope.servers.push(server);
+                    serversTemp.push(server);
                 });
             });
         };

@@ -66,6 +66,22 @@ sessionStorageService.service('sessionStorageManager', [
         };
 
         /**
+         * Supprime l'objet du sessionStorage associé à la clef
+         * @function removeObj
+         * @public
+         * @param {Caractères} key Clef
+         */
+
+        self.removeObj = function (key) {
+            if(key) {
+                 $window.sessionStorage.removeItem(key);
+            }
+            else {
+                console.log('la clef n\'est pas définie');
+            }
+        };
+
+        /**
          * Vide le sessionStorage
          * @function clear
          * @public

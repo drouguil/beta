@@ -55,7 +55,9 @@ updatePortalsCtrl.config([
             LEAP_GOBBALL: 'Saute-Bouftou',
             GO_BACK: 'Retour arrière',
             FETTERED_ACTIONS: 'Actions entravées',
-            MUMMIFYING_SOLITUDE: 'Solitude Momifiante'
+            MUMMIFYING_SOLITUDE: 'Solitude Momifiante',
+            REQUIRED_LOGIN_ERROR: 'Connexion requise',
+            BANISHED_USER_ERROR: 'Compte banni'
         });
 
         /**
@@ -94,7 +96,9 @@ updatePortalsCtrl.config([
             LEAP_GOBBALL: 'Leap-gobball',
             GO_BACK: 'Go back',
             FETTERED_ACTIONS: 'Fettered actions',
-            MUMMIFYING_SOLITUDE: 'Mummifying solitude'
+            MUMMIFYING_SOLITUDE: 'Mummifying solitude',
+            REQUIRED_LOGIN_ERROR: 'Required login',
+            BANISHED_USER_ERROR: 'Banished account'
         });
     }]);
 
@@ -286,6 +290,17 @@ updatePortalsCtrl.controller('updatePortalsController', [
         };
 
         /**
+         * Récupère le nom de la classe de la dimension du portail
+         * @function getDimensionClassName
+         * @public
+         * @return
+         */
+
+        $scope.getDimensionClassName = function () {
+            return $scope.dimension.name.toLowerCase();
+        };
+
+        /**
          * Récupère le chemin de l'image de la dimension
          * @function getModifierImgPathByName
          * @public
@@ -308,8 +323,16 @@ updatePortalsCtrl.controller('updatePortalsController', [
             $scope.closeDialog();
             daoManager.updatePortal($scope.newPortal).then(
                 function (response) {
-                    toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_SUCCESS'), 'success');
-                    $rootScope.$broadcast('refreshDataPortals');
+                    if(response.data > 0) {
+                        toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_SUCCESS'), 'success');
+                        $rootScope.$broadcast('refreshDataPortals');
+                    }
+                    else if(response.data == 'BANISHED') {
+                        toastManager.showSimpleToast($filter('translate')('BANISHED_USER_ERROR'), 'error');
+                    }
+                    else {
+                        toastManager.showSimpleToast($filter('translate')('REQUIRED_LOGIN_ERROR'), 'error');
+                    }
                 }, function (error) {
                     toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_ERROR'), 'error');
                 }

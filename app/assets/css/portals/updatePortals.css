@@ -7,33 +7,143 @@
     max-height: 95%;
 }
 
+/* Default */
+
 #updatePortals-dialog md-toolbar {
-    background-color: rgb(225,210,65);
+    background-color: rgb(102,102,102);
 }
 
 #updatePortals-dialog .btn-primary {
     margin: 0rem auto;
-    background-color: rgb(225,210,65);
+    background-color: rgb(102,102,102);
 }
 
 #updatePortals-dialog .btn-primary:hover {
-    background-color: rgb(245,230,85);
-}
-
-#updatePortals-dialog md-dialog-actions {
-    flex-direction: column;
+    background-color: rgb(122,122,122);
 }
 
 #updatePortals-dialog #isUnknow md-checkbox.md-checked .md-icon {
-    background-color: rgb(225,210,65);
+    background-color: rgb(102,102,102);
 }
 
 #updatePortals-dialog #isUnknow md-checkbox.md-checked .md-ink-ripple {
-    color: rgb(225,210,65);
+    color: rgb(102,102,102);
+}
+
+#updatePortals-dialog #isUnknow md-checkbox.md-checked.md-focused .md-ink-ripple:before {
+    background-color: rgba(102,102,102,0.26);
+}
+
+/* Ecaflipus */
+
+#updatePortals-dialog.ecaflipus md-toolbar {
+    background-color: rgb(165,194,136);
+}
+
+#updatePortals-dialog.ecaflipus .btn-primary {
+    background-color: rgb(165,194,136);
+}
+
+#updatePortals-dialog.ecaflipus .btn-primary:hover {
+    background-color: rgb(185,214,156);
+}
+
+#updatePortals-dialog.ecaflipus #isUnknow md-checkbox.md-checked .md-icon {
+    background-color: rgb(165,194,136);
+}
+
+#updatePortals-dialog.ecaflipus #isUnknow md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(165,194,136);
+}
+
+#updatePortals-dialog.ecaflipus #isUnknow md-checkbox.md-checked.md-focused .md-ink-ripple:before {
+    background-color: rgba(165,194,136,0.26);
+}
+
+/* Enutrosor */
+
+#updatePortals-dialog.enurado md-toolbar {
+    background-color: rgb(212,185,32);
+}
+
+#updatePortals-dialog.enurado .btn-primary {
+    background-color: rgb(212,185,32);
+}
+
+#updatePortals-dialog.enurado .btn-primary:hover {
+    background-color: rgb(232,205,52);
+}
+
+#updatePortals-dialog.enurado #isUnknow md-checkbox.md-checked .md-icon {
+    background-color: rgb(212,185,32);
+}
+
+#updatePortals-dialog.enurado #isUnknow md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(212,185,32);
+}
+
+#updatePortals-dialog.enurado #isUnknow md-checkbox.md-checked.md-focused .md-ink-ripple:before {
+    background-color: rgba(212,185,32,0.26);
+}
+
+/* Srambad */
+
+#updatePortals-dialog.srambad md-toolbar {
+    background-color: rgb(65,89,136);
+}
+
+#updatePortals-dialog.srambad .btn-primary {
+    background-color: rgb(65,89,136);
+}
+
+#updatePortals-dialog.srambad .btn-primary:hover {
+    background-color: rgb(85,109,156);
+}
+
+#updatePortals-dialog.srambad #isUnknow md-checkbox.md-checked .md-icon {
+    background-color: rgb(65,89,136);
+}
+
+#updatePortals-dialog.srambad #isUnknow md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(65,89,136);
+}
+
+#updatePortals-dialog.srambad #isUnknow md-checkbox.md-checked.md-focused .md-ink-ripple:before {
+    background-color: rgba(65,89,136,0.26);
+}
+
+/* Xelorium */
+
+#updatePortals-dialog.xelorium md-toolbar {
+    background-color: rgb(146,107,155);
+}
+
+#updatePortals-dialog.xelorium .btn-primary {
+    background-color: rgb(146,107,155);
+}
+
+#updatePortals-dialog.xelorium .btn-primary:hover {
+    background-color: rgb(166,127,175);
+}
+
+#updatePortals-dialog.xelorium #isUnknow md-checkbox.md-checked .md-icon {
+    background-color: rgb(146,107,155);
+}
+
+#updatePortals-dialog.xelorium #isUnknow md-checkbox.md-checked .md-ink-ripple {
+    color: rgb(146,107,155);
+}
+
+#updatePortals-dialog.xelorium #isUnknow md-checkbox.md-checked.md-focused .md-ink-ripple:before {
+    background-color: rgba(146,107,155,0.26);
 }
 
 #updatePortals-dialog #isUnknow {
     margin: auto;
+}
+
+#updatePortals-dialog md-dialog-actions {
+    flex-direction: column;
 }
 
 /* Modifiers Cycle */
@@ -190,7 +300,7 @@
 
 
 #modifiers-cycle div.modifier .modifier-img{
-    margin-top: -100px;
+    margin-top: -10rem;
     color: rgba(0,0,0,0.2);
     position: relative;
     display: block;

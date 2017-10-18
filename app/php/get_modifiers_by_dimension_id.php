@@ -4,13 +4,15 @@
 
     include("dao.php");
 
-    $request = get_params();
+    // Récupération des paramètres
+
+    $params = get_params();
 
     // Vérification de l'identifiant de la dimension
 
-    if(isset($request->dimension_id))
+    if(isset($params->dimension_id))
     {
-        $dimension_id = $request->dimension_id;
+        $dimension_id = $params->dimension_id;
         $dimension_id = json_decode(json_encode($dimension_id), true);
 
         $dimension_id = htmlspecialchars($dimension_id);

@@ -26,7 +26,7 @@
                     <md-tooltip ng-bind="'ACHIEVEMENTS_TOOLTIP' | translate"></md-tooltip>
                     <img class="noselect" ng-src="{{ achievementsIconPath }}" imageonload="imgLoaded()">
                 </a>
-                <a ng-show="isLog" class="header-link" id="ornaments-titles-link" ng-click="showOrnamentsTitlesDialog($event)">
+                <a ng-show="isLog" class="header-link" data-after-content="2" id="ornaments-titles-link" ng-click="showOrnamentsTitlesDialog($event)">
                     <md-tooltip ng-bind="'ORNAMENTS_TITLES_TOOLTIP' | translate"></md-tooltip>
                     <img class="noselect" ng-src="{{ ornamentsTitlesIconPath }}" imageonload="imgLoaded()">
                 </a>
@@ -49,7 +49,7 @@
         <div ng-show="isLanguagesList" id="language-list">
             <ul>
                 <li ng-repeat="language in languages() track by $index" ng-click="updateLanguage(language)">
-                    <span ng-bind="language.name"></span>
+                    <span ng-bind="language.name | translate"></span>
                     <img class="noselect" ng-src="{{ languageIconPath(language) }}" imageonload="imgLoaded()">
                 </li>
             </ul>
