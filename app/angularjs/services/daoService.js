@@ -115,7 +115,7 @@ daoService.service('daoManager', [
 
         /**
          * Modifie un portail
-         * @function register
+         * @function updatePortal
          * @public
          * @param {Objet} portalToUpdate Portail à modifier
          * @return {Promesse} Promesse de la requête
@@ -131,6 +131,28 @@ daoService.service('daoManager', [
             else {
                 return Promise.reject(new Error('Le portail est manquant'));
             }
+        };
+
+        /**
+         * Récupère l'utilisateur connecté
+         * @function getConnectedUser
+         * @public
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.getConnectedUser = function () {
+            return request('get_connected_user', 'GET');
+        };
+
+        /**
+         * Récupère les droits de l'utilisateur connecté
+         * @function getConnectedUserRight
+         * @public
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.getConnectedUserRight = function () {
+            return request('get_connected_user_right', 'GET');
         };
 
         /**

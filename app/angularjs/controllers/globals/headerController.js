@@ -35,7 +35,7 @@ headerCtrl.config([
             PROFILE_TOOLTIP: 'Profil',
             LOGOUT_TOOLTIP: 'Se déconnecter',
             LOGOUT_SUCCESS: 'Déconnexion réussie',
-            LOGOUT_ERROR: 'Une erreur est survenue pendant la déconnexion'
+            LOGOUT_ERROR: 'Une erreur est survenue lors la déconnexion'
         });
 
         /**

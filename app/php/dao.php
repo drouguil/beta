@@ -338,7 +338,7 @@
 
         if(isset($headers) && !empty($headers) && isset($headers["Authorization"]) && !empty($headers["Authorization"])) {
 
-            $selected_fields = array("right_id");
+            $selected_fields = array("id","right_id");
             
             $conditions = array("auth_token" => array("s", $headers['Authorization']));
     
@@ -346,7 +346,7 @@
     
             $user = select('sw_users', $selected_fields, $conditions, $is_unique);
 
-            if(isset($user["right_id"]) && !empty($user["right_id"])) {
+            if(isset($user["id"]) && !empty($user["id"]) && isset($user["right_id"]) && !empty($user["right_id"])) {
 
                 $selected_fields = array("name");
 
@@ -354,10 +354,75 @@
 
                 $is_unique = true;
 
-                return select('sw_rights', $selected_fields, $conditions, $is_unique);
+                $right = select('sw_rights', $selected_fields, $conditions, $is_unique);
+
+                $right["user_id"] = $user["id"];
+
+                return $right;
             }
             else {
                 return "Autorisation refusée";
+            }
+        }
+        else {
+            return "Autorisation manquante";
+        }
+    }
+
+    // Récupération du droit de l'utilisateur
+
+    function get_connected_user() {
+        
+        $headers = apache_request_headers();
+
+        if(isset($headers) && !empty($headers) && isset($headers["Authorization"]) && !empty($headers["Authorization"])) {
+
+            $selected_fields = array("id","username","login","email","server_id");
+            
+            $conditions = array("auth_token" => array("s", $headers['Authorization']));
+    
+            $is_unique = true;
+    
+            return select('sw_users', $selected_fields, $conditions, $is_unique);
+
+        }
+        else {
+            return "Autorisation manquante";
+        }
+    }
+
+    // Récupération du droit de l'utilisateur
+
+    function get_connected_user_right() {
+        
+        $headers = apache_request_headers();
+
+        if(isset($headers) && !empty($headers) && isset($headers["Authorization"]) && !empty($headers["Authorization"])) {
+
+            $selected_fields = array("id","right_id");
+            
+            $conditions = array("auth_token" => array("s", $headers['Authorization']));
+    
+            $is_unique = true;
+    
+            $user = select('sw_users', $selected_fields, $conditions, $is_unique);
+
+            if(isset($user["id"]) && !empty($user["id"]) && isset($user["right_id"]) && !empty($user["right_id"])) {
+
+                $selected_fields = array("name");
+
+                $conditions = array("id" => array("i", $user["right_id"]));
+
+                $is_unique = true;
+
+                $right = select('sw_rights', $selected_fields, $conditions, $is_unique);
+
+                $user["right_name"] = $right["name"];
+
+                return $user;
+            }
+            else {
+                return "Autorisation erronée";
             }
         }
         else {

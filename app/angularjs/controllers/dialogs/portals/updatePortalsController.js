@@ -323,6 +323,7 @@ updatePortalsCtrl.controller('updatePortalsController', [
             $scope.closeDialog();
             daoManager.updatePortal($scope.newPortal).then(
                 function (response) {
+                    console.log(response);
                     if(response.data > 0) {
                         toastManager.showSimpleToast($filter('translate')('UPDATE_PORTALS_SUCCESS'), 'success');
                         $rootScope.$broadcast('refreshDataPortals');

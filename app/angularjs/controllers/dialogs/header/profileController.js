@@ -25,6 +25,7 @@ profileCtrl.config([
 
             $translateProvider.translations('fr', {
                 PROFILE_TITLE: 'Profil',
+                PROFILE_ERROR: 'Une erreur est survenue lors de la récupération du profil',
                 CLOSE_BTN: 'Fermer'
             });
 
@@ -34,6 +35,7 @@ profileCtrl.config([
 
             $translateProvider.translations('en', {
                 PROFILE_TITLE: 'Profile',
+                PROFILE_ERROR: 'An error has occured during the recovery of the profile',
                 CLOSE_BTN: 'Close'
             });
     }]);
@@ -46,12 +48,29 @@ profileCtrl.controller('profileController', [
     '$scope',
     '$rootScope',
     'dialogManager',
+    'daoManager',
+    'toastManager',
     'appConfig',
     function (
         $scope,
         $rootScope,
         dialogManager,
+        daoManager,
+        toastManager,
         appConfig) {
+
+        /**
+         * Utilisateur connecté
+         * @public
+         */
+
+        $scope.user = {
+            email: undefined,
+            id: undefined,
+            login: undefined,
+            server_id: undefined,
+            username: undefined,
+        }
 
         /**
          * Chemin de l'icône de fermeture de la popin
@@ -69,5 +88,15 @@ profileCtrl.controller('profileController', [
         $scope.closeDialog = function () {
             dialogManager.closeDialogs();
         }
+
+        function init() {
+            daoManager.getConnectedUser().then(function(response) {
+                console.log(response);
+            }, function(error) {
+                toastManager.showSimpleToast($filter('translate')('PROFILE_ERROR'), 'error');
+            })
+        }
+
+        init();
 
     }]);

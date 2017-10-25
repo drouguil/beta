@@ -7,12 +7,12 @@
     // Récupération des paramètres
 
     $params = get_params();
-    $right = get_right();
+    $user = get_connected_user_right();
 
-    if(isset($right["name"]) && !empty($right["name"])) {
+    if(isset($user["right_name"]) && !empty($user["right_name"])) {
         // Vérification de l'identifiant du portail
 
-        if($right["name"] != "BANISHED") {
+        if($user["right_name"] != "BANISHED") {
             if(isset($params->portal))
             {
                 $portal = $params->portal;
@@ -51,6 +51,6 @@
         }
     }
     else {
-        return_result($right);
+        return_result($user);
     }
 ?>
