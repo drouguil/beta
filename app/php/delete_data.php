@@ -17,6 +17,23 @@
 
     }
 
+    // Suppression des données des serveurs/utilisateurs
+
+    function delete_servers_users() {
+        
+        // Suppression des données des serveurs/utilisateurs
+        
+        $result = delete("sw_servers_users");
+
+        if($result) {
+            echo "Suppression des données des serveurs/utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des données des serveurs/utilisateurs X\n";
+        }
+
+    }
+
     // Suppression des données des utilisateurs
 
     function delete_users() {
@@ -132,6 +149,10 @@
         // Suppression des données des portails
 
         delete_portals();
+
+        // Suppression des données des serveurs/utilisateurs
+
+        delete_servers_users();
 
         // Suppression des données des utilisateurs
 

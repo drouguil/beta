@@ -127,6 +127,22 @@
             echo "Suppression des utilisateurs X\n";
         }
     }
+    
+    // Suppression des serveurs/utilisateurs
+
+    function drop_servers_users() {
+
+        // Execution de la requête et récupération de son résultat
+    
+        $result = drop('sw_servers_users');
+
+        if($result) {
+            echo "Suppression des serveurs/utilisateurs ✔\n";
+        }
+        else {
+            echo "Suppression des serveurs/utilisateurs X\n";
+        }
+    }
 
     // Suppression des droits des utilisateurs
 
@@ -245,6 +261,10 @@
         // Suppression des succès
 
         drop_achievements();
+        
+        // Suppression des serveurs/utilisateurs
+
+        drop_servers_users();
 
         // Suppression des utilisateurs
 

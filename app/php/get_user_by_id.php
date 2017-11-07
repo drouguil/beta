@@ -12,8 +12,6 @@
     {
         $id = $params->id;
         $id = json_decode(json_encode($id), true);
-
-        $id = htmlspecialchars($id);
     
         $selected_fields = array("id", "username", "login", "server_id", "email", "ip");
     

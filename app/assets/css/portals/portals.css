@@ -24,6 +24,20 @@
     margin-top: 2rem;
 }
 
+#favourite-servers md-chips-wrap {
+    width: 50%;
+    margin: auto;
+}
+
+#favourite-servers md-chip {
+    cursor: pointer;
+}
+
+#favourite-servers .md-chip-input-container {
+    width: 330px;
+    font-weight: bold;
+}
+
 #portals-content #portals-header > div {
     display: flex;
     margin: 1rem 0;

@@ -317,13 +317,113 @@
 
             $request = "DROP TABLE `" . $table_name . "`";
 
-            $result = $conn->query($request);
+            $stmt = $conn->prepare($request);
+
+            if($stmt) {
+
+                $result = $stmt->execute();
+
+                if(!$result) {
+                    $return = "Suppression non effectuée suite à un problème divers (contraintes de clefs, ...)";
+                }
+                
+                $stmt->close();
+            }
+            else {
+                $return = "Erreur requête";
+            }
 
             // Fermeture de la connexion à la base de données
 
             $conn->close();
 
             return $result;
+        }
+        else {
+            return "Nom de table manquant";
+        }
+    }
+
+    // Requête insert
+
+    function insert($table_name, $selected_fields = false) {
+        if(isset($table_name) && !empty($table_name)) {
+            // Connexion à la base de données
+
+            include("connect.php");
+
+            if(!$selected_fields) {
+
+                // Requête d'insertion
+    
+                $request = "INSERT INTO  `" . $table_name . "` () VALUES ()";
+            }
+            else {
+                $request = "INSERT INTO  `" . $table_name . "` (";
+
+                if(count($selected_fields) > 0) {
+                    $count = 0;
+                    foreach ($selected_fields as $key => $value){
+                        $count++;
+                        $request .= "`" . $key . "`";
+                        if($count < count($selected_fields)){
+                            $request .= ",";
+                        }
+                    }
+                }
+
+                $request .= ") VALUES (";
+
+                if(count($selected_fields) > 0) {
+                    for($i = 0 ; $i < count($selected_fields) ; $i++) {
+                        $request .= "?";
+                        if($i < count($selected_fields)-1) {
+                            $request .= ",";
+                        }
+                    }                    
+                }
+
+                $request .= ")";
+            }
+            
+            $stmt = $conn->prepare($request);
+            
+            if($stmt) {
+
+                if($selected_fields) {
+                    $params = array();
+                    $params_type = "";
+    
+                    foreach ($selected_fields as $key => $value){
+                        $params_type .= $value[0];
+                    }
+    
+                    array_push($params, $params_type);
+    
+                    foreach ($selected_fields as $key => $value){
+                        array_push($params, $value[1]);
+                    }
+    
+                    call_user_func_array(array($stmt, 'bind_param'), ref_values($params));
+                }
+                
+                $result = $stmt->execute();
+                
+                $stmt->close();
+            }
+            else {
+                $result = "Erreur requête";
+            }
+        
+            $return = $result;
+        
+            // Fermeture de la connexion à la base de données
+        
+            $conn->close();
+        
+            // On renvoie la liste des données de la table
+        
+            return $return;
         }
         else {
             return "Nom de table manquant";

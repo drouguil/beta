@@ -103,7 +103,7 @@ daoService.service('daoManager', [
         };
 
         /**
-         * Récupère l'ensemble des serveurs
+         * Récupère les serveurs
          * @function getServers
          * @public
          * @return {Promesse} Promesse de la requête
@@ -111,6 +111,17 @@ daoService.service('daoManager', [
 
         self.getServers = function () {
             return request('get_servers', 'GET');
+        };
+
+        /**
+         * Récupère les serveurs favoris de l'utilisateur connecté
+         * @function getFavouritesServers
+         * @public
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.getFavouritesServers = function () {
+            return request('get_favourites_servers', 'GET');
         };
 
         /**
@@ -130,6 +141,46 @@ daoService.service('daoManager', [
             }
             else {
                 return Promise.reject(new Error('Le portail est manquant'));
+            }
+        };
+
+        /**
+         * Ajoute un serveur aux favoris de l'utilisateur connecté
+         * @function addFavouriteServer
+         * @public
+         * @param {Nombre} server_id Identifiant du serveur
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.addFavouriteServer = function (server_id) {
+            if (server_id) {
+                let params = {
+                    server_id: server_id
+                };
+                return request('insert_favourite_server', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'identifiant du serveur est manquant'));
+            }
+        };
+
+        /**
+         * Enlève un serveur des favoris de l'utilisateur connecté
+         * @function removeFavouriteServer
+         * @public
+         * @param {Nombre} server_id Identifiant du serveur
+         * @return {Promesse} Promesse de la requête
+         */
+
+        self.removeFavouriteServer = function (server_id) {
+            if (server_id) {
+                let params = {
+                    server_id: server_id
+                };
+                return request('delete_favourite_server', 'POST', params);
+            }
+            else {
+                return Promise.reject(new Error('L\'identifiant du serveur est manquant'));
             }
         };
 

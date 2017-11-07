@@ -290,6 +290,12 @@ portalsCtrl.controller('portalsController', [
         $scope.dimensions = [];
 
         /**
+         * Liste des serveurs favoris de l'utilisateur
+         */
+
+        $scope.favouritesServers = [];
+
+        /**
          * Serveur actuel
          * @public
          */
@@ -301,11 +307,23 @@ portalsCtrl.controller('portalsController', [
          * @public
          */
 
-        $scope.serverSelected = {
+        $scope.selectedServer = {
             id: undefined,
             name: undefined,
-            portals : []
+            portals: []
         };
+
+        /**
+         * Serveur favori sélectionné
+         */
+
+        $scope.selectedFavouriteServer = undefined;
+
+        /**
+         * 
+         */
+
+        $scope.searchServerName = undefined;
 
         /**
          * Timeur d'actualisation des données
@@ -405,6 +423,16 @@ portalsCtrl.controller('portalsController', [
 
         $scope.displayModifiers = false;
 
+        /*$scope.transformChip = function(chip) {
+            // If it is an object, it's already a known chip
+            if (angular.isObject(chip)) {
+              return chip;
+            }
+      
+            // Otherwise, create a new one
+            return { name: chip, type: 'new' }
+        }*/
+
         /**
          * Récupère le chemin de l'image d'une dimension en fonction de son identifiant
          * @function getDimensionImgPathById
@@ -432,7 +460,7 @@ portalsCtrl.controller('portalsController', [
 
         $scope.getDimensionClassNameById = function (id) {
             if ($scope.dimensions[id - 1]) {
-                return $scope.dimensions[id - 1].name.toLowerCase();
+                return angular.lowercase($scope.dimensions[id - 1].name);
             }
             else {
                 return '';
@@ -464,7 +492,7 @@ portalsCtrl.controller('portalsController', [
          */
 
         $scope.getModifierImgPathByName = function (name) {
-            return appConfig.paths.imgModifiers + name.toLowerCase() + '.png';
+            return appConfig.paths.imgModifiers + angular.lowercase(name) + '.png';
         };
 
         /**
@@ -505,9 +533,8 @@ portalsCtrl.controller('portalsController', [
 
         $scope.getAnnouncement = function () {
             let announcement = '';
-            if($scope.currentServer.portals)
-            {
-                $scope.currentServer.portals.forEach(function(portal) {
+            if ($scope.currentServer.portals) {
+                $scope.currentServer.portals.forEach(function (portal) {
                     announcement += '{map,';
                     announcement += portal.posX;
                     announcement += ',';
@@ -609,8 +636,91 @@ portalsCtrl.controller('portalsController', [
          */
 
         $scope.changeCurrentServer = function () {
-            $scope.currentServer = JSON.parse($scope.serverSelected);
-            $scope.refreshData();
+            if ($scope.selectedServer) {
+                $scope.currentServer = JSON.parse($scope.selectedServer);
+                $scope.refreshData();
+                sortModifiers();
+            }
+        }
+
+        /**
+         * Change le serveur actuel avec le serveur sélectionné parmi les serveurs favoris
+         * @function selectFavouriteServer
+         * @public
+         * @param {Objet}
+         */
+
+        $scope.selectFavouriteServer = function (server) {
+            if (server) {
+                if($scope.currentServer.id != server.id) {
+                    $scope.currentServer = server;
+                }
+            }
+        }
+
+        /**
+         * Ajoute un serveur aux favoris de l'utilisateur connecté
+         * @function addFavouriteServer
+         * @public
+         * @param {Objet}
+         */
+
+        $scope.addFavouriteServer = function (server) {
+            console.log($scope.favouritesServers);
+            if (server) {
+                daoManager.addFavouriteServer(server.id).then(
+                    function (response) {
+                        console.log(response);
+                    }, function (error) {
+                        console.log(error);
+                    }
+                );
+            }
+        }
+
+        /**
+         * Enlève un serveur des favoris de l'utilisateur connecté
+         * @function removeFavouriteServer
+         * @public
+         * @param {Objet} server Serveur
+         */
+
+        $scope.removeFavouriteServer = function (server) {
+            if (server) {
+                daoManager.removeFavouriteServer(server.id).then(
+                    function (response) {
+                        console.log(response);
+                    }, function (error) {
+                        console.log(error);
+                    }
+                );
+            }
+        }
+
+        /**
+         * Transform la chip en objet
+         * @function transformChip
+         * @public
+         * @param {Objet} chip Chip
+         */
+
+        $scope.transformChip = function (chip) {
+            if (angular.isObject(chip)) {
+                return chip;
+            }
+
+            return { name: chip }
+        }
+
+        /**
+         * Recherche d'un serveur par nom
+         * @function searchServer
+         * @public
+         * @param {Caractères} serverName Nom du serveur à rechercher
+         */
+
+        $scope.searchServer = function (serverName) {
+            return serverName ? $scope.servers.filter(createFilterFor(serverName)) : [];
         }
 
         /**
@@ -631,8 +741,24 @@ portalsCtrl.controller('portalsController', [
         };
 
         /**
+         * 
+         * @function connectUser
+         * @public
+         */
+
+        $scope.$on('connectUser', function () {
+            daoManager.getFavouritesServers().then(
+                function (response) {
+                    console.log(response);
+                }, function (error) {
+                    console.log(error);
+                }
+            );
+        });
+
+        /**
          * Suppression de l'intervalle de rafrachissement lorsqu'on quitte la page
-         * @function
+         * @function $destroy
          * @public
          */
 
@@ -648,7 +774,7 @@ portalsCtrl.controller('portalsController', [
          * @public
          */
 
-        $scope.$on('refreshDataPortals', function() {
+        $scope.$on('refreshDataPortals', function () {
             $scope.refreshData();
         });
 
@@ -676,8 +802,8 @@ portalsCtrl.controller('portalsController', [
                         posY: data['pos_y'],
                         numberUses: data['number_uses'],
                         isUnknow: data['is_unknow'],
-                        numberConfirms : data['number_confirms'],
-                        numberReports : data['number_reports']
+                        numberConfirms: data['number_confirms'],
+                        numberReports: data['number_reports']
                     };
 
                     // Récupération de l'utilisateur
@@ -695,7 +821,7 @@ portalsCtrl.controller('portalsController', [
 
                         if (!_.isEqual(refreshPortal, portal)) {
                             $scope.currentServer.portals[indexPortal] = refreshPortal;
-                            if(!_.isEqual(refreshPortal.modifierId, portal.modifierId)) {
+                            if (!_.isEqual(refreshPortal.modifierId, portal.modifierId)) {
                                 sortModifiers($scope.currentServer.portals[indexPortal]);
                             }
                         }
@@ -712,9 +838,24 @@ portalsCtrl.controller('portalsController', [
         var refreshDataInterval = $interval(function () {
             $scope.refreshTimer--;
             if ($scope.refreshTimer == 0) {
-               $scope.refreshData();
+                $scope.refreshData();
             }
         }, 1000);
+
+        /**
+         * Filtre de recherche
+         * @function createFilterFor
+         * @private
+         * @param {Caractères} serverName Nom du serveur à filtrer
+         */
+
+        function createFilterFor(serverName) {
+            return function filterFn(server) {
+                var toSearch = angular.lowercase($filter('translate')(server.name)).replace(/[éêè]/g, "e");
+                var toFind = angular.lowercase(serverName).replace(/[éêè]/g, "e");
+                return (toSearch.indexOf(toFind) === 0);
+            };
+        }
 
         /**
          * Trie le tableau des modificateurs du portail
@@ -784,6 +925,20 @@ portalsCtrl.controller('portalsController', [
 
             imgManager.initBackgroundImage('portals');
 
+            daoManager.getFavouritesServers().then(
+                function (response) {
+                    let favouritesServers = response.data;
+                    console.log('favouritesServers', favouritesServers);
+                    favouritesServers.forEach(function (favouriteServer) {
+                        favouriteServer.portals = [];
+                        $scope.favouritesServers.push(favouriteServer);
+                    });
+                    console.log($scope.favouritesServers);
+                }, function (error) {
+                    console.log(error);
+                }
+            );
+
             // Récupération des dimensions
 
             daoManager.getDimensions().then(function (response) {
@@ -838,8 +993,8 @@ portalsCtrl.controller('portalsController', [
                                 posY: parseInt(data['pos_y']),
                                 numberUses: parseInt(data['number_uses']),
                                 isUnknow: parseInt(data['is_unknow']),
-                                numberConfirms : parseInt(data['number_confirms']),
-                                numberReports : parseInt(data['number_reports'])
+                                numberConfirms: parseInt(data['number_confirms']),
+                                numberReports: parseInt(data['number_reports'])
                             };
 
                             // Récupération de l'utilisateur

@@ -222,6 +222,44 @@
 
     }
 
+    // Création des serveurs/utilisateurs
+
+    function create_servers_users() {
+        
+        // Connexion à la base de données
+
+        include("connect.php");
+        
+        // Requête de création des serveurs/utilisateurs
+    
+        $request = "
+        CREATE TABLE IF NOT EXISTS `sw_servers_users`
+        (
+            `server_id` TINYINT UNSIGNED NOT NULL,
+            `user_id` MEDIUMINT UNSIGNED NOT NULL,
+            PRIMARY KEY (`server_id`, `user_id`),
+            FOREIGN KEY (`server_id`) REFERENCES `sw_servers`(`id`),
+            FOREIGN KEY (`user_id`) REFERENCES `sw_users`(`id`)
+        ) ENGINE=InnoDB;
+        ";
+    
+        // Execution de la requête et récupération de son résultat
+    
+        $result = $conn->query($request);
+
+        if($result) {
+            echo "Création des serveurs/utilisateurs ✔\n";
+        }
+        else {
+            echo "Création des serveurs/utilisateurs X\n";
+        }
+
+        // Fermeture de la connexion à la base de données
+
+        $conn->close();
+
+    }
+
     // Création des succès
 
     function create_achievements() {
@@ -523,6 +561,10 @@
         // Création des utilisateurs
 
         create_users();
+
+        // Création des serveurs/utilisateurs
+
+        create_servers_users();
 
         // Création des succès
 

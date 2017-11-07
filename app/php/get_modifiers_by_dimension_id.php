@@ -15,8 +15,6 @@
         $dimension_id = $params->dimension_id;
         $dimension_id = json_decode(json_encode($dimension_id), true);
 
-        $dimension_id = htmlspecialchars($dimension_id);
-
         $selected_fields = array("modifier_id");
 
         $conditions = array("dimension_id" => array("i", $dimension_id));

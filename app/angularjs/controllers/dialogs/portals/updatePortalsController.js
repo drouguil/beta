@@ -297,7 +297,7 @@ updatePortalsCtrl.controller('updatePortalsController', [
          */
 
         $scope.getDimensionClassName = function () {
-            return $scope.dimension.name.toLowerCase();
+            return angular.lowercase($scope.dimension.name);
         };
 
         /**
@@ -309,7 +309,7 @@ updatePortalsCtrl.controller('updatePortalsController', [
          */
 
         $scope.getModifierImgPathByName = function (name) {
-            return appConfig.paths.imgModifiers + name.toLowerCase() + '.png';
+            return appConfig.paths.imgModifiers + angular.lowercase(name) + '.png';
         };
 
         /**

@@ -10,7 +10,34 @@
     </md-toolbar>
 
     <md-dialog-content>
-      
+      <uib-accordion close-others="oneAtATime">
+        <div uib-accordion-group class="panel-default" ng-click="status.open = !status.open" is-open="status.open">
+          <uib-accordion-heading>
+            Version 2.0.0 <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+          </uib-accordion-heading>
+
+          Ajout de la compatibilité avec la plupart des écrans
+
+          Changement du système d'obtention des titres et ornements via des succès
+          
+          Ajout des fonctionnalités suivantes :
+
+          <ul>
+            <li>Système de serveurs favoris</li>
+            <li>Réinitialisation du mot de passe par mail (lorsque celui-ci est renseigné)</li>
+            <li>Système de notifications</li>
+            <li>Système de messagerie</li>
+            <li>Système de contact</li>
+          </ul>
+
+          Systèmes en bêta :
+
+          <ul>
+            <li>Quizz</li>
+            <li>Puzzle</li>
+          </ul>
+        </div>
+      </uib-accordion>
     </md-dialog-content>
 
     <md-dialog-actions>

@@ -1,11 +1,23 @@
 <div id="portals-view">
     <div id="portals-content">
         <div id="portals-header">
+            <h2 ng-if="isLog">Serveurs favoris</h2>
+            <md-chips id="favourite-servers" ng-if="isLog" ng-model="favouritesServers" md-on-select="selectFavouriteServer($chip)" md-on-add="addFavouriteServer($chip)" md-on-remove="removeFavouriteServer($chip)" md-autocomplete-snap  md-transform-chip="transformChip($chip)" md-require-match="true">
+                <md-autocomplete md-selected-item="selectedFavouriteServer" md-search-text="searchServerName" md-items="server in searchServer(searchServerName)"
+                    md-item-text="server.name" placeholder="Rechercher un serveur à ajouter en favoris">
+                    <span md-highlight-text="searchServerName">{{server.name | translate}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                        <strong>{{$chip.name | translate}}</strong>
+                    </span>
+                </md-chip-template>
+            </md-chips>
             <div class="col-xs-12">
                 <div id="current-server" class="btn btn-small">
                     <md-input-container class="md-block">
                         <label ng-bind="'SERVER_SELECTED_LABEL' | translate"></label>
-                        <md-select ng-show="viewIsLoaded" ng-change="changeCurrentServer()" ng-model="serverSelected">
+                        <md-select ng-show="viewIsLoaded" ng-change="changeCurrentServer()" ng-model="selectedServer">
                             <md-option ng-repeat="server in servers | orderBy:'name | translate'" value="{{server}}" ng-selected="server.id == currentServer.id"
                                 ng-bind="server.name | translate"></md-option>
                         </md-select>

@@ -18,19 +18,19 @@
                 $portal = $params->portal;
                 $portal = json_decode(json_encode($portal), true);
     
-                $modifierId = $portal["modifierId"];
-                $posX = $portal["posX"];
-                $posY = $portal["posY"];
-                $numberUses = $portal["numberUses"];
-                $isUnknow = $portal["isUnknow"];
+                $modifier_id = $portal["modifierId"];
+                $pos_x = $portal["posX"];
+                $pos_y = $portal["posY"];
+                $number_uses = $portal["numberUses"];
+                $is_unknow = $portal["isUnknow"];
                 $id = $portal["id"];
     
                 $selected_fields = array(
-                    "modifier_id" => array("i", $modifierId),
-                    "pos_x" => array("i", $posX),
-                    "pos_y" => array("i", $posY),
-                    "number_uses" => array("i", $numberUses),
-                    "is_unknow" => array("i", $isUnknow)
+                    "modifier_id" => array("i", $modifier_id),
+                    "pos_x" => array("i", $pos_x),
+                    "pos_y" => array("i", $pos_y),
+                    "number_uses" => array("i", $number_uses),
+                    "is_unknow" => array("i", $is_unknow)
                 );
     
                 $conditions = array("id" => array("i", $id));

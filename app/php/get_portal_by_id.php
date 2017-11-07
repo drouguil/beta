@@ -13,8 +13,6 @@
         $id = $params->id;
         $id = json_decode(json_encode($id), true);
 
-        $id = htmlspecialchars($id);
-
         $selected_fields = false;
         
         $conditions = array("id" => array("i", $id));

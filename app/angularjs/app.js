@@ -30,6 +30,7 @@ let mainApp = angular.module('mainApp',
         'pascalprecht.translate',
         'ngclipboard',
         'md.data.table',
+        'ui.bootstrap',
 
         /**
          * Modules des contrôleurs
