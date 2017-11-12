@@ -49,6 +49,7 @@ let mainApp = angular.module('mainApp',
 
         'homeCtrl',
         'adminCtrl',
+        'modoCtrl',
         'portalsCtrl',
         'notFoundCtrl',
         'puzzleCtrl',
@@ -153,6 +154,15 @@ mainApp.config([
             when('/admin', {
                 templateUrl: appConfig.paths.viewsAdmin + 'admin.html',
                 controller: 'adminController'
+            }).
+
+            /**
+             * Page Modo
+             */
+
+            when('/modo', {
+                templateUrl: appConfig.paths.viewsModo + 'modo.html',
+                controller: 'modoController'
             }).
 
             /**
