@@ -3,7 +3,6 @@
 #modo-view {
     width: 100%;
     min-height: 100%;
-    background-image: url('../img/backgrounds/modo_background.png');
     background-attachment: fixed;
     background-position: center; 
     background-size: cover;

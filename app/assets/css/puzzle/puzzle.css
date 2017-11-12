@@ -3,7 +3,6 @@
 #puzzle-view {
     width: 100%;
     min-height: 100%;
-    background-image: url('../img/backgrounds/puzzle_background.jpg');
     background-attachment: fixed;
     background-position: center; 
     background-size: cover;
