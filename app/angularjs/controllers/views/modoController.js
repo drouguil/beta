@@ -118,7 +118,7 @@ modoCtrl.controller('modoController', [
 
             // Initialisation de l'image de fond
 
-            imgManager.initBackgroundImage('modo');
+            imgManager.initBackgroundImage('admin');
 
             // Récupération de tous les utilisateurs
 
