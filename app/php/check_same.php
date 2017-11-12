@@ -1,13 +1,12 @@
 <?php
 
-    // Connexion à la base de données
+    // DAO
 
-    include("connect.php");
+    include_once("dao.php");
 
-    // Récupération des arguments
+    // Récupération des paramètres
 
-    $postdata = file_get_contents("php://input");
-    $request = json_decode($postdata);
+    $params = get_params();
     
     // Initialisation de la valeur de retour à ok
 
@@ -15,52 +14,43 @@
 
     // Vérification du pseudo
 
-    if(isset($request->username)) {
+    if(isset($params->username)) {
         $field_to_check = "username";
-        $var_to_check = $request->username;
+        $var_to_check = $params->username;
     }
 
     // Vérification du nom d'utilisateur
 
-    if(isset($request->login)) {
+    if(isset($params->login)) {
         $field_to_check = "login";
-        $var_to_check = $request->login;
+        $var_to_check = $params->login;
     }
 
     // Vérification de l'adresse mail
 
-    if(isset($request->email)) {
+    if(isset($params->email)) {
         $field_to_check = "email";
-        $var_to_check = $request->email;
+        $var_to_check = $params->email;
     }
 
     // On vérifie si le champ est unique en base de données
 
-    if(isset($request->username) || isset($request->login) || isset($request->email))
+    if(isset($params->username) || isset($params->login) || isset($params->email))
     {
-        $var_to_check = "'" . htmlspecialchars($var_to_check) . "'";
-    
-        $request = "SELECT `id` FROM `sw_users` WHERE `" . $field_to_check . "` = " . $var_to_check;
-    
-        $result = $conn->query($request);
 
-        // Fermeture de la connexion à la base de données
+        $selected_fields = array("id");
 
-        $conn->close();
-        
-        $result = mysqli_fetch_assoc($result);
+        $conditions = array($field_to_check => array("s",$var_to_check));
 
-        if($result)
+        $is_unique = true;
+
+        $user = select("sw_users", $selected_fields, $conditions, $is_unique);
+
+        if(isset($user["id"]))
         {
-            $return = $result;
+            $return = $user;
         }
     }
 
-    // Encodage en json de la valeur de retour
-
-    $return = json_encode($return);
-
-    // On renvoie la valeur de retour
-
-    echo $return;
+    return_result($return);
 ?>

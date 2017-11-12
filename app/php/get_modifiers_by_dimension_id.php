@@ -44,7 +44,7 @@
 
     }
     else {
-        $error = "Error dimension id";
+        $error = "Erreur dimension id";
        
         return_result($error);
 

@@ -22,7 +22,7 @@
             $login = "'" . htmlspecialchars($user["login"]) . "'";
         }
         else {
-            $error = "Error login";
+            $error = "Erreur login";
         }
 
         // Vérification du mot de passe
@@ -31,7 +31,7 @@
             $hashed_password = "'" . md5($user["password"]) . "'";
         }
         else {
-            $error = "Error password";
+            $error = "Erreur password";
         }
 
         // Si tous les champs sont valides on tente d'executer la requête d'inscription
@@ -63,7 +63,7 @@
         }
     }
     else {
-        $error = "Error user";
+        $error = "Erreur user";
         $return = $error;
     }
 

@@ -13,8 +13,6 @@
         $server_id = $params->server_id;
         $server_id = json_decode(json_encode($server_id), true);
 
-        $server_id = htmlspecialchars($server_id);
-
         $selected_fields = false;
         
         $conditions = array("server_id" => array("i", $server_id));

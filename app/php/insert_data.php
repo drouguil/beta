@@ -1,5 +1,11 @@
 <?php
 
+    // Réinitialisation de l'auto increment d'une table
+
+    /*function reset_auto_increment($table_name) {
+        $request = "ALTER TABLE `" . $table_name . "` AUTO_INCREMENT = 1";
+    }*/
+
     // Insertion des serveurs
 
     function insert_servers() {

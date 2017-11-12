@@ -22,7 +22,7 @@
         
             // Récupération de l'utilisateur
         
-        return_result(delete("sw_servers_users", $conditions));
+            return_result(delete("sw_servers_users", $conditions));
         }
         else {
             $error = "Erreur identifiant";
