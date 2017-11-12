@@ -928,12 +928,12 @@ portalsCtrl.controller('portalsController', [
             daoManager.getFavouritesServers().then(
                 function (response) {
                     let favouritesServers = response.data;
-                    console.log('favouritesServers', favouritesServers);
-                    favouritesServers.forEach(function (favouriteServer) {
-                        favouriteServer.portals = [];
-                        $scope.favouritesServers.push(favouriteServer);
-                    });
-                    console.log($scope.favouritesServers);
+                    if(_.isArray(response.data)) {
+                        favouritesServers.forEach(function (favouriteServer) {
+                            favouriteServer.portals = [];
+                            $scope.favouritesServers.push(favouriteServer);
+                        });
+                    }
                 }, function (error) {
                     console.log(error);
                 }
