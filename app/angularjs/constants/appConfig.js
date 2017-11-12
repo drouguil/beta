@@ -60,7 +60,7 @@ appConfig.constant('appConfig', {
                 viewsPortals : './app/views/portals/',
                 viewsPuzzle : './app/views/puzzle/',
                 viewsAdmin : './app/views/admin/',
-                viewsModo : './app/views/modo'
+                viewsModo : './app/views/modo/'
     },
     localStorage : {
         authToken : 'authToken',
