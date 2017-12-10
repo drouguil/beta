@@ -400,7 +400,7 @@ portalsCtrl.controller('portalsController', [
          * @public
          */
 
-        $scope.refreshIconPath = appConfig.paths.svgPortals + 'refresh.svg';
+        $scope.refreshIconPath = appConfig.paths.imgIcons + 'refresh.png';
 
         /**
          * Chemin de l'icône de la copie pour l'annonce de guilde

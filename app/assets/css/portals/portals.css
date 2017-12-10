@@ -76,7 +76,7 @@
 }
 
 #portals-content #portals-header #refresh-btn {
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: rgb(52,152,219);
     display: flex;
     width: 15rem;
@@ -88,8 +88,8 @@
 }
 
 #portals-content #portals-header #refresh-btn img {
-    height: 4rem;
-    width: 4rem;
+    height: 5rem;
+    width: 5rem;
 }
 
 #portals-content #portals-header #refresh-btn span {
