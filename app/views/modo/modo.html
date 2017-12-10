@@ -1,4 +1,67 @@
 <div id="modo-view">
     <div id="modo-content">
+        <div id="modo-table">
+            <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <span>Utilisateurs</span>
+                </div>
+            </md-toolbar>
+
+            <!-- user table -->
+            <md-table-container>
+                <table md-table multiple ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="query.order">
+                        <tr md-row>
+                            <th md-column md-numeric>
+                                <span>id</span>
+                            </th>
+                            <th md-column>
+                                <span>username</span>
+                            </th>
+                            <th md-column>login</th>
+                            <th md-column md-numeric>server_id</th>
+                            <th md-column>email</th>
+                            <th md-column md-numeric>right_id</th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr 
+                            md-row md-select="user" 
+                            md-select-id="id" 
+                            md-auto-select 
+                            ng-repeat=
+                                "user in users
+                                | limitTo: 
+                                query.limit:
+                                (query.page - 1) * query.limit">
+
+                                <td md-cell>{{user.id}}</td>
+                                <td md-cell>{{user.username}}</td>
+                                <td md-cell>{{user.login}}</td>
+                                <td md-cell>{{user.server_id}}</td>
+                                <td md-cell>{{user.email}}</td>
+                                <td md-cell>{{user.right_id}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+
+            <!-- pagination -->
+            <md-table-pagination 
+                md-label=
+                    "{
+                        rowsPerPage: 'Utilisateurs par page:',
+                        of: 'sur'
+                    }" 
+                md-limit="query.limit" 
+                md-limit-options=
+                "[
+                    5, 
+                    10 
+                ]" 
+                md-total="{{users.length}}" 
+                md-page="query.page">
+            </md-table-pagination>
+        </div>
     </div>
 </div>
